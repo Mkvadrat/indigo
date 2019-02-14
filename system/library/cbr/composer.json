@@ -1,0 +1,13 @@
+{
+	"name": "akiyatkin/cbr",
+	"description": "Курсы валют",
+	"require":{
+		"infrajs/ans":"~1",
+		"infrajs/cache":"~1"
+	},
+	"autoload":{
+		"psr-4":{
+			"akiyatkin\\cbr\\": ""
+		}
+	}
+}
