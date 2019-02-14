@@ -370,14 +370,6 @@ class ControllerProductProduct extends Controller {
 			
 			$data['email'] = $agent_information['email'];
 			
-			$data['case_id'] = $agent_information['category_case_id'];
-			
-			$data['view_all_cases'] = $this->url->link('blog/category', '&blog_category_id=' . $agent_information['category_case_id']);
-			
-			$data['category_id_object'] = $agent_information['category_id'];
-			
-			$data['view_all_object'] = $this->url->link('product/category', 'path=' . $agent_information['category_id']);
-			
 			if ((float)$product_info['special']) {
 				$data['special'] = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')), 'USD', $format= true);
 			} else {
@@ -506,44 +498,6 @@ class ControllerProductProduct extends Controller {
 				);
 			}
 			
-			$this->load->model('blog/article');
-			
-			$this->load->model('blog/category');
-			
-			$data['articles'] = array();
-				
-			if($product_info['case_id']){
-				$article_info = $this->model_blog_article->getArticle($product_info['case_id']);
-
-				if ($article_info['image']) {
-					$image = $this->model_tool_image->resize($article_info['image'], 387, 239);
-				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', 387, 239);
-				}
-								
-				$agent_info = $this->model_blog_category->getCategory($article_info['article_id']);
-						
-				if (!empty($agent_info['image'])) {
-					$image_agent = $this->model_tool_image->resize($agent_info['image'], 225, 225);
-				} else {
-					$image_agent = $this->model_tool_image->resize('placeholder.png', 225, 225);
-				}
-																
-				$data['articles'][] = array(
-					'article_id'  => $article_info['article_id'],
-					'thumb'       => $image,
-					'name'        => $article_info['name'],
-					'description' => utf8_substr(strip_tags(html_entity_decode($article_info['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('configblog_article_description_length')) . '..',
-					'short_description' => utf8_substr(strip_tags(html_entity_decode($article_info['short_description'], ENT_QUOTES, 'UTF-8')), 0, 100 . '..'),
-					'date_added'  => date($this->language->get('date_format_short'), strtotime($article_info['date_added'])),
-					'href'        => $this->url->link('blog/article', 'article_id=' . $article_info['article_id']),
-					'agent'       => isset($agent_info['name']) ? $agent_info['name'] : '',
-					'image_agent' => $image_agent
-				);
-			}
-			
-			$data['view_all_featured_cases'] =$this->url->link('blog/category', 'blog_category_id=3');
-
 			$data['tags'] = array();
 
 			if ($product_info['tag']) {
@@ -1026,14 +980,6 @@ class ControllerProductProduct extends Controller {
 			$data['phone'] = $agent_information['phone'];
 			
 			$data['email'] = $agent_information['email'];
-			
-			$data['case_id'] = $agent_information['category_case_id'];
-			
-			$data['view_all_cases'] = $this->url->link('blog/category', '&blog_category_id=' . $agent_information['category_case_id']);
-			
-			$data['category_id_object'] = $agent_information['category_id'];
-			
-			$data['view_all_object'] = $this->url->link('product/category', 'path=' . $agent_information['category_id']);
 			
 			if ((float)$product_info['special']) {
 				$data['special'] = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')), 'USD', $format= true);

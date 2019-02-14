@@ -1,9 +1,9 @@
 <?php
-class ControllerExtensionModulePresentation extends Controller {
+class ControllerExtensionModuleHtmlImage extends Controller {
 	private $error = array();
 
 	public function index() {
-		$this->load->language('extension/module/presentation');
+		$this->load->language('extension/module/htmlimage');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -11,7 +11,7 @@ class ControllerExtensionModulePresentation extends Controller {
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			if (!isset($this->request->get['module_id'])) {
-				$this->model_extension_module->addModule('presentation', $this->request->post);
+				$this->model_extension_module->addModule('htmlimage', $this->request->post);
 			} else {
 				$this->model_extension_module->editModule($this->request->get['module_id'], $this->request->post);
 			}
@@ -21,16 +21,16 @@ class ControllerExtensionModulePresentation extends Controller {
 			$this->response->redirect($this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true));
 		}
 
-		//CKEditor
-		if ($this->config->get('config_editor_default')) {
-			$this->document->addScript('view/javascript/ckeditor/ckeditor.js');
-			$this->document->addScript('view/javascript/ckeditor/ckeditor_init.js');
-		} else {
-			$this->document->addScript('view/javascript/summernote/summernote.js');
-			$this->document->addScript('view/javascript/summernote/lang/summernote-' . $this->language->get('lang') . '.js');
-			$this->document->addScript('view/javascript/summernote/opencart.js');
-			$this->document->addStyle('view/javascript/summernote/summernote.css');
-		}
+    //CKEditor
+    if ($this->config->get('config_editor_default')) {
+        $this->document->addScript('view/javascript/ckeditor/ckeditor.js');
+        $this->document->addScript('view/javascript/ckeditor/ckeditor_init.js');
+    } else {
+        $this->document->addScript('view/javascript/summernote/summernote.js');
+        $this->document->addScript('view/javascript/summernote/lang/summernote-' . $this->language->get('lang') . '.js');
+        $this->document->addScript('view/javascript/summernote/opencart.js');
+        $this->document->addStyle('view/javascript/summernote/summernote.css');
+    }
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
@@ -78,19 +78,19 @@ class ControllerExtensionModulePresentation extends Controller {
 		if (!isset($this->request->get['module_id'])) {
 			$data['breadcrumbs'][] = array(
 				'text' => $this->language->get('heading_title'),
-				'href' => $this->url->link('extension/module/presentation', 'token=' . $this->session->data['token'], true)
+				'href' => $this->url->link('extension/module/htmlimage', 'token=' . $this->session->data['token'], true)
 			);
 		} else {
 			$data['breadcrumbs'][] = array(
 				'text' => $this->language->get('heading_title'),
-				'href' => $this->url->link('extension/module/presentation', 'token=' . $this->session->data['token'] . '&module_id=' . $this->request->get['module_id'], true)
+				'href' => $this->url->link('extension/module/htmlimage', 'token=' . $this->session->data['token'] . '&module_id=' . $this->request->get['module_id'], true)
 			);
 		}
 
 		if (!isset($this->request->get['module_id'])) {
-			$data['action'] = $this->url->link('extension/module/presentation', 'token=' . $this->session->data['token'], true);
+			$data['action'] = $this->url->link('extension/module/htmlimage', 'token=' . $this->session->data['token'], true);
 		} else {
-			$data['action'] = $this->url->link('extension/module/presentation', 'token=' . $this->session->data['token'] . '&module_id=' . $this->request->get['module_id'], true);
+			$data['action'] = $this->url->link('extension/module/htmlimage', 'token=' . $this->session->data['token'] . '&module_id=' . $this->request->get['module_id'], true);
 		}
 
 		$data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true);
@@ -106,18 +106,22 @@ class ControllerExtensionModulePresentation extends Controller {
 		} else {
 			$data['name'] = '';
 		}
-
-		if (isset($this->request->post['module_description'])) {
-			$data['module_description'] = $this->request->post['module_description'];
+		
+		if (isset($this->request->post['width'])) {
+			$data['width'] = $this->request->post['width'];
 		} elseif (!empty($module_info)) {
-			$data['module_description'] = $module_info['module_description'];
+			$data['width'] = $module_info['width'];
 		} else {
-			$data['module_description'] = array();
+			$data['width'] = '';
 		}
-
-		$this->load->model('localisation/language');
-
-		$data['languages'] = $this->model_localisation_language->getLanguages();
+		
+		if (isset($this->request->post['height'])) {
+			$data['height'] = $this->request->post['height'];
+		} elseif (!empty($module_info)) {
+			$data['height'] = $module_info['height'];
+		} else {
+			$data['height'] = '';
+		}
 		
 		$this->load->model('tool/image');
 		
@@ -134,38 +138,21 @@ class ControllerExtensionModulePresentation extends Controller {
 		} else {
 			$data['thumb'] = $this->model_tool_image->resize('placeholder.png', 100, 100);
 		}
-		
-		$this->load->model('catalog/download');
-		
-		$results = $this->model_catalog_download->getDownloads();
-		
-		$data['downloads'] = array();
-		
-		foreach ($results as $result) {
-			$data['downloads'][] = array(
-				'download_id' => $result['download_id'],
-				'name'        => $result['name'],
-				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'edit'        => $this->url->link('catalog/download/edit', 'token=' . $this->session->data['token'] . '&download_id=' . $result['download_id'], true)
-			);
-		}
-				
-		if (isset($this->request->post['main_download_presentation'])) {
-			$data['main_download_presentation'] = $this->request->post['main_download_presentation'];
-		} elseif (!empty($module_info['main_download_presentation'])) {
-			$data['main_download_presentation'] = $module_info['main_download_presentation'];
+
+		if (isset($this->request->post['module_description'])) {
+			$data['module_description'] = $this->request->post['module_description'];
+		} elseif (!empty($module_info)) {
+			$data['module_description'] = $module_info['module_description'];
 		} else {
-			$data['main_download_presentation'] = array();
+			$data['module_description'] = array();
 		}
 		
-		if (isset($this->request->post['second_download_presentation'])) {
-			$data['second_download_presentation'] = $this->request->post['second_download_presentation'];
-		} elseif (!empty($module_info['second_download_presentation'])) {
-			$data['second_download_presentation'] = $module_info['second_download_presentation'];
-		} else {
-			$data['second_download_presentation'] = array();
-		}
-		
+		$data['lang'] = $this->config->get('config_language');
+
+		$this->load->model('localisation/language');
+
+		$data['languages'] = $this->model_localisation_language->getLanguages();
+
 		if (isset($this->request->post['status'])) {
 			$data['status'] = $this->request->post['status'];
 		} elseif (!empty($module_info)) {
@@ -178,11 +165,11 @@ class ControllerExtensionModulePresentation extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('extension/module/presentation', $data));
+		$this->response->setOutput($this->load->view('extension/module/htmlimage', $data));
 	}
 
 	protected function validate() {
-		if (!$this->user->hasPermission('modify', 'extension/module/presentation')) {
+		if (!$this->user->hasPermission('modify', 'extension/module/htmlimage')) {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 

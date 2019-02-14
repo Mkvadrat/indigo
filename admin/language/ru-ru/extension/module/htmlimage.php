@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']     = 'Презентация';
+$_['heading_title']     = 'HTML Содержимое с изображением';
 
 // Text
 $_['text_extension']    = 'Модули';

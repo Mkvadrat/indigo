@@ -187,3 +187,11 @@
 2019-02-14 14:22:49 - PHP Notice:  Undefined variable: config_second_footer_telephone in D:\OpenServer\domains\indigo.loc\admin\view\template\setting\setting.tpl on line 192
 2019-02-14 14:35:05 - PHP Notice:  Undefined index: social in D:\OpenServer\domains\indigo.loc\admin\view\template\setting\setting.tpl on line 170
 2019-02-14 14:37:44 - PHP Notice:  Undefined index: powered in D:\OpenServer\domains\indigo.loc\admin\view\template\setting\setting.tpl on line 176
+2019-02-14 15:41:03 - PHP Notice:  Undefined variable: thumb in D:\OpenServer\domains\indigo.loc\admin\view\template\extension\module\mainbanner.tpl on line 65
+2019-02-14 15:41:03 - PHP Notice:  Undefined variable: image in D:\OpenServer\domains\indigo.loc\admin\view\template\extension\module\mainbanner.tpl on line 65
+2019-02-14 15:49:22 - PHP Notice:  Undefined variable: heading_title in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\extension\module\mainbanner.tpl on line 13
+2019-02-14 17:54:30 - PHP Notice:  Undefined index: case_id in D:\OpenServer\domains\indigo.loc\catalog\model\catalog\product.php on line 19
+2019-02-14 17:54:30 - PHP Notice:  Undefined index: case_id in D:\OpenServer\domains\indigo.loc\catalog\model\catalog\product.php on line 19
+2019-02-14 17:54:30 - PHP Notice:  Undefined index: case_id in D:\OpenServer\domains\indigo.loc\catalog\model\catalog\product.php on line 19
+2019-02-14 17:54:30 - PHP Notice:  Undefined index: case_id in D:\OpenServer\domains\indigo.loc\catalog\model\catalog\product.php on line 19
+2019-02-14 17:54:30 - PHP Notice:  Undefined index: case_id in D:\OpenServer\domains\indigo.loc\catalog\model\catalog\product.php on line 19

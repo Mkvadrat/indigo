@@ -150,3 +150,4 @@
           </nav>
           <?php } ?>
       </header>
+    <section>  
