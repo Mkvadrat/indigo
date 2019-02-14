@@ -146,7 +146,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-top"><span data-toggle="tooltip" title="<?php echo $help_top; ?>"><?php echo $entry_top; ?></span></label>
+                <label class="col-sm-2 control-label" for="input-top">Показать пункт в меню (Подвал сайта)</label>
                 <div class="col-sm-10">
                   <div class="checkbox">
                     <label>

@@ -23,7 +23,10 @@ class ControllerSettingSetting extends Controller {
 			$this->request->post['config_address'] = $this->request->post['config_langdata'][$front_language_id]['address'];
 			$this->request->post['config_messenger'] = $this->request->post['config_langdata'][$front_language_id]['messenger'];
 			$this->request->post['config_callback_link'] = $this->request->post['config_langdata'][$front_language_id]['callback_link'];
-
+			$this->request->post['config_callback_footer_link'] = $this->request->post['config_langdata'][$front_language_id]['callback_footer_link'];
+			$this->request->post['config_descr_agency'] = $this->request->post['config_langdata'][$front_language_id]['descr_agency'];
+			$this->request->post['config_social'] = $this->request->post['config_langdata'][$front_language_id]['social'];
+			$this->request->post['config_powered'] = $this->request->post['config_langdata'][$front_language_id]['powered'];
 			$this->request->post['config_mail_regexp'] = trim($this->request->post['config_mail_regexp']);
 			
 			$this->model_setting_setting->editSetting('config', $this->request->post);
@@ -311,12 +314,6 @@ class ControllerSettingSetting extends Controller {
 			$data['error_owner'] = '';
 		}
 
-		if (isset($this->error['address'])) {
-			$data['error_address'] = $this->error['address'];
-		} else {
-			$data['error_address'] = '';
-		}
-
 		if (isset($this->error['email'])) {
 			$data['error_email'] = $this->error['email'];
 		} else {
@@ -548,16 +545,16 @@ class ControllerSettingSetting extends Controller {
 			$data['config_email'] = $this->config->get('config_email');
 		}
 
-		if (isset($this->request->post['config_first_header_telephone'])) {
-			$data['config_first_header_telephone'] = $this->request->post['config_first_header_telephone'];
+		if (isset($this->request->post['config_header_telephone'])) {
+			$data['config_first_telephone'] = $this->request->post['config_first_telephone'];
 		} else {
-			$data['config_first_header_telephone'] = $this->config->get('config_first_header_telephone');
+			$data['config_first_telephone'] = $this->config->get('config_first_telephone');
 		}
 		
-		if (isset($this->request->post['config_second_header_telephone'])) {
-			$data['config_second_header_telephone'] = $this->request->post['config_second_header_telephone'];
+		if (isset($this->request->post['config_second_telephone'])) {
+			$data['config_second_telephone'] = $this->request->post['config_second_telephone'];
 		} else {
-			$data['config_second_header_telephone'] = $this->config->get('config_second_header_telephone');
+			$data['config_second_telephone'] = $this->config->get('config_second_telephone');
 		}
 		
 		

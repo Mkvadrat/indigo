@@ -92,38 +92,61 @@
                                   <div class="messengers">
                                     <?php echo $messenger; ?>
                                   </div>
-                                  <a href="tel:<?php echo $first_header_telephone; ?>"><?php echo $first_header_telephone; ?></a>
+                                  <a href="tel:<?php echo $first_telephone; ?>"><?php echo $first_telephone; ?></a>
                               </div>
                               <div>
-                                  <a href="tel:<?php echo $second_header_telephone; ?>"><?php echo $second_header_telephone; ?></a>
+                                  <a href="tel:<?php echo $second_telephone; ?>"><?php echo $second_telephone; ?></a>
                               </div>
                           </div>
                       </div>
+                      
+                      <?php if ($categories) { ?>
                       <div class="menu">
                           <ul>
-                              <li><a href="#">Продажа</a>
-                                  <ul>
-                                      <li><a href="#">Купить 1ком. квартиру в Ялте</a></li>
-                                      <li><a href="#">2-х комн. квартиры</a></li>
-                                      <li><a href="#">3-х комн. и более</a></li>
-                                      <li><a href="#">Новостройки</a></li>
-                                      <li><a href="#">Элитные квартиры</a></li>
-                                      <li><a href="#">Дома, коттеджи</a></li>
-                                      <li><a href="#">Участки</a></li>
-                                      <li><a href="#">Коммерческая недвижимость</a></li>
-                                  </ul>
+                            <?php foreach ($categories as $category) { ?>
+                            <?php if ($category['children']) { ?>
+                              <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+                              <?php foreach (array_chunk($category['children'], ceil(count($category['children']))) as $children) { ?>
+                                <ul>
+                                  <?php foreach ($children as $child) { ?>
+                                    <li><a href="<?php echo $child['href']; ?>"><?php echo $child['name']; ?></a></li>
+                                  <?php } ?>
+                                </ul>
+                              <?php } ?>
                               </li>
-                              <li><a href="#">Квартиры</a></li>
-                              <li><a href="#">Информация</a></li>
-                              <li><a href="#">Услуги</a></li>
-                              <li><a href="#">Контакты</a></li>
-                              <li><a href="#">Срочный выкуп</a></li>
+                            <?php } else { ?>
+                              <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
+                            <?php } ?>
+                            <?php } ?>
                           </ul>
                       </div>
+                      <?php } ?>
                   </div>
               </div>
           </div>
+          <?php if ($categories) { ?>
           <div class="mob-menu">
               <a href="#menu"></a>
           </div>
+          
+          <nav id="menu">
+              <ul>
+                <?php foreach ($categories as $category) { ?>
+                <?php if ($category['children']) { ?>
+                  <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+                  <?php foreach (array_chunk($category['children'], ceil(count($category['children']))) as $children) { ?>
+                    <ul>
+                      <?php foreach ($children as $child) { ?>
+                        <li><a href="<?php echo $child['href']; ?>"><?php echo $child['name']; ?></a></li>
+                      <?php } ?>
+                    </ul>
+                  <?php } ?>
+                  </li>
+                <?php } else { ?>
+                  <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
+                <?php } ?>
+                <?php } ?>
+              </ul>
+          </nav>
+          <?php } ?>
       </header>

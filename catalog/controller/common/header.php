@@ -93,10 +93,10 @@ class ControllerCommonHeader extends Controller {
 		$data['checkout'] = $this->url->link('checkout/checkout', '', true);
 		$data['contact'] = $this->url->link('information/contact');
 		$data['address'] = html_entity_decode($this->config->get('config_address'));
-            $data['callback_link'] = html_entity_decode($this->config->get('config_callback_link'));
-            $data['messenger'] = html_entity_decode($this->config->get('config_messenger'));
-            $data['first_header_telephone'] = $this->config->get('config_first_header_telephone');
-            $data['second_header_telephone'] = $this->config->get('config_second_header_telephone');
+		$data['callback_link'] = html_entity_decode($this->config->get('config_callback_link'));
+		$data['messenger'] = html_entity_decode($this->config->get('config_messenger'));
+		$data['first_telephone'] = $this->config->get('config_first_telephone');
+		$data['second_telephone'] = $this->config->get('config_second_telephone');
 		
 		$this->load->model('account/download');
 		

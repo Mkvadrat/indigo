@@ -135,12 +135,9 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label class="col-sm-2 control-label" for="input-address<?php echo $language['language_id']; ?>">Адрес (Шапка сайта)</label>
+                    <label class="col-sm-2 control-label" for="input-address<?php echo $language['language_id']; ?>">Адрес</label>
                     <div class="col-sm-10">
                       <textarea name="config_langdata[<?php echo $language['language_id']; ?>][address]" placeholder="Адрес" rows="5" id="input-address<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['address'] : ''; ?></textarea>
-                      <?php if (isset($error_address[$language['language_id']])) { ?>
-                      <div class="text-danger"><?php echo $error_address[$language['language_id']]; ?></div>
-                      <?php } ?>
                     </div>
                   </div>
                   <div class="form-group">
@@ -155,23 +152,47 @@
                       <textarea name="config_langdata[<?php echo $language['language_id']; ?>][messenger]" placeholder="Viber, WhatsApp" rows="5" id="input-messenger<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['messenger'] : ''; ?></textarea>
                     </div>
                   </div>
-
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-footer-link<?php echo $language['language_id']; ?>">Ссылка на форму обратной связи (Подвал сайта)</label>
+                    <div class="col-sm-10">
+                      <textarea name="config_langdata[<?php echo $language['language_id']; ?>][callback_footer_link]" placeholder="Ссылка на форму обратной связи" rows="5" id="input-footer-link<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['callback_footer_link'] : ''; ?></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-descr-agency<?php echo $language['language_id']; ?>">Описание агентства (Подвал сайта)</label>
+                    <div class="col-sm-10">
+                      <textarea name="config_langdata[<?php echo $language['language_id']; ?>][descr_agency]" placeholder="Описание агентства" rows="5" id="input-descr-agency<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['descr_agency'] : ''; ?></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-social<?php echo $language['language_id']; ?>">Социальные сети</label>
+                    <div class="col-sm-10">
+                      <textarea name="config_langdata[<?php echo $language['language_id']; ?>][social]" placeholder="Социальные сети" rows="5" id="input-social<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['social'] : ''; ?></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="input-powered<?php echo $language['language_id']; ?>">Powered</label>
+                    <div class="col-sm-10">
+                      <textarea name="config_langdata[<?php echo $language['language_id']; ?>][powered]" placeholder="Powered" rows="5" id="input-powered<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['powered'] : ''; ?></textarea>
+                    </div>
+                  </div>
                 </div>
                 <?php } ?>
               </div>
-              <div class="form-group required">
-                <label class="col-sm-2 control-label" for="input-first-header-telephone">Телефон 1 (Шапка сайта)</label>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-first-telephone">Телефон 1</label>
                 <div class="col-sm-10">
-                  <input type="text" name="config_first_header_telephone" value="<?php echo $config_first_header_telephone; ?>" placeholder="Телефон 1" id="input-first-header-telephone" class="form-control" />
+                  <input type="text" name="config_first_telephone" value="<?php echo $config_first_telephone; ?>" placeholder="Телефон 1" id="input-first-telephone" class="form-control" />
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-second-header-telephone">Телефон 2 (Шапка сайта)</label>
+                <label class="col-sm-2 control-label" for="input-second-telephone">Телефон 2</label>
                 <div class="col-sm-10">
-                  <input type="text" name="config_second_header_telephone" value="<?php echo $config_second_header_telephone; ?>" placeholder="Телефон 2" id="input-second-header-telephone" class="form-control" />
+                  <input type="text" name="config_second_telephone" value="<?php echo $config_second_telephone; ?>" placeholder="Телефон 2" id="input-second-telephone" class="form-control" />
                 </div>
               </div>
-              
+
+
               
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-geocode"><span data-toggle="tooltip" data-container="#tab-general" title="<?php echo $help_geocode; ?>"><?php echo $entry_geocode; ?></span></label>

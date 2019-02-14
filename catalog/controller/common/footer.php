@@ -45,7 +45,12 @@ class ControllerCommonFooter extends Controller {
 		$data['wishlist'] = $this->url->link('account/wishlist', '', true);
 		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
 		
-		$data['contact_footer'] = html_entity_decode(nl2br($this->config->get('config_contact_footer')), ENT_QUOTES, 'UTF-8');
+		$data['descr_agency'] = html_entity_decode($this->config->get('config_descr_agency'), ENT_QUOTES, 'UTF-8');
+		$data['callback_link'] = html_entity_decode($this->config->get('config_callback_footer_link'), ENT_QUOTES, 'UTF-8');
+		$data['address'] = html_entity_decode($this->config->get('config_address'));
+		$data['first_telephone'] = $this->config->get('config_first_telephone');
+		$data['second_telephone'] = $this->config->get('config_second_telephone');
+		$data['social'] = html_entity_decode($this->config->get('config_social'));
 		$data['powered'] = html_entity_decode(nl2br($this->config->get('config_powered')), ENT_QUOTES, 'UTF-8');
 		
 		// Menu
@@ -55,9 +60,8 @@ class ControllerCommonFooter extends Controller {
 
 		$this->load->model('catalog/product');
 
-		$data['categories'] = array();
+		$data['main_categories'] = array();
 		
-		if ($this->config->get('configcustommenu_custommenu')) {
 		$custommenus = $this->model_design_custommenu_footer->getcustommenus();
         $custommenu_child = $this->model_design_custommenu_footer->getChildcustommenus();
 
@@ -86,7 +90,7 @@ class ControllerCommonFooter extends Controller {
                 );
             }
 
-			$data['categories'][] = array(
+			$data['main_categories'][] = array(
 				'name'     => $custommenu['name'] ,
 				'children' => $children_data,
 				'column'   => $custommenu['columns'] ? $custommenu['columns'] : 1,
@@ -94,56 +98,18 @@ class ControllerCommonFooter extends Controller {
 			);
         }
 		
-		} else {
-
-		$categories = $this->model_catalog_category->getCategories(0);
+		//Second Menu
+		$data['categories'] = array();
+		
+		$categories = $this->model_catalog_category->getTopCategory();
 
 		foreach ($categories as $category) {
-			if ($category['top']) {
-				// Level 2
-				$children_data = array();
-
-				$children = $this->model_catalog_category->getCategories($category['category_id']);
-
-				foreach ($children as $child) {
-					$filter_data = array(
-						'filter_category_id'  => $child['category_id'],
-						'filter_sub_category' => true
-					);
-
-					$children_data[] = array(
-						'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
-						'href'  => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id'])
-					);
-				}
-
-				// Level 1
-				$data['categories'][] = array(
-					'name'     => $category['name'],
-					'children' => $children_data,
-					'column'   => $category['column'] ? $category['column'] : 1,
-					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
-				);
-			}
+			$data['categories'][] = array(
+				'name'     => $category['name'],
+				'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
+			);
 		}
 		
-		}
-		
-		//Second Menu
-		$data['footer_categories'] = array();
-		
-		$footer_categories = $this->model_catalog_category->getCategories(0);
-
-		foreach ($footer_categories as $category) {
-			if ($category['top']) {
-				// Level 1
-				$data['footer_categories'][] = array(
-					'name'     => $category['name'],
-					'column'   => $category['column'] ? $category['column'] : 1,
-					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
-				);
-			}
-		}
 		
 		// Whos Online
 		if ($this->config->get('config_customer_online')) {

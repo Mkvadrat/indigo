@@ -72,4 +72,16 @@ class ModelCatalogCategory extends Model {
 		
 		return $query->row['case_id'];
 	}
+	
+	public function getTopCategory(){
+		$query = $this->db->query("SELECT c.category_id, cd.name  FROM " . DB_PREFIX . "category AS c
+								  JOIN " . DB_PREFIX . "category_description AS cd JOIN " . DB_PREFIX . "category_to_layout AS ctl
+								  JOIN " . DB_PREFIX . "category_to_store AS cts ON (c.category_id = cd.category_id)
+								  AND (c.category_id = ctl.category_id) AND (c.category_id = cts.category_id)
+								  AND cts.store_id = '" . (int)$this->config->get('config_store_id') . "'
+								  AND c.status = 1 AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "'
+								  AND c.top = 1 ORDER BY c.sort_order");
+		
+		return $query->rows;
+	}
 }
