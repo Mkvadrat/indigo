@@ -1,7 +1,5 @@
 <?php
-
 class ControllerInformationNews extends Controller {
-
 	public function index(){
 		$this->load->language('information/news');
 

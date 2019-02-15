@@ -100,7 +100,15 @@ class ControllerCommonColumnLeft extends Controller {
 				);					
 			}
 			
-			
+			// Testimonials
+			if ($this->user->hasPermission('access', 'testimonial/testimonial')) {
+				$catalog[] = array(
+					'name'	   => 'Отзывы',
+					'href'     => $this->url->link('testimonial/testimonial', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
 			if ($catalog) {
 				$data['menus'][] = array(
 					'id'       => 'menu-catalog',
@@ -110,8 +118,7 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => $catalog
 				);		
 			}
-			
-	
+
 			// Extension
 			$extension = array();
 

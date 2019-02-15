@@ -992,6 +992,11 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		$data['captcha_pages'] = array();
+		
+		$data['captcha_pages'][] = array(
+			'text'  => 'Testimonials',
+			'value' => 'testimonial'
+		);
 
 		$data['captcha_pages'][] = array(
 			'text'  => $this->language->get('text_register'),
@@ -1155,6 +1160,11 @@ class ControllerSettingSetting extends Controller {
 		}
 
 		$data['mail_alerts'] = array();
+		
+		$data['mail_alerts'][] = array(
+			'text'  => 'Testimonials',
+			'value' => 'testimonial'
+		);
 
 		$data['mail_alerts'][] = array(
 			'text'  => $this->language->get('text_mail_account'),

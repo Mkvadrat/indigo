@@ -1,23 +1,29 @@
-<?php if(!empty($heading_title)) { ?>
-<p class="title"><?php echo $heading_title; ?></p>
-<?php } ?>
-
 <?php if($categories){ ?>
-<ul class="categories">
-  <?php foreach ($categories as $category) { ?>
-    <?php if ($category['children']) { ?>
-    <li class="dropdown"><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
-      <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
-      <ul>
-        <?php foreach ($children as $child) { ?>
-        <li><a href="<?php echo $child['href']; ?>"><?php echo $child['name']; ?></a></li>
-        <?php } ?>
-      </ul>
-      <?php } ?>
-    </li>
-    <?php } else { ?>
-    <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
-    <?php } ?>
-  <?php } ?>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-row">
+          <?php echo $description; ?>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="category-section">
+              <?php foreach ($categories as $category) { ?>
+              <?php if ($category['children']) { ?>
+              <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
+              <?php foreach ($children as $child) { ?>
+                <a href="<?php echo $child['href']; ?>" class="item">
+                    <span class="icon" style="background-image: url('<?php echo $child['image']; ?>')"></span>
+                    <span class="text"><?php echo $child['name']; ?></span>
+                </a>
+              <?php } ?>
+              <?php } ?>
+              <?php } ?>
+              <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
 <?php } ?>

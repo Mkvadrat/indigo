@@ -18,14 +18,11 @@
                         <div class="text">
                             <span class="object-id">№ <?php echo $product['model']; ?></span>
                             <p class="description"><?php echo $product['name']; ?></p>
-                            
                             <?php if ($product['price'] || $product['rub']) { ?>
                             <?php if (!$product['special']) { ?>
-                            <p class="prices"><?php echo $product['rub']; ?></p>
-                            <p class="prices"><?php echo $product['price']; ?></p>
+                            <p class="prices"><?php echo $product['rub']; ?> / <?php echo $product['price']; ?></p>
                             <?php } else { ?>
-                            <p class="prices"><?php echo $product['special']; ?></p>
-                            <p class="prices"><sup><strike><?php echo $product['price']; ?></strike></sup></p>
+                            <p class="prices"><?php echo $product['special']; ?> <sup><strike><?php echo $product['price']; ?></strike></sup></p>
                             <?php } ?>
                             <?php } ?>
                         </div>
