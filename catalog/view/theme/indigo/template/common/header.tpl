@@ -29,7 +29,7 @@
 
 <!-- STYLESHEET -->
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/jquery-ui.min.css">
-<link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/bootstrap.min.css">
+<link rel="stylesheet" href="catalog/view/javascript/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/jquery.mmenu.all.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/jquery.fancybox.min.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/dropzone.css">
@@ -40,7 +40,8 @@
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/media.css">
 
 <!-- JS -->
-<script src="catalog/view/theme/indigo/js/jquery-2.1.1.min.js"></script>
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js"></script>
 <script src="catalog/view/theme/indigo/js/dropzone.js"></script>
 <script src="catalog/view/theme/indigo/js/jquery-ui.min.js"></script>
 <script src="catalog/view/theme/indigo/js/jquery.mmenu.all.js"></script>

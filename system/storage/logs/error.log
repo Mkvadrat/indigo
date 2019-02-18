@@ -304,3 +304,15 @@
 2019-02-15 16:37:44 - PHP Notice:  Undefined index: image in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\category.tpl on line 18
 2019-02-15 16:37:44 - PHP Notice:  Undefined index: image in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\category.tpl on line 18
 2019-02-15 16:37:44 - PHP Notice:  Undefined index: image in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\category.tpl on line 18
+2019-02-18 11:48:49 - PHP Notice:  Undefined index: heading_description in D:\OpenServer\domains\indigo.loc\catalog\controller\product\product.php on line 294
+2019-02-18 11:48:54 - PHP Notice:  Undefined variable: category_id_object in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\product.tpl on line 123
+2019-02-18 11:48:54 - PHP Notice:  Undefined variable: case_id in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\product.tpl on line 127
+2019-02-18 11:48:54 - PHP Notice:  Undefined variable: category_id_object in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\product.tpl on line 340
+2019-02-18 11:48:54 - PHP Notice:  Undefined variable: case_id in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\product.tpl on line 344
+2019-02-18 11:48:54 - PHP Notice:  Undefined variable: articles in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\product.tpl on line 434
+2019-02-18 11:49:30 - PHP Notice:  Undefined index: heading_description in D:\OpenServer\domains\indigo.loc\catalog\controller\product\product.php on line 294
+2019-02-18 11:49:30 - PHP Notice:  Undefined variable: category_id_object in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\product.tpl on line 123
+2019-02-18 11:49:30 - PHP Notice:  Undefined variable: case_id in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\product.tpl on line 127
+2019-02-18 11:49:30 - PHP Notice:  Undefined variable: category_id_object in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\product.tpl on line 340
+2019-02-18 11:49:30 - PHP Notice:  Undefined variable: case_id in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\product.tpl on line 344
+2019-02-18 11:49:30 - PHP Notice:  Undefined variable: articles in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\product.tpl on line 434
