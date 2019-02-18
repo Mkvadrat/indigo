@@ -291,7 +291,6 @@ class ControllerProductProduct extends Controller {
 			$data['stickers'] = $this->getStickers($product_info['product_id']);
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$data['features'] = html_entity_decode($product_info['features'], ENT_QUOTES, 'UTF-8');
-			$data['heading_description'] = html_entity_decode($product_info['heading_description'], ENT_QUOTES, 'UTF-8');
 			$data['product_options'] = $this->model_catalog_product->getProductOptions((int)$this->request->get['product_id']);
 			$data['options'] = $this->model_catalog_product->getProductOptions($product_info['product_id']);
 			$data['filter_options'] = $this->model_catalog_ocfilter->getValueOptionsByProduct($product_info['product_id']);
@@ -895,7 +894,6 @@ class ControllerProductProduct extends Controller {
 			$data['stickers'] = $this->getStickers($product_info['product_id']);
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
 			$data['features'] = html_entity_decode($product_info['features'], ENT_QUOTES, 'UTF-8');
-			$data['heading_description'] = html_entity_decode($product_info['heading_description'], ENT_QUOTES, 'UTF-8');
 			$data['product_options'] = $this->model_catalog_product->getProductOptions((int)$this->request->get['product_id']);
 			$data['options'] = $this->model_catalog_product->getProductOptions($product_info['product_id']);
 			$data['filter_options'] = $this->model_catalog_ocfilter->getValueOptionsByProduct($product_info['product_id']);
