@@ -50,49 +50,224 @@
                       </div>
                   </div>
                   <?php } ?>
-                  
               </div>
+              
               <div class="object-bot">
                   <p class="title">Описание</p>
                   <p><?php echo $description; ?></p>
+                  
                   <p class="title">Объекты рядом</p>
                   <div class="obj-map">
-                      <iframe src="https://yandex.ua/map-widget/v1/-/CBVEaUCHOA" frameborder="0"></iframe>
+                    <?php if($maps){ ?>
+                      <div id="map-products" style="width:100%; height:404px"></div>
+  
+                      <script type="text/javascript">
+                        ymaps.ready(function () {
+                          var myMap = new ymaps.Map('map-products', {
+                            <?php foreach($maps as $product){ ?>
+                            <?php if($product_id == $product['product_id']){ ?>
+                            center: [<?php echo $product['lat_lng']; ?>],
+                            <?php } ?>
+                            <?php } ?>
+                            zoom: 17,
+                            behaviors: ['default', 'scrollZoom']
+                          }, {
+                            searchControlProvider: 'yandex#search'
+                          }),
+                          /**
+                           * Создадим кластеризатор, вызвав функцию-конструктор.
+                           * Список всех опций доступен в документации.
+                           * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Clusterer.xml#constructor-summary
+                           */
+                            clusterer = new ymaps.Clusterer({
+                            /**
+                             * Через кластеризатор можно указать только стили кластеров,
+                             * стили для меток нужно назначать каждой метке отдельно.
+                             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/option.presetStorage.xml
+                             */
+                            preset: 'islands#invertedVioletClusterIcons',
+                            /**
+                             * Ставим true, если хотим кластеризовать только точки с одинаковыми координатами.
+                             */
+                            groupByCoordinates: false,
+                            /**
+                             * Опции кластеров указываем в кластеризаторе с префиксом "cluster".
+                             * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ClusterPlacemark.xml
+                             */
+                            clusterDisableClickZoom: true,
+                            clusterHideIconOnBalloonOpen: false,
+                            geoObjectHideIconOnBalloonOpen: false
+                          }),
+                          /**
+                           * Функция возвращает объект, содержащий данные метки.
+                           * Поле данных clusterCaption будет отображено в списке геообъектов в балуне кластера.
+                           * Поле balloonContentBody - источник данных для контента балуна.
+                           * Оба поля поддерживают HTML-разметку.
+                           * Список полей данных, которые используют стандартные макеты содержимого иконки метки
+                           * и балуна геообъектов, можно посмотреть в документации.
+                           * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/GeoObject.xml
+                           */
+                          <?php $i = 0; ?>
+                          <?php foreach($maps as $product){ ?>
+                          getPointData<?php echo $i; ?> = function () {
+                            return {
+                              balloonContentHeader: 'Объект №' + <?php echo $product['model']; ?>,
+                              balloonContent: '<div class="ballon"><img src="<?php echo $product['image']; ?>" class="ll"/><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a><br/><a href="<?php echo $product['href']; ?>"><span>Подробнее</span></a></div>',
+                              balloonContentFooter: '',
+                            };
+                          },
+                          <?php $i++; ?>
+                          <?php } ?>
+                          
+                          /**
+                           * Функция возвращает объект, содержащий опции метки.
+                           * Все опции, которые поддерживают геообъекты, можно посмотреть в документации.
+                           * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/GeoObject.xml
+                           */
+                          <?php $i = 0; ?>
+                          <?php foreach($maps as $product){ ?> 
+                          getPointOptions<?php echo $i; ?> = function () {
+                            return {
+                              iconLayout : 'default#image',
+                              <?php if($product_id == $product['product_id']){ ?>
+                                iconImageHref: 'catalog/view/theme/indigo/image/maps/icon-main.png', // картинка иконки
+                              <?php }else{ ?>
+                                iconImageHref: 'catalog/view/theme/indigo/image/maps/icon.png', // картинка иконки
+                              <?php } ?>
+                              iconImageSize : [64, 64],
+                              preset: 'islands#violetIcon'
+                            };
+                          },
+                          <?php $i++; ?>
+                          <?php } ?>
+                          points = [
+                            <?php foreach($maps as $product){ ?>
+                              [<?php echo $product['lat_lng']; ?>], 
+                            <?php } ?>
+                          ],
+                          geoObjects = [];
+                          
+                          /**
+                          * Данные передаются вторым параметром в конструктор метки, опции - третьим.
+                          * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Placemark.xml#constructor-summary
+                          */
+                          var placemarks = [];
+                          <?php $i = 0; ?>
+                          <?php foreach($maps as $product){ ?>
+                            geoObjects[<?php echo $i; ?>] = new ymaps.Placemark(points[<?php echo $i; ?>], getPointData<?php echo $i; ?>(), getPointOptions<?php echo $i; ?>());
+                            placemarks.push(geoObjects[<?php echo $i; ?>]);
+                            <?php $i++; ?>
+                          <?php } ?>
+                          
+                          /**
+                          * Можно менять опции кластеризатора после создания.
+                          */
+                          clusterer.options.set({
+                            gridSize: 80,
+                            clusterDisableClickZoom: true,
+                            
+                          });
+                          
+                          /**
+                          * В кластеризатор можно добавить javascript-массив меток (не геоколлекцию) или одну метку.
+                          * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/Clusterer.xml#add
+                          */
+                          myMap.behaviors.disable('scrollZoom');
+                          clusterer.add(placemarks);
+                          myMap.geoObjects.add(clusterer);             
+                          /**
+                          * Спозиционируем карту так, чтобы на ней были видны все объекты.
+                          */
+                          /*myMap.setBounds(clusterer.getBounds(), {
+                            checkZoomRange: false
+                          });*/
+                        });
+                      </script>
+                    <?php } ?>
                   </div>
               </div>
           </div>
           <div class="col-md-5 object-r">
               <div class="print-download">
-                  <a href="#"><img src="catalog/view/theme/indigo/image/save.png" alt="Сохранить PDF">Сохранить PDF</a>
+                  <a href="<?php echo $action_pdf; ?>"><img src="catalog/view/theme/indigo/image/save.png" alt="Сохранить PDF">Сохранить PDF</a>
                   <a href="#"><img src="catalog/view/theme/indigo/image/print.png" alt="Напечатать страницу">Напечатать страницу</a>
               </div>
               <div class="info">
+                <?php if($stickers){ ?>
+                  <?php foreach ($stickers as $sticker) { ?>
                   <div class="labels">
-                      <span class="label necessary-label">Срочно</span>
-                      <span class="label newhouse-label">В новом доме</span>
+                      <span class="label"><img src="<?php echo $sticker['image']; ?>"></span>
                   </div>
-                  <span class="id">№ <?php echo $model; ?></span>
-                  <p class="subtitle">Дополнительная информация</p>
-                  <p><i>Общая площадь: 128 м²</i></p>
-                  <p><i>Этаж: 4</i></p>
-                  <p><i>Этажность: 14</i></p>
+                  <?php } ?>
+                <?php } ?>
+                
+                <span class="id">№ <?php echo $model; ?></span>
+                
+                <p class="subtitle">Дополнительная информация</p>
+                
+                <?php if($uniq_options){ ?>
+                  <?php if($product_options){ ?>
+                    <?php foreach($product_options as $option){ ?>
+                    <?php if($option['product_option_value']){ ?>
+                      <?php foreach ($option['product_option_value'] as $option_value) { ?>
+                        <p><i><?php echo $option['name']; ?>: <span><?php echo $option_value['name']; ?></span></i></p>
+                      <?php } ?>
+                    <?php }else{ ?>
+                        <p><i><?php echo $option['name']; ?>: <span><?php echo $option['value']; ?></span></i></p>
+                    <?php } ?>
+                    <?php } ?>
+                  <?php } ?>	
+                <?php }else{ ?>
+                  <?php if($slider_filter_options){ ?>
+                    <?php foreach($slider_filter_options as $slider_option){ ?>
+                      <p><i><?php echo $slider_option['name']; ?>: <span><?php echo $slider_option['value']; ?> <?php echo $slider_option['postfix']; ?></span></i></p>
+                    <?php } ?>
+                  <?php } ?>
+                  <?php if($filter_options){ ?>
+                    <?php foreach($filter_options as $option){ ?>
+                      <p><i><?php echo $option['name']; ?>: <span><?php echo $option['value']; ?></span></i></p>
+                    <?php } ?>
+                  <?php } ?>
+                <?php } ?>
               </div>
+              
               <div class="obj-price">
-                  <p>Цена: 7 500 000 руб. / $ 113 636</p>
+                <?php if ($price || $rub) { ?>
+                <?php if (!$special) { ?>
+                  <p>Цена: <?php echo $rub; ?> / <?php echo $price; ?></p>
+                <?php } else { ?>
+                  <p>Цена: <?php echo $special; ?> <sup><strike><?php echo $price; ?></strike></sup></p>
+                <?php } ?>
+                <?php } ?>
               </div>
               <div class="info">
-                  <p><i>ЖК "Семейный"</i></p>
-                  <p><i>Первая очередь</i></p>
-                  <p><i>Дата сдачи - I кв. 2019г.</i></p>
+                <?php echo $features; ?>
               </div>
               <div class="rieltor">
-                  <div class="img" style="background-image:url('catalog/view/theme/indigo/image/tatiana.jpg')"></div>
-                  <p class="name">Андрей Веретенников</p>
-                  <p><i>Специалист по продажам</i></p>
+                  <div class="img" style="background-image:url('<?php echo $image_agent; ?>')"></div>
+                  <p class="name"><?php echo $agent_name; ?></p>
+                  <?php if($specialization){ ?>
+                  <p><i><?php echo $specialization; ?></i></p>
+                  <?php } ?>
                   <a href="#" class="watch-objs"><img src="catalog/view/theme/indigo/image/house.png" alt="Посмотреть все объекты агента">Посмотреть все объекты агента</a>
-                  <p class="rieltor-cont"><i>Телефон:</i> <a href="tel:+79787047888">+7(978) 70-47-888</a></p>
-                  <p class="rieltor-cont"><i>E-mail:</i> <a href="mailto:estate-crimea@mail.ru">estate-crimea@mail.ru</a></p>
-                  <a href="#" class="round-button">Написать сообщение</a>
+                  <p class="rieltor-cont"><i>Телефон:</i><a href="tel:<?php echo $phone; ?>"><?php echo $phone; ?></a></p>
+                  <p class="rieltor-cont"><i>E-mail:</i><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
+                  <a href="#callback_agent" class="round-button callback">Написать сообщение</a>
+                  
+                  <div id="callback_agent" style="display: none;">
+                    <button data-fancybox-close="" class="fancybox-close-small" title="Close"><span>X</span></button>
+                      <p>* - поля обязательные для заполнения</p>
+                      <div>
+                        <label>Имя*:<input type="text" id="name_agent" placeholder="Имя*"></label>
+                        <label>Телефон*:<input type="text" id="phone_agent" placeholder="Телефон*"></label>
+                        <label>Email:<input type="text" id="email_agent" placeholder="E-mail"></label>
+                        <label><span class="textarea">Сообщение*:</span><textarea id="message_agent" placeholder="Сообщение"></textarea></label>
+                        <input type="hidden" value="<?php echo $email; ?>" id="hidden_email">
+                        <input type="hidden" value="<?php echo $product_id; ?>" id="hidden_product_id">
+                        <label class="check"><input type="checkbox" name="" id="">Я согласен (согласна) на обработку персональных данных.</label>
+                        <a onclick="sendFormAgent();" class="round-button">Отправить</a>
+                      </div>
+                  </div>
               </div>
           </div>
       </div>

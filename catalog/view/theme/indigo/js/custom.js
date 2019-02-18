@@ -50,6 +50,10 @@ $(document).ready(function() {
             title: "АН «Индиго»"
         }
     });
+    
+    $('.callback').fancybox({
+        modal: true,
+    });
 
     $( "#sort-items" ).selectmenu({
         appendTo: "label[for='sort-items-button']"
@@ -69,3 +73,30 @@ $(document).ready(function() {
         location = this.value;
     });
 });
+
+//Product and cases page forms
+function sendFormAgent() {
+    $.ajax({
+        url: 'index.php?route=product/product/sendFormAgent',
+        type: 'post',
+        data: {
+            'name': $('#name_agent').val(),
+            'tel': $('#phone_agent').val(),
+            'email': $('#email_agent').val(),
+            'email_agent': $('#hidden_email').val(),
+            'product_agent': $('#hidden_product_id').val(),
+            'message': $('#message_agent').val(),
+        },
+        dataType: 'json',
+        success: function (data) {
+            swal({
+                title: data.message,
+                text: "",
+                timer: 1000,
+                showConfirmButton: false
+            });
+
+            $.fancybox.close();
+        }
+    });
+}

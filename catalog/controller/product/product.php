@@ -360,9 +360,9 @@ class ControllerProductProduct extends Controller {
 			$data['specialization'] = $agent_information['specialization'];
 			
 			if ($agent_information['image']) {
-				$data['image_agent'] = $this->model_tool_image->resize($agent_information['image'], 226, 226);
+				$data['image_agent'] = $this->model_tool_image->resize($agent_information['image'], 456, 342);
 			} else {
-				$data['image_agent'] = $this->model_tool_image->resize('placeholder.png', 226, 226);
+				$data['image_agent'] = $this->model_tool_image->resize('placeholder.png', 456, 342);
 			}
 			
 			$data['phone'] = $agent_information['phone'];
@@ -521,20 +521,21 @@ class ControllerProductProduct extends Controller {
 			
 			foreach($results as $result){
 				
-				if(!empty($result['location'])){
-					/*$ex = explode(',', $result['location']);
-					$ex2 = explode('.', $ex['1']);
-					$plus = (int)$ex2['1'] + (int)$this->generate_number(1);
-					$impl = $ex2[0] . '.' . $plus;
-					$lat_lng = $ex[0] . ',' . $impl;*/
-				
+				if(!empty($result['location'])){				
 					$lat_lng = $result['location'];
 				}else{
 					$lat_lng = '44.616687, 33.525432';
 				}
 				
+				if ($result['image'] && file_exists(DIR_IMAGE . $result['image'])){				
+					$image = $this->model_tool_image->resize($result['image'], 100, 100);
+				}else{
+					$image = $this->model_tool_image->resize('placeholder.png', 100, 100);
+				}
+				
 				$data['maps'][] = array(
 					'product_id'  => $result['product_id'],
+					'image'       => $image,
 					'model'       => $result['model'],
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
 					'name'        => utf8_substr(strip_tags(html_entity_decode($result['name'], ENT_QUOTES, 'UTF-8')), 0, 60),
@@ -970,9 +971,9 @@ class ControllerProductProduct extends Controller {
 			$data['specialization'] = $agent_information['specialization'];
 			
 			if ($agent_information['image']) {
-				$data['image_agent'] = $this->model_tool_image->resize($agent_information['image'], 226, 226);
+				$data['image_agent'] = $this->model_tool_image->resize($agent_information['image'], 456, 342);
 			} else {
-				$data['image_agent'] = $this->model_tool_image->resize('placeholder.png', 226, 226);
+				$data['image_agent'] = $this->model_tool_image->resize('placeholder.png', 456, 342);
 			}
 			
 			$data['phone'] = $agent_information['phone'];
