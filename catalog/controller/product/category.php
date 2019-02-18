@@ -138,9 +138,7 @@ class ControllerProductCategory extends Controller {
 				$data['thumb'] = '';
 			}
 			
-			$data['case_name'] = $category_info['case_name'];
 			$data['description'] = html_entity_decode($category_info['description'], ENT_QUOTES, 'UTF-8');
-			$data['bottom_description'] = html_entity_decode($category_info['bottom_description'], ENT_QUOTES, 'UTF-8');
 			$data['compare'] = $this->url->link('product/compare');
 			$data['view_all_cases'] = $this->url->link('blog/category', '&blog_category_id=3');
 
@@ -166,7 +164,9 @@ class ControllerProductCategory extends Controller {
 			
 			$data['i'] = '';
 
-			$results = $this->model_catalog_category->getCategories(0);
+						$data['categories'] = array();
+
+			$results = $this->model_catalog_category->getCategories($category_id);
 
 			foreach ($results as $result) {
 				$filter_data = array(
@@ -179,65 +179,11 @@ class ControllerProductCategory extends Controller {
 				} else {
 					$cat_image = '';
 				}
-				
-				if ($result['specialization']) {
-					$specialization = $result['specialization'];
-				} else {
-					$specialization = '';
-				}
-				
-				if($result['category_case_id'] != 0){
-					$view_case = $this->url->link('blog/category', 'blog_category_id=' . $result['category_case_id']);
-				}else{
-					$view_case = '';
-				}
-				
-				if($result['agent']) {
-					$data['categories'][] = array(
-						'name' => $result['name'],
-						'count' => $this->model_catalog_product->getTotalProducts($filter_data),
-						'image' => $cat_image,
-						'specialization' => $specialization,
-						'href' => $this->url->link('product/category', 'path=' . $result['category_id'] . $url),
-						'view_case' => $view_case
-					);
-				}
-			}
-			
-			//case
-			$case_id = $this->model_catalog_category->getCase($category_id); 
-			
-			$this->load->model('blog/article');
-			
-			$this->load->model('blog/category');
-		
-			$article_info = $this->model_blog_article->getArticle($case_id);
-			
-			$category_case_info = $this->model_blog_category->getCategoryByArticleId($case_id);
-			
-			$data['cases'] = array();
-			
-			if ($article_info['image']) {
-				$image = $this->model_tool_image->resize($article_info['image'], 387, 239);
-			} else {
-				$image = $this->model_tool_image->resize('placeholder.png', 387, 239);
-			}
-			
-			foreach($category_case_info as $article_category){
-				if ($article_category['image']) {
-					$image_agent = $this->model_tool_image->resize($article_category['image'], 225, 225);
-				} else {
-					$image_agent = $this->model_tool_image->resize('placeholder.png', 225, 225);
-				}
-				
-				$data['cases'][] = array(
-					'name' => $article_info['name'],
-					'href' => $this->url->link('blog/article', 'article_id=' . $article_info['article_id']),
-					'description' => utf8_substr(strip_tags(html_entity_decode($article_info['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('configblog_article_description_length')) . '..',
-					'short_description' => utf8_substr(strip_tags(html_entity_decode($article_info['short_description'], ENT_QUOTES, 'UTF-8')), 0, 100 . '..'),
-					'image' => $image,
-					'category_name' => $article_category['name'],
-					'image_agent' => $image_agent
+
+				$data['categories'][] = array(
+					'name' => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+					'image' => $cat_image,
+					'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
 				);
 			}
 

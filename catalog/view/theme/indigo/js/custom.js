@@ -60,6 +60,12 @@ $(document).ready(function() {
     $( "#chose-type" ).selectmenu({
         appendTo: "label[for='chose-type-button']"
     });
-
-
+    
+    $( "#sort-items" ).on( "selectmenuchange", function( event, ui ) {
+        location = this.value;
+    });
+    
+    $( "#view-items" ).on( "selectmenuchange", function( event, ui ) {
+        location = this.value;
+    });
 });
