@@ -64,7 +64,19 @@ $(document).ready(function() {
 				
 					return button.render();
 				}
-  			}
+  			},
+			callbacks: {
+				onInit: function() {
+					if ($(this).summernote('isEmpty')) {
+						$(this).parent().find('.note-editable').html('');
+					}
+				},
+				onChange: function(contents, $editable) {
+					if ($(this).summernote('isEmpty')) {
+						$(this).parent().find('.note-editable').html('');
+					}
+				}
+			}
 		});
 	});
 	

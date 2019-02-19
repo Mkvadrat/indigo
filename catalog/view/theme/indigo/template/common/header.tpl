@@ -49,6 +49,7 @@
 <script src="catalog/view/theme/indigo/js/jquery.fancybox.min.js"></script>
 <script src="catalog/view/theme/indigo/js/owl.carousel.min.js"></script>
 <script src="catalog/view/theme/indigo/js/sweetalert.min.js"></script>
+<script src="catalog/view/theme/indigo/js/printThis.js"></script>
 <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 
 <?php foreach ($styles as $style) { ?>
