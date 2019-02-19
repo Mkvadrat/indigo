@@ -499,6 +499,14 @@ class ControllerCatalogCategory extends Controller {
 			$data['top'] = 0;
 		}
 		
+		if (isset($this->request->post['hide'])) {
+			$data['hide'] = $this->request->post['hide'];
+		} elseif (!empty($category_info)) {
+			$data['hide'] = $category_info['hide'];
+		} else {
+			$data['hide'] = 0;
+		}
+		
 		if (isset($this->request->post['column'])) {
 			$data['column'] = $this->request->post['column'];
 		} elseif (!empty($category_info)) {

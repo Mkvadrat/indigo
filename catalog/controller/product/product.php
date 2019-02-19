@@ -365,6 +365,8 @@ class ControllerProductProduct extends Controller {
 				$data['image_agent'] = $this->model_tool_image->resize('placeholder.png', 456, 342);
 			}
 			
+			$data['view_all_object'] = $this->url->link('product/category', 'path=' . $agent_information['category_id']);
+			
 			$data['phone'] = $agent_information['phone'];
 			
 			$data['email'] = $agent_information['email'];
@@ -975,7 +977,7 @@ class ControllerProductProduct extends Controller {
 			} else {
 				$data['image_agent'] = $this->model_tool_image->resize('placeholder.png', 456, 342);
 			}
-			
+
 			$data['phone'] = $agent_information['phone'];
 			
 			$data['email'] = $agent_information['email'];

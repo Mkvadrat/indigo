@@ -253,7 +253,7 @@
 						<p id="print8"><i><?php echo $specialization; ?></i></p>
 					<?php } ?>
 					
-					<a href="#" class="watch-objs"><img src="catalog/view/theme/indigo/image/house.png" alt="Посмотреть все объекты агента">Посмотреть все объекты агента</a>
+					<a href="<?php echo $view_all_object; ?>" class="watch-objs"><img src="catalog/view/theme/indigo/image/house.png" alt="Посмотреть все объекты агента">Посмотреть все объекты агента</a>
 					
 					<p class="rieltor-cont" id="print9"><i>Телефон:</i><a href="tel:<?php echo $phone; ?>"><?php echo $phone; ?></a></p>
 					

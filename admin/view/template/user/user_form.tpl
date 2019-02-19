@@ -67,6 +67,21 @@
             </div>
             <?php } ?>
           </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-category">Категория объектов агента</label>
+            <div class="col-sm-10">
+                  <select name="category_id" class="form-control">
+                  <option value="0" selected="selected"><?php echo $text_none; ?></option>
+                  <?php foreach ($categories as $category) { ?>
+                  <?php if ($category['category_id'] == $current_category_id) { ?>
+                    <option value="<?php echo $category['category_id']; ?>" selected="selected"><?php echo $category['name']; ?></option>
+                  <?php } else { ?>
+                    <option value="<?php echo $category['category_id']; ?>"><?php echo $category['name']; ?></option>
+                  <?php } ?>
+                  <?php } ?>
+                </select>
+            </div>
+          </div>
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-firstname"><?php echo $entry_firstname; ?></label>
             <div class="col-sm-10">
