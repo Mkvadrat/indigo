@@ -93,6 +93,55 @@ $(document).ready(function() {
     $( "#view-items" ).on( "selectmenuchange", function( event, ui ) {
         location = this.value;
     });
+    
+    if($("#dZUpload").length) {
+        Dropzone.autoDiscover = false;
+        $("#dZUpload").dropzone({
+            url: "index.php?route=tool/upload",
+            init: function() {
+                this.on("sending", function(file, xhr, formData){
+                    formData.append("size", file.size);
+                });
+            },
+            addRemoveLinks: true,
+            dictRemoveFile: 'Удалить',
+            clickable: '.dz-clickable',
+            acceptedFiles: 'image/*',
+            maxFiles: 8,
+            removedfile: function(file) {
+                var name = file.name;
+                var size = file.size;
+                $.ajax({
+                       type: 'POST',
+                       url: 'index.php?route=tool/upload/remove',
+                       data: "name="+name+"&size="+size,
+                       dataType: 'html',
+                    });
+                var _ref;
+                if (file.previewElement) {
+                    if ((_ref = file.previewElement) != null) {
+                        _ref.parentNode.removeChild(file.previewElement);
+                    }
+                }
+                return this._updateMaxFilesReachedClass();
+            },
+            success: function(file, response){
+                if(response.success){
+                    $('.dz-filename').replaceWith('');
+                    $(".dz-size").replaceWith('<div class="dz-size">'+response.success+'</div>');
+                }else{
+                    swal({
+                        title: response.error,
+                        text: "",
+                        timer: 1000,
+                        showConfirmButton: false
+                    });
+        
+                    $.fancybox.close();
+                }
+            }
+        })
+    }
 });
 
 //Product and cases page forms

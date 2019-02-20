@@ -13,4 +13,8 @@ class ModelToolUpload extends Model {
 
 		return $query->row;
 	}
+	
+	public function removeFile($name){
+		$query = $this->db->query("DELETE FROM " . DB_PREFIX . "upload WHERE filename = '" . $name . "'");
+	}
 }
