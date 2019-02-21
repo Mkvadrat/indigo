@@ -93,7 +93,7 @@ $(document).ready(function() {
     $( "#view-items" ).on( "selectmenuchange", function( event, ui ) {
         location = this.value;
     });
-    
+        
     if($("#dZUpload").length) {
         Dropzone.autoDiscover = false;
         $("#dZUpload").dropzone({
@@ -101,6 +101,24 @@ $(document).ready(function() {
             init: function() {
                 this.on("sending", function(file, xhr, formData){
                     formData.append("size", file.size);
+                });
+                this.on("queuecomplete", function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'index.php?route=tool/upload/getimages',
+                        success: function(response){
+                            $("input[class='attach']").val(response.images);
+                        }
+                    });
+                });
+                this.on("removedfile", function () {
+                     $.ajax({
+                        type: 'POST',
+                        url: 'index.php?route=tool/upload/getimages',
+                        success: function(response){
+                            $("input[class='attach']").val(response.images);
+                        }
+                    });
                 });
             },
             addRemoveLinks: true,
@@ -112,11 +130,11 @@ $(document).ready(function() {
                 var name = file.name;
                 var size = file.size;
                 $.ajax({
-                       type: 'POST',
-                       url: 'index.php?route=tool/upload/remove',
-                       data: "name="+name+"&size="+size,
-                       dataType: 'html',
-                    });
+                    type: 'POST',
+                    url: 'index.php?route=tool/upload/remove',
+                    data: "name="+name+"&size="+size,
+                    dataType: 'html',
+                });
                 var _ref;
                 if (file.previewElement) {
                     if ((_ref = file.previewElement) != null) {
@@ -124,6 +142,8 @@ $(document).ready(function() {
                     }
                 }
                 return this._updateMaxFilesReachedClass();
+                
+               
             },
             success: function(file, response){
                 if(response.success){
@@ -156,6 +176,35 @@ function sendFormAgent() {
             'email_agent': $('#hidden_email').val(),
             'product_agent': $('#hidden_product_id').val(),
             'message': $('#message_agent').val(),
+        },
+        dataType: 'json',
+        success: function (data) {
+            swal({
+                title: data.message,
+                text: "",
+                timer: 1000,
+                showConfirmButton: false
+            });
+
+            $.fancybox.close();
+        }
+    });
+}
+
+function sendRequest() {    
+    $.ajax({
+        url: 'index.php?route=information/request/sendrequest',
+        type: 'post',
+        data: {
+            'name': $('#name').val(),
+            'tel': $('#phone').val(),
+            'email': $('#email').val(),
+            'city': $('#city').val(),
+            'wishes': $('input[name=\'wishes\']:checked').val(),
+            'type': $('#chose-type').val(),
+            'object': $('#object-id').val(),
+            'description': $('#description').val(),
+            'attach': $('#attach').val(),
         },
         dataType: 'json',
         success: function (data) {

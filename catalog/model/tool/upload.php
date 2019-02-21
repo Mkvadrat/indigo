@@ -14,7 +14,29 @@ class ModelToolUpload extends Model {
 		return $query->row;
 	}
 	
-	public function removeFile($name){
-		$query = $this->db->query("DELETE FROM " . DB_PREFIX . "upload WHERE filename = '" . $name . "'");
+	public function removeFile($filename){
+		$query = $this->db->query("DELETE FROM " . DB_PREFIX . "upload WHERE filename = '" . $filename . "'");
+	}
+	
+	public function removeAll(){
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "upload`");
+
+		foreach($query->rows as $name){
+			unlink(DIR_UPLOAD . $name['filename']);
+		}
+	
+		$query = $this->db->query("DELETE FROM " . DB_PREFIX . "upload");
+	}
+	
+	public function getImage(){
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "upload`");
+
+		return $query->rows;
+	}
+	
+	public function getImageByName($name){
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "upload` WHERE name = '" . $name . "'");
+
+		return $query->rows;
 	}
 }

@@ -460,3 +460,48 @@
 2019-02-20 17:31:51 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/motto.net.ua-78241.jpg.450051): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\tool\upload.php on line 93
 2019-02-20 17:31:51 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/baner4.jpg.355514): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\tool\upload.php on line 93
 2019-02-20 17:31:53 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/baner3.jpg.430663): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\tool\upload.php on line 93
+2019-02-21 10:50:41 - PHP Notice:  Undefined variable: images in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\information\request.tpl on line 37
+2019-02-21 12:18:16 - PHP Notice:  Undefined variable: normal in D:\OpenServer\domains\indigo.loc\catalog\controller\tool\upload.php on line 99
+2019-02-21 12:20:58 - PHP Warning:  Missing argument 1 for ModelToolUpload::removeFile() in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 17
+2019-02-21 12:20:58 - PHP Notice:  Undefined variable: name in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 18
+2019-02-21 12:23:13 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/): Permission denied in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 29
+2019-02-21 12:25:08 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/): Permission denied in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 33
+2019-02-21 12:25:22 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/): Permission denied in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 33
+2019-02-21 12:26:51 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/): Permission denied in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 33
+2019-02-21 12:27:49 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/): Permission denied in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 33
+2019-02-21 12:33:30 - PHP Notice:  Undefined index: filename in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 24
+2019-02-21 12:33:30 - PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 24
+2019-02-21 12:33:30 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/): Permission denied in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 33
+2019-02-21 12:33:53 - PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 24
+2019-02-21 12:33:53 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/): Permission denied in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 33
+2019-02-21 12:34:01 - PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 24
+2019-02-21 12:34:01 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/): Permission denied in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 33
+2019-02-21 12:34:24 - PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 24
+2019-02-21 12:34:24 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/): Permission denied in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 33
+2019-02-21 12:34:58 - PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 24
+2019-02-21 12:36:11 - PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 24
+2019-02-21 12:36:20 - PHP Notice:  Undefined index: filename in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 24
+2019-02-21 12:36:20 - PHP Warning:  Invalid argument supplied for foreach() in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 24
+2019-02-21 13:09:08 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/baner3.jpg.430663): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\tool\upload.php on line 89
+2019-02-21 13:09:10 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/baner4.jpg.355514): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\tool\upload.php on line 89
+2019-02-21 13:09:11 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/motto.net.ua-78241.jpg.450051): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\tool\upload.php on line 89
+2019-02-21 13:09:12 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/wide-953x586.png.454039): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\tool\upload.php on line 89
+2019-02-21 15:46:35 - PHP Notice:  Undefined variable: action in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\information\request.tpl on line 11
+2019-02-21 15:47:40 - PHP Notice:  Undefined variable: action in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\information\request.tpl on line 11
+2019-02-21 16:28:50 - PHP Notice:  Undefined variable: message in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 133
+2019-02-21 16:29:41 - PHP Notice:  Undefined variable: message in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 133
+2019-02-21 16:54:45 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 63
+2019-02-21 16:54:57 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 63
+2019-02-21 16:55:04 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 63
+2019-02-21 16:55:06 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 63
+2019-02-21 16:55:52 - PHP Notice:  Undefined variable: types in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 100
+2019-02-21 16:56:58 - PHP Notice:  Undefined variable: wish in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 99
+2019-02-21 16:56:58 - PHP Notice:  Undefined variable: types in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 100
+2019-02-21 16:58:51 - PHP Notice:  Undefined variable: types in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 100
+2019-02-21 16:59:02 - PHP Notice:  Undefined variable: types in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 100
+2019-02-21 17:08:07 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 78
+2019-02-21 17:08:07 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 80
+2019-02-21 17:08:07 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 82
+2019-02-21 17:08:07 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 84
+2019-02-21 17:08:07 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 86
+2019-02-21 17:08:07 - PHP Notice:  Undefined variable: wish in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 109

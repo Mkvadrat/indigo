@@ -62,20 +62,16 @@ class ControllerToolUpload extends Controller {
 		if (!$json) {
 			$file = $filename . '.' . $this->request->post['size'];
 			
-			if(!file_exists(DIR_UPLOAD . $file)){
-				move_uploaded_file($this->request->files['file']['tmp_name'], DIR_UPLOAD . $file);
-	
-				// Hide the uploaded file name so people can not link to it directly.
-				$this->load->model('tool/upload');
-	
-				$json['code'] = $this->model_tool_upload->addUpload($filename, $file);
-				
-				$json['namefile'] = substr($filename, 0, 10);
-	
-				$json['success'] = $this->language->get('text_upload');
-			}else{
-				$json['error'] = $this->language->get('error_file');
-			}
+			move_uploaded_file($this->request->files['file']['tmp_name'], DIR_UPLOAD . $file);
+
+			// Hide the uploaded file name so people can not link to it directly.
+			$this->load->model('tool/upload');
+
+			$upload = $this->model_tool_upload->addUpload($filename, $file);
+			
+			$json['namefile'] = substr($filename, 0, 10);
+
+			$json['success'] = $this->language->get('text_upload');
 		}
 
 		$this->response->addHeader('Content-Type: application/json');
@@ -94,5 +90,23 @@ class ControllerToolUpload extends Controller {
 
 			$this->model_tool_upload->removeFile($normal);
 		}
+	}
+		
+	public function getImages(){
+		$this->load->model('tool/upload');
+		
+		$images = $this->model_tool_upload->getImage();
+		
+		$json['images'] = array();
+		
+		foreach($images as $image){
+			$result = $image['name'];
+			
+			$json['images'][] = $result;
+		}
+		
+		
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 }
