@@ -512,3 +512,37 @@
 2019-02-22 13:29:46 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/2.jpg.77060): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 25
 2019-02-22 13:29:46 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/18.jpg.77561): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 25
 2019-02-22 14:12:30 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/274 13.JPG.87699): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 25
+2019-02-22 16:16:52 - PHP Notice:  Undefined index: name in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 149
+2019-02-22 16:16:52 - PHP Notice:  Undefined index: text in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 153
+2019-02-22 16:16:52 - PHP Notice:  Undefined index: captcha in D:\OpenServer\domains\indigo.loc\catalog\controller\extension\captcha\basic_captcha.php on line 24
+2019-02-22 16:16:57 - PHP Notice:  Undefined index: name in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 149
+2019-02-22 16:16:57 - PHP Notice:  Undefined index: text in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 153
+2019-02-22 16:16:57 - PHP Notice:  Undefined index: captcha in D:\OpenServer\domains\indigo.loc\catalog\controller\extension\captcha\basic_captcha.php on line 24
+2019-02-22 16:17:27 - PHP Notice:  Undefined index: name in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 149
+2019-02-22 16:17:27 - PHP Notice:  Undefined index: text in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 153
+2019-02-22 16:17:27 - PHP Notice:  Undefined index: captcha in D:\OpenServer\domains\indigo.loc\catalog\controller\extension\captcha\basic_captcha.php on line 24
+2019-02-22 16:17:31 - PHP Notice:  Undefined index: name in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 149
+2019-02-22 16:17:31 - PHP Notice:  Undefined index: text in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 153
+2019-02-22 16:17:31 - PHP Notice:  Undefined index: captcha in D:\OpenServer\domains\indigo.loc\catalog\controller\extension\captcha\basic_captcha.php on line 24
+2019-02-22 16:17:32 - PHP Notice:  Undefined index: name in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 149
+2019-02-22 16:17:32 - PHP Notice:  Undefined index: text in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 153
+2019-02-22 16:17:32 - PHP Notice:  Undefined index: captcha in D:\OpenServer\domains\indigo.loc\catalog\controller\extension\captcha\basic_captcha.php on line 24
+2019-02-22 16:17:34 - PHP Notice:  Undefined index: name in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 149
+2019-02-22 16:17:34 - PHP Notice:  Undefined index: text in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 153
+2019-02-22 16:17:34 - PHP Notice:  Undefined index: captcha in D:\OpenServer\domains\indigo.loc\catalog\controller\extension\captcha\basic_captcha.php on line 24
+2019-02-22 16:17:35 - PHP Notice:  Undefined index: name in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 149
+2019-02-22 16:17:35 - PHP Notice:  Undefined index: text in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 153
+2019-02-22 16:17:35 - PHP Notice:  Undefined index: captcha in D:\OpenServer\domains\indigo.loc\catalog\controller\extension\captcha\basic_captcha.php on line 24
+2019-02-22 16:17:35 - PHP Notice:  Undefined index: name in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 149
+2019-02-22 16:17:35 - PHP Notice:  Undefined index: text in D:\OpenServer\domains\indigo.loc\catalog\controller\testimonial\testimonial.php on line 153
+2019-02-22 16:17:35 - PHP Notice:  Undefined index: captcha in D:\OpenServer\domains\indigo.loc\catalog\controller\extension\captcha\basic_captcha.php on line 24
+2019-02-22 16:19:41 - PHP Notice:  Undefined index: rating in D:\OpenServer\domains\indigo.loc\catalog\model\extension\module\testimonial.php on line 7
+2019-02-22 16:19:41 - PHP Notice:  Undefined index: rating in D:\OpenServer\domains\indigo.loc\catalog\model\extension\module\testimonial.php on line 17
+2019-02-22 16:21:59 - PHP Notice:  Undefined index: rating in D:\OpenServer\domains\indigo.loc\catalog\model\extension\module\testimonial.php on line 17
+2019-02-22 16:23:13 - PHP Notice:  Undefined variable: rating in D:\OpenServer\domains\indigo.loc\admin\view\template\testimonial\testimonial_form.tpl on line 74
+2019-02-22 16:23:13 - PHP Notice:  Undefined variable: rating in D:\OpenServer\domains\indigo.loc\admin\view\template\testimonial\testimonial_form.tpl on line 78
+2019-02-22 16:23:13 - PHP Notice:  Undefined variable: rating in D:\OpenServer\domains\indigo.loc\admin\view\template\testimonial\testimonial_form.tpl on line 82
+2019-02-22 16:23:13 - PHP Notice:  Undefined variable: rating in D:\OpenServer\domains\indigo.loc\admin\view\template\testimonial\testimonial_form.tpl on line 86
+2019-02-22 16:23:13 - PHP Notice:  Undefined variable: rating in D:\OpenServer\domains\indigo.loc\admin\view\template\testimonial\testimonial_form.tpl on line 90
+2019-02-22 16:25:06 - PHP Notice:  Undefined index: rating in D:\OpenServer\domains\indigo.loc\catalog\model\extension\module\testimonial.php on line 17
+2019-02-22 16:26:31 - PHP Notice:  Undefined index: rating in D:\OpenServer\domains\indigo.loc\catalog\model\extension\module\testimonial.php on line 17

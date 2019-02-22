@@ -68,34 +68,6 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-sm-2 control-label" for="input-name"><?php echo $entry_rating; ?></label>
-            <div class="col-sm-10">
-              <label class="radio-inline">
-                <input type="radio" name="rating" value="1" <?php if ($rating == 1) { ?>checked="checked"<?php } ?> />
-                1
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="rating" value="2" <?php if ($rating == 2) { ?>checked="checked"<?php } ?> />
-                2
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="rating" value="3" <?php if ($rating == 3) { ?>checked="checked"<?php } ?> />
-                3
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="rating" value="4" <?php if ($rating == 4) { ?>checked="checked"<?php } ?> />
-                4
-              </label>
-              <label class="radio-inline">
-                <input type="radio" name="rating" value="5" <?php if ($rating == 5) { ?>checked="checked"<?php } ?> />
-                5
-              </label>
-              <?php if ($error_rating) { ?>
-              <div class="text-danger"><?php echo $error_rating; ?></div>
-              <?php } ?>
-            </div>
-          </div>
-          <div class="form-group">
             <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_status; ?></label>
             <div class="col-sm-10">
               <select name="status" id="input-status" class="form-control">

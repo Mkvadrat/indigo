@@ -44,6 +44,7 @@ class ControllerCommonFooter extends Controller {
 		$data['order'] = $this->url->link('account/order', '', true);
 		$data['wishlist'] = $this->url->link('account/wishlist', '', true);
 		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
+		$data['request'] = $this->url->link('information/request', '', true);
 		
 		$data['descr_agency'] = html_entity_decode($this->config->get('config_descr_agency'), ENT_QUOTES, 'UTF-8');
 		$data['callback_link'] = html_entity_decode($this->config->get('config_callback_footer_link'), ENT_QUOTES, 'UTF-8');
