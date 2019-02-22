@@ -26,10 +26,6 @@ class ControllerInformationRequest extends Controller {
 
 		$this->model_tool_upload->removeAll();
 		
-
-		
-		
-		
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
 		$data['content_top'] = $this->load->controller('common/content_top');
@@ -105,20 +101,18 @@ class ControllerInformationRequest extends Controller {
 				
 				$this->load->model('tool/upload');
 
-		
 				foreach($exp as $name){
 					$filename = $this->model_tool_upload->getImageByName($name);
 					
 					foreach($filename as $image){
-						var_dump(basename($image['filename']));
+						if(file_exists(DIR_UPLOAD.$image['filename'])){
+							copy(DIR_UPLOAD.$image['filename'], DIR_UPLOAD.$image['name']);
+							
+							$mail->addAttachment(DIR_UPLOAD.$image['name'], 'F');
+						}
 					}
 				}
-				
-				
-				//$mail->addAttachment(DIR_IMAGE.'placeholder.png', 'F');
 			}
-			
-			
 			
 			$mail->setHtml(
 				html_entity_decode(
@@ -137,15 +131,36 @@ class ControllerInformationRequest extends Controller {
 			);
 			
 			$send = $mail->send();
-						
+			
+			if(!empty($attach)){
+				$exp = explode(',', $attach);
+				
+				$this->load->model('tool/upload');
+
+				foreach($exp as $name){
+					$filename = $this->model_tool_upload->getImageByName($name);
+					
+					foreach($filename as $image){
+						if(file_exists(DIR_UPLOAD.$image['name'])){
+							unlink(DIR_UPLOAD.$image['name']);
+						}
+					}
+				}
+			}
+		
 			if ($mail){
 				$json = array(
-					'status' => 1,
+					'status' => 200,
 					'message' => 'Ваше сообщение отправлено'
 				);
+				
+				//remove all files after send missege
+				$this->load->model('tool/upload');
+		
+				$this->model_tool_upload->removeAll();
 			}else{
 				$json = array(
-					'status' => 1,
+					'status' => 500,
 					'message' => 'Ошибка, сообщение не отправлено!'
 				);
 			}

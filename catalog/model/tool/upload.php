@@ -22,7 +22,9 @@ class ModelToolUpload extends Model {
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "upload`");
 
 		foreach($query->rows as $name){
-			unlink(DIR_UPLOAD . $name['filename']);
+			if(file_exists(DIR_UPLOAD . $name['filename'])){
+				unlink(DIR_UPLOAD . $name['filename']);
+			}
 		}
 	
 		$query = $this->db->query("DELETE FROM " . DB_PREFIX . "upload");

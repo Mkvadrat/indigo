@@ -86,7 +86,9 @@ class ControllerToolUpload extends Controller {
 			
 			$normal = basename(preg_replace('/[^a-zA-Z0-9\.\-\s+]/', '', html_entity_decode($name, ENT_QUOTES, 'UTF-8')));
 			
-			unlink( DIR_UPLOAD . $normal);
+			if(file_exists(DIR_UPLOAD . $normal)){
+				unlink(DIR_UPLOAD . $normal);
+			}
 
 			$this->model_tool_upload->removeFile($normal);
 		}

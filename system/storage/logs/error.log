@@ -505,3 +505,10 @@
 2019-02-21 17:08:07 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 84
 2019-02-21 17:08:07 - PHP Notice:  Undefined variable: wishes in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 86
 2019-02-21 17:08:07 - PHP Notice:  Undefined variable: wish in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 109
+2019-02-22 13:27:52 - PHP Warning:  unlink(1): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 115
+2019-02-22 13:27:52 - PHP Warning:  unlink(1): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 115
+2019-02-22 13:27:52 - PHP Warning:  unlink(1): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\request.php on line 115
+2019-02-22 13:29:46 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/17.jpg.93060): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 25
+2019-02-22 13:29:46 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/2.jpg.77060): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 25
+2019-02-22 13:29:46 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/18.jpg.77561): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 25
+2019-02-22 14:12:30 - PHP Warning:  unlink(D:/OpenServer/domains/indigo.loc/system/storage/upload/274 13.JPG.87699): No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\model\tool\upload.php on line 25

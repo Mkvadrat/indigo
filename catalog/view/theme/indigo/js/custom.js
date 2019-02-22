@@ -126,6 +126,7 @@ $(document).ready(function() {
             clickable: '.dz-clickable',
             acceptedFiles: 'image/*',
             maxFiles: 8,
+            maxFilesize: 0.25,
             removedfile: function(file) {
                 var name = file.name;
                 var size = file.size;
@@ -142,8 +143,6 @@ $(document).ready(function() {
                     }
                 }
                 return this._updateMaxFilesReachedClass();
-                
-               
             },
             success: function(file, response){
                 if(response.success){
@@ -216,6 +215,22 @@ function sendRequest() {
             });
 
             $.fancybox.close();
+            
+            if(data.status == 200){
+                $('#name').val("");
+                $('#phone').val("");
+                $('#email').val("");
+                $('#city').val("");
+                $('#object-id').val("");
+                $('#description').val("");
+                $('#attach').val("");
+                
+                $('.dropzone')[0].dropzone.files.forEach(function(file) { 
+                    file.previewElement.remove(); 
+                });
+                  
+                $('.dropzone').removeClass('dz-started');
+            }
         }
     });
 }
