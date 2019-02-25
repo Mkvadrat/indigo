@@ -161,6 +161,15 @@ $(document).ready(function() {
             }
         })
     }
+    
+    $("a[href*=#]").on("click", function(e){
+        var anchor = $(this);
+        $('html, body').stop().animate({
+        scrollTop: $(anchor.attr('href')).offset().top
+        }, 777);
+        e.preventDefault();
+        return false;
+    });
 });
 
 //Product and cases page forms
@@ -230,6 +239,37 @@ function sendRequest() {
                 });
                   
                 $('.dropzone').removeClass('dz-started');
+            }
+        }
+    });
+}
+
+function sendContactsForm() {
+    $.ajax({
+        url: 'index.php?route=information/contact/sendContactsForm',
+        type: 'post',
+        data: {
+            'name': $('#name').val(),
+            'tel': $('#phone').val(),
+            'email': $('#email').val(),
+            'message': $('#message').val(),
+        },
+        dataType: 'json',
+        success: function (data) {
+            swal({
+                title: data.message,
+                text: "",
+                timer: 1000,
+                showConfirmButton: false
+            });
+
+            $.fancybox.close();
+            
+            if(data.status == 200){
+                $('#name').val("");
+                $('#phone').val("");
+                $('#email').val("");
+                $('#message').val("");
             }
         }
     });

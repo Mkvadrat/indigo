@@ -8,7 +8,7 @@
                 <div id="review"></div>
                 
                 <?php if ($review_status) { ?>
-                <div class="article form">
+                <div class="article form" id="anchor">
                     <p class="title">Оставить отзыв</p>
                     <p>* - поля обязательные для заполнения</p>
                     <form id="form-review">
@@ -78,5 +78,5 @@
         });
     });
     //--></script>
-
+    
 <?php echo $footer; ?>
