@@ -390,3 +390,1143 @@ LINE: 10
 CODE: }
 LINE: 62
 ----------------------------------------------------------------
+2019-02-26 12:14:00 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Imagemanager
+
+FILE: admin/view/template/common/header.tpl
+CODE: view/javascript/bootstrap/js/bootstrap.min.js
+LINE: 28
+CODE: view/javascript/common.js
+LINE: 42
+
+FILE: admin/view/template/catalog/product_form.tpl
+CODE: function addImage() {
+LINE: 1123
+CODE: <td class="text-left"><?php echo $entry_image; ?></td>
+LINE: 667
+CODE: <td class="text-left"><?php echo $entry_additional_image; ?></td>
+LINE: 684
+CODE: <tbody>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <tr id="image-row<?php echo $image_row; ?>">
+LINE: 695
+CODE: html  = '<tr id="image-row' + image_row + '">';
+LINE: 1136
+CODE: <?php echo $footer; ?>
+LINE: 1190
+
+FILE: admin/view/template/design/banner_form.tpl
+CODE: function addImage(language_id) {
+LINE: 122
+----------------------------------------------------------------
+MOD: OCFilter Modification
+
+FILE: admin/controller/catalog/product.php
+CODE: function getForm() {
+LINE: 603
+CODE: $this->language->get('tab_general');
+LINE: 730
+
+FILE: admin/controller/common/column_left.php
+CODE: if ($this->user->hasPermission('access', 'catalog/download')) {
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: admin/language/ru-ru/catalog/product.php
+CODE: $_['text_success']
+LINE: 12
+
+FILE: admin/language/ru-ru/common/column_left.php
+CODE: $_['text_option']
+LINE: 46
+
+FILE: admin/model/catalog/product.php
+CODE: if (isset($data['product_image'])) {
+LINE: 58
+CODE: if (isset($data['product_store'])) {
+LINE: 139
+CODE: $data['product_attribute'] = $this->getProductAttributes($product_id);
+LINE: 256
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+LINE: 282
+CODE: <?php echo $footer; ?>
+LINE: 1212
+
+FILE: catalog/controller/startup/seo_url.php
+CODE: $this->url->addRewrite($this);
+LINE: 12
+
+FILE: catalog/controller/startup/seo_pro.php
+CODE: $this->url->addRewrite($this);
+LINE: 88
+
+FILE: catalog/model/catalog/product.php
+CODE: $sql .= " LEFT JOIN " . DB_PREFIX . "product_description
+LINE: 99
+LINE: 505
+CODE: if (!empty($data['filter_manufacturer_id
+LINE: 193
+LINE: 593
+
+FILE: catalog/controller/product/category.php
+CODE: $data['breadcrumbs'] = array();
+LINE: 50
+CODE: $product_total =
+LINE: 214
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 310
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 374
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 426
+CODE: $data['limit'] = $limit;
+LINE: 564
+
+FILE: system/library/document.php
+CODE: public function getLinks
+LINE: 52
+CODE: private $keywords;
+LINE: 9
+CODE: public function setTitle($title) {
+LINE: 26
+
+FILE: catalog/controller/common/header.php
+CODE: $data['scripts'] = $this->document->getScripts();
+LINE: 38
+
+FILE: catalog/view/theme/indigo/template/common/header.tpl
+CODE: </title>
+LINE: 18
+----------------------------------------------------------------
+MOD: Opencart News Seo Url fix OC 2.3
+CODE: $this->request->get['route'] = 'information/information';
+LINE: 160
+CODE: case 'information_id':
+LINE: 261
+CODE: $url = explode('=', $query->row['query']);
+LINE: 31
+CODE: $url[0] != 'information_id' &&
+LINE: 53
+CODE: } elseif (isset($this->request->get['information_id'])) {
+LINE: 70
+CODE: ($data['route'] == 'information/information' && $key == 'information_id')
+LINE: 92
+----------------------------------------------------------------
+MOD: <font color="#15C403"><b>Modulo Watermark fix for Mexica</font>
+
+FILE: catalog/controller/extension/module/banner.php
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 17
+
+FILE: catalog/controller/extension/module/featured_html.php
+CODE: $image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
+NOT FOUND - OPERATIONS ABORTED!
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/product.php
+CODE: $data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'));
+LINE: 310
+LINE: 947
+CODE: $data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_thumb_width'), $this->config->get($this->config->get('config_theme') . '_image_thumb_height'));
+LINE: 316
+LINE: 953
+CODE: 'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'))
+LINE: 965
+CODE: 'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'))
+LINE: 966
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_related_width'), $this->config->get($this->config->get('config_theme') . '_image_related_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/search.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+LINE: 232
+
+FILE: catalog/model/tool/image.php
+CODE: class ModelToolImage extends Model {
+LINE: 10
+CODE: }
+LINE: 62
+----------------------------------------------------------------
+2019-02-26 12:16:10 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Imagemanager
+
+FILE: admin/view/template/common/header.tpl
+CODE: view/javascript/bootstrap/js/bootstrap.min.js
+LINE: 28
+CODE: view/javascript/common.js
+LINE: 42
+
+FILE: admin/view/template/catalog/product_form.tpl
+CODE: function addImage() {
+LINE: 1123
+CODE: <td class="text-left"><?php echo $entry_image; ?></td>
+LINE: 667
+CODE: <td class="text-left"><?php echo $entry_additional_image; ?></td>
+LINE: 684
+CODE: <tbody>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <tr id="image-row<?php echo $image_row; ?>">
+LINE: 695
+CODE: html  = '<tr id="image-row' + image_row + '">';
+LINE: 1136
+CODE: <?php echo $footer; ?>
+LINE: 1190
+
+FILE: admin/view/template/design/banner_form.tpl
+CODE: function addImage(language_id) {
+LINE: 122
+----------------------------------------------------------------
+MOD: OCFilter Modification
+
+FILE: admin/controller/catalog/product.php
+CODE: function getForm() {
+LINE: 603
+CODE: $this->language->get('tab_general');
+LINE: 730
+
+FILE: admin/controller/common/column_left.php
+CODE: if ($this->user->hasPermission('access', 'catalog/download')) {
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: admin/language/ru-ru/catalog/product.php
+CODE: $_['text_success']
+LINE: 12
+
+FILE: admin/language/ru-ru/common/column_left.php
+CODE: $_['text_option']
+LINE: 46
+
+FILE: admin/model/catalog/product.php
+CODE: if (isset($data['product_image'])) {
+LINE: 58
+CODE: if (isset($data['product_store'])) {
+LINE: 139
+CODE: $data['product_attribute'] = $this->getProductAttributes($product_id);
+LINE: 256
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+LINE: 282
+CODE: <?php echo $footer; ?>
+LINE: 1212
+
+FILE: catalog/controller/startup/seo_url.php
+CODE: $this->url->addRewrite($this);
+LINE: 12
+
+FILE: catalog/controller/startup/seo_pro.php
+CODE: $this->url->addRewrite($this);
+LINE: 88
+
+FILE: catalog/model/catalog/product.php
+CODE: $sql .= " LEFT JOIN " . DB_PREFIX . "product_description
+LINE: 99
+LINE: 505
+CODE: if (!empty($data['filter_manufacturer_id
+LINE: 193
+LINE: 593
+
+FILE: catalog/controller/product/category.php
+CODE: $data['breadcrumbs'] = array();
+LINE: 50
+CODE: $product_total =
+LINE: 214
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 310
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 374
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 426
+CODE: $data['limit'] = $limit;
+LINE: 564
+
+FILE: system/library/document.php
+CODE: public function getLinks
+LINE: 52
+CODE: private $keywords;
+LINE: 9
+CODE: public function setTitle($title) {
+LINE: 26
+
+FILE: catalog/controller/common/header.php
+CODE: $data['scripts'] = $this->document->getScripts();
+LINE: 38
+
+FILE: catalog/view/theme/indigo/template/common/header.tpl
+CODE: </title>
+LINE: 18
+----------------------------------------------------------------
+MOD: Opencart News Seo Url fix OC 2.3
+CODE: $this->request->get['route'] = 'information/information';
+LINE: 160
+CODE: case 'information_id':
+LINE: 261
+CODE: $url = explode('=', $query->row['query']);
+LINE: 31
+CODE: $url[0] != 'information_id' &&
+LINE: 53
+CODE: } elseif (isset($this->request->get['information_id'])) {
+LINE: 70
+CODE: ($data['route'] == 'information/information' && $key == 'information_id')
+LINE: 92
+----------------------------------------------------------------
+MOD: <font color="#15C403"><b>Modulo Watermark fix for Mexica</font>
+
+FILE: catalog/controller/extension/module/banner.php
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 17
+
+FILE: catalog/controller/extension/module/featured_html.php
+CODE: $image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
+NOT FOUND - OPERATIONS ABORTED!
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/product.php
+CODE: $data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'));
+LINE: 310
+LINE: 947
+CODE: $data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_thumb_width'), $this->config->get($this->config->get('config_theme') . '_image_thumb_height'));
+LINE: 316
+LINE: 953
+CODE: 'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'))
+LINE: 965
+CODE: 'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'))
+LINE: 966
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_related_width'), $this->config->get($this->config->get('config_theme') . '_image_related_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/search.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+LINE: 232
+
+FILE: catalog/model/tool/image.php
+CODE: class ModelToolImage extends Model {
+LINE: 10
+CODE: }
+LINE: 62
+----------------------------------------------------------------
+2019-02-26 12:16:13 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Imagemanager
+
+FILE: admin/view/template/common/header.tpl
+CODE: view/javascript/bootstrap/js/bootstrap.min.js
+LINE: 28
+CODE: view/javascript/common.js
+LINE: 42
+
+FILE: admin/view/template/catalog/product_form.tpl
+CODE: function addImage() {
+LINE: 1123
+CODE: <td class="text-left"><?php echo $entry_image; ?></td>
+LINE: 667
+CODE: <td class="text-left"><?php echo $entry_additional_image; ?></td>
+LINE: 684
+CODE: <tbody>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <tr id="image-row<?php echo $image_row; ?>">
+LINE: 695
+CODE: html  = '<tr id="image-row' + image_row + '">';
+LINE: 1136
+CODE: <?php echo $footer; ?>
+LINE: 1190
+
+FILE: admin/view/template/design/banner_form.tpl
+CODE: function addImage(language_id) {
+LINE: 122
+----------------------------------------------------------------
+MOD: OCFilter Modification
+
+FILE: admin/controller/catalog/product.php
+CODE: function getForm() {
+LINE: 603
+CODE: $this->language->get('tab_general');
+LINE: 730
+
+FILE: admin/controller/common/column_left.php
+CODE: if ($this->user->hasPermission('access', 'catalog/download')) {
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: admin/language/ru-ru/catalog/product.php
+CODE: $_['text_success']
+LINE: 12
+
+FILE: admin/language/ru-ru/common/column_left.php
+CODE: $_['text_option']
+LINE: 46
+
+FILE: admin/model/catalog/product.php
+CODE: if (isset($data['product_image'])) {
+LINE: 58
+CODE: if (isset($data['product_store'])) {
+LINE: 139
+CODE: $data['product_attribute'] = $this->getProductAttributes($product_id);
+LINE: 256
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+LINE: 282
+CODE: <?php echo $footer; ?>
+LINE: 1212
+
+FILE: catalog/controller/startup/seo_url.php
+CODE: $this->url->addRewrite($this);
+LINE: 12
+
+FILE: catalog/controller/startup/seo_pro.php
+CODE: $this->url->addRewrite($this);
+LINE: 88
+
+FILE: catalog/model/catalog/product.php
+CODE: $sql .= " LEFT JOIN " . DB_PREFIX . "product_description
+LINE: 99
+LINE: 505
+CODE: if (!empty($data['filter_manufacturer_id
+LINE: 193
+LINE: 593
+
+FILE: catalog/controller/product/category.php
+CODE: $data['breadcrumbs'] = array();
+LINE: 50
+CODE: $product_total =
+LINE: 214
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 310
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 374
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 426
+CODE: $data['limit'] = $limit;
+LINE: 564
+
+FILE: system/library/document.php
+CODE: public function getLinks
+LINE: 52
+CODE: private $keywords;
+LINE: 9
+CODE: public function setTitle($title) {
+LINE: 26
+
+FILE: catalog/controller/common/header.php
+CODE: $data['scripts'] = $this->document->getScripts();
+LINE: 38
+
+FILE: catalog/view/theme/indigo/template/common/header.tpl
+CODE: </title>
+LINE: 18
+----------------------------------------------------------------
+MOD: Opencart News Seo Url fix OC 2.3
+CODE: $this->request->get['route'] = 'information/information';
+LINE: 160
+CODE: case 'information_id':
+LINE: 261
+CODE: $url = explode('=', $query->row['query']);
+LINE: 31
+CODE: $url[0] != 'information_id' &&
+LINE: 53
+CODE: } elseif (isset($this->request->get['information_id'])) {
+LINE: 70
+CODE: ($data['route'] == 'information/information' && $key == 'information_id')
+LINE: 92
+----------------------------------------------------------------
+MOD: <font color="#15C403"><b>Modulo Watermark fix for Mexica</font>
+
+FILE: catalog/controller/extension/module/banner.php
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 17
+
+FILE: catalog/controller/extension/module/featured_html.php
+CODE: $image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
+NOT FOUND - OPERATIONS ABORTED!
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/product.php
+CODE: $data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'));
+LINE: 310
+LINE: 947
+CODE: $data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_thumb_width'), $this->config->get($this->config->get('config_theme') . '_image_thumb_height'));
+LINE: 316
+LINE: 953
+CODE: 'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'))
+LINE: 965
+CODE: 'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'))
+LINE: 966
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_related_width'), $this->config->get($this->config->get('config_theme') . '_image_related_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/search.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+LINE: 232
+
+FILE: catalog/model/tool/image.php
+CODE: class ModelToolImage extends Model {
+LINE: 10
+CODE: }
+LINE: 62
+----------------------------------------------------------------
+2019-02-26 12:16:27 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Imagemanager
+
+FILE: admin/view/template/common/header.tpl
+CODE: view/javascript/bootstrap/js/bootstrap.min.js
+LINE: 28
+CODE: view/javascript/common.js
+LINE: 42
+
+FILE: admin/view/template/catalog/product_form.tpl
+CODE: function addImage() {
+LINE: 1123
+CODE: <td class="text-left"><?php echo $entry_image; ?></td>
+LINE: 667
+CODE: <td class="text-left"><?php echo $entry_additional_image; ?></td>
+LINE: 684
+CODE: <tbody>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <tr id="image-row<?php echo $image_row; ?>">
+LINE: 695
+CODE: html  = '<tr id="image-row' + image_row + '">';
+LINE: 1136
+CODE: <?php echo $footer; ?>
+LINE: 1190
+
+FILE: admin/view/template/design/banner_form.tpl
+CODE: function addImage(language_id) {
+LINE: 122
+----------------------------------------------------------------
+MOD: OCFilter Modification
+
+FILE: admin/controller/catalog/product.php
+CODE: function getForm() {
+LINE: 603
+CODE: $this->language->get('tab_general');
+LINE: 730
+
+FILE: admin/controller/common/column_left.php
+CODE: if ($this->user->hasPermission('access', 'catalog/download')) {
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: admin/language/ru-ru/catalog/product.php
+CODE: $_['text_success']
+LINE: 12
+
+FILE: admin/language/ru-ru/common/column_left.php
+CODE: $_['text_option']
+LINE: 46
+
+FILE: admin/model/catalog/product.php
+CODE: if (isset($data['product_image'])) {
+LINE: 58
+CODE: if (isset($data['product_store'])) {
+LINE: 139
+CODE: $data['product_attribute'] = $this->getProductAttributes($product_id);
+LINE: 256
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+LINE: 282
+CODE: <?php echo $footer; ?>
+LINE: 1212
+
+FILE: catalog/controller/startup/seo_url.php
+CODE: $this->url->addRewrite($this);
+LINE: 12
+
+FILE: catalog/controller/startup/seo_pro.php
+CODE: $this->url->addRewrite($this);
+LINE: 88
+
+FILE: catalog/model/catalog/product.php
+CODE: $sql .= " LEFT JOIN " . DB_PREFIX . "product_description
+LINE: 99
+LINE: 505
+CODE: if (!empty($data['filter_manufacturer_id
+LINE: 193
+LINE: 593
+
+FILE: catalog/controller/product/category.php
+CODE: $data['breadcrumbs'] = array();
+LINE: 50
+CODE: $product_total =
+LINE: 214
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 310
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 374
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 426
+CODE: $data['limit'] = $limit;
+LINE: 564
+
+FILE: system/library/document.php
+CODE: public function getLinks
+LINE: 52
+CODE: private $keywords;
+LINE: 9
+CODE: public function setTitle($title) {
+LINE: 26
+
+FILE: catalog/controller/common/header.php
+CODE: $data['scripts'] = $this->document->getScripts();
+LINE: 38
+
+FILE: catalog/view/theme/indigo/template/common/header.tpl
+CODE: </title>
+LINE: 18
+----------------------------------------------------------------
+MOD: Opencart News Seo Url fix OC 2.3
+CODE: $this->request->get['route'] = 'information/information';
+LINE: 160
+CODE: case 'information_id':
+LINE: 261
+CODE: $url = explode('=', $query->row['query']);
+LINE: 31
+CODE: $url[0] != 'information_id' &&
+LINE: 53
+CODE: } elseif (isset($this->request->get['information_id'])) {
+LINE: 70
+CODE: ($data['route'] == 'information/information' && $key == 'information_id')
+LINE: 92
+----------------------------------------------------------------
+MOD: <font color="#15C403"><b>Modulo Watermark fix for Mexica</font>
+
+FILE: catalog/controller/extension/module/banner.php
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 17
+
+FILE: catalog/controller/extension/module/featured_html.php
+CODE: $image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
+NOT FOUND - OPERATIONS ABORTED!
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/product.php
+CODE: $data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'));
+LINE: 310
+LINE: 947
+CODE: $data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_thumb_width'), $this->config->get($this->config->get('config_theme') . '_image_thumb_height'));
+LINE: 316
+LINE: 953
+CODE: 'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'))
+LINE: 965
+CODE: 'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'))
+LINE: 966
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_related_width'), $this->config->get($this->config->get('config_theme') . '_image_related_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/search.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+LINE: 232
+
+FILE: catalog/model/tool/image.php
+CODE: class ModelToolImage extends Model {
+LINE: 10
+CODE: }
+LINE: 62
+----------------------------------------------------------------
+2019-02-26 12:16:36 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Imagemanager
+
+FILE: admin/view/template/common/header.tpl
+CODE: view/javascript/bootstrap/js/bootstrap.min.js
+LINE: 28
+CODE: view/javascript/common.js
+LINE: 42
+
+FILE: admin/view/template/catalog/product_form.tpl
+CODE: function addImage() {
+LINE: 1123
+CODE: <td class="text-left"><?php echo $entry_image; ?></td>
+LINE: 667
+CODE: <td class="text-left"><?php echo $entry_additional_image; ?></td>
+LINE: 684
+CODE: <tbody>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <tr id="image-row<?php echo $image_row; ?>">
+LINE: 695
+CODE: html  = '<tr id="image-row' + image_row + '">';
+LINE: 1136
+CODE: <?php echo $footer; ?>
+LINE: 1190
+
+FILE: admin/view/template/design/banner_form.tpl
+CODE: function addImage(language_id) {
+LINE: 122
+----------------------------------------------------------------
+MOD: OCFilter Modification
+
+FILE: admin/controller/catalog/product.php
+CODE: function getForm() {
+LINE: 603
+CODE: $this->language->get('tab_general');
+LINE: 730
+
+FILE: admin/controller/common/column_left.php
+CODE: if ($this->user->hasPermission('access', 'catalog/download')) {
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: admin/language/ru-ru/catalog/product.php
+CODE: $_['text_success']
+LINE: 12
+
+FILE: admin/language/ru-ru/common/column_left.php
+CODE: $_['text_option']
+LINE: 46
+
+FILE: admin/model/catalog/product.php
+CODE: if (isset($data['product_image'])) {
+LINE: 58
+CODE: if (isset($data['product_store'])) {
+LINE: 139
+CODE: $data['product_attribute'] = $this->getProductAttributes($product_id);
+LINE: 256
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+LINE: 282
+CODE: <?php echo $footer; ?>
+LINE: 1212
+
+FILE: catalog/controller/startup/seo_url.php
+CODE: $this->url->addRewrite($this);
+LINE: 12
+
+FILE: catalog/controller/startup/seo_pro.php
+CODE: $this->url->addRewrite($this);
+LINE: 88
+
+FILE: catalog/model/catalog/product.php
+CODE: $sql .= " LEFT JOIN " . DB_PREFIX . "product_description
+LINE: 99
+LINE: 505
+CODE: if (!empty($data['filter_manufacturer_id
+LINE: 193
+LINE: 593
+
+FILE: catalog/controller/product/category.php
+CODE: $data['breadcrumbs'] = array();
+LINE: 50
+CODE: $product_total =
+LINE: 214
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 310
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 374
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 426
+CODE: $data['limit'] = $limit;
+LINE: 564
+
+FILE: system/library/document.php
+CODE: public function getLinks
+LINE: 52
+CODE: private $keywords;
+LINE: 9
+CODE: public function setTitle($title) {
+LINE: 26
+
+FILE: catalog/controller/common/header.php
+CODE: $data['scripts'] = $this->document->getScripts();
+LINE: 38
+
+FILE: catalog/view/theme/indigo/template/common/header.tpl
+CODE: </title>
+LINE: 18
+----------------------------------------------------------------
+MOD: Opencart News Seo Url fix OC 2.3
+CODE: $this->request->get['route'] = 'information/information';
+LINE: 160
+CODE: case 'information_id':
+LINE: 261
+CODE: $url = explode('=', $query->row['query']);
+LINE: 31
+CODE: $url[0] != 'information_id' &&
+LINE: 53
+CODE: } elseif (isset($this->request->get['information_id'])) {
+LINE: 70
+CODE: ($data['route'] == 'information/information' && $key == 'information_id')
+LINE: 92
+----------------------------------------------------------------
+MOD: <font color="#15C403"><b>Modulo Watermark fix for Mexica</font>
+
+FILE: catalog/controller/extension/module/banner.php
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 17
+
+FILE: catalog/controller/extension/module/featured_html.php
+CODE: $image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
+NOT FOUND - OPERATIONS ABORTED!
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/product.php
+CODE: $data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'));
+LINE: 310
+LINE: 947
+CODE: $data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_thumb_width'), $this->config->get($this->config->get('config_theme') . '_image_thumb_height'));
+LINE: 316
+LINE: 953
+CODE: 'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'))
+LINE: 965
+CODE: 'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'))
+LINE: 966
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_related_width'), $this->config->get($this->config->get('config_theme') . '_image_related_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/search.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+LINE: 232
+
+FILE: catalog/model/tool/image.php
+CODE: class ModelToolImage extends Model {
+LINE: 10
+CODE: }
+LINE: 62
+----------------------------------------------------------------
+2019-02-26 12:17:12 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 41
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 49
+LINE: 108
+LINE: 120
+LINE: 165
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 23
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 38
+LINE: 40
+LINE: 49
+LINE: 51
+LINE: 60
+LINE: 62
+
+FILE: system/library/template/php.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/tiwg.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 24
+----------------------------------------------------------------
+MOD: Imagemanager
+
+FILE: admin/view/template/common/header.tpl
+CODE: view/javascript/bootstrap/js/bootstrap.min.js
+LINE: 28
+CODE: view/javascript/common.js
+LINE: 42
+
+FILE: admin/view/template/catalog/product_form.tpl
+CODE: function addImage() {
+LINE: 1123
+CODE: <td class="text-left"><?php echo $entry_image; ?></td>
+LINE: 667
+CODE: <td class="text-left"><?php echo $entry_additional_image; ?></td>
+LINE: 684
+CODE: <tbody>
+NOT FOUND - OPERATION SKIPPED!
+CODE: <tr id="image-row<?php echo $image_row; ?>">
+LINE: 695
+CODE: html  = '<tr id="image-row' + image_row + '">';
+LINE: 1136
+CODE: <?php echo $footer; ?>
+LINE: 1190
+
+FILE: admin/view/template/design/banner_form.tpl
+CODE: function addImage(language_id) {
+LINE: 122
+----------------------------------------------------------------
+MOD: OCFilter Modification
+
+FILE: admin/controller/catalog/product.php
+CODE: function getForm() {
+LINE: 603
+CODE: $this->language->get('tab_general');
+LINE: 730
+
+FILE: admin/controller/common/column_left.php
+CODE: if ($this->user->hasPermission('access', 'catalog/option')) {
+LINE: 91
+
+FILE: admin/language/ru-ru/catalog/product.php
+CODE: $_['text_success']
+LINE: 12
+
+FILE: admin/language/ru-ru/common/column_left.php
+CODE: $_['text_option']
+LINE: 46
+
+FILE: admin/model/catalog/product.php
+CODE: if (isset($data['product_image'])) {
+LINE: 58
+CODE: if (isset($data['product_store'])) {
+LINE: 139
+CODE: $data['product_attribute'] = $this->getProductAttributes($product_id);
+LINE: 256
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+LINE: 282
+CODE: <?php echo $footer; ?>
+LINE: 1212
+
+FILE: catalog/controller/startup/seo_url.php
+CODE: $this->url->addRewrite($this);
+LINE: 12
+
+FILE: catalog/controller/startup/seo_pro.php
+CODE: $this->url->addRewrite($this);
+LINE: 88
+
+FILE: catalog/model/catalog/product.php
+CODE: $sql .= " LEFT JOIN " . DB_PREFIX . "product_description
+LINE: 99
+LINE: 505
+CODE: if (!empty($data['filter_manufacturer_id
+LINE: 193
+LINE: 593
+
+FILE: catalog/controller/product/category.php
+CODE: $data['breadcrumbs'] = array();
+LINE: 50
+CODE: $product_total =
+LINE: 214
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 310
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 374
+CODE: if (isset($this->request->get['filter'])) {
+LINE: 426
+CODE: $data['limit'] = $limit;
+LINE: 564
+
+FILE: system/library/document.php
+CODE: public function getLinks
+LINE: 52
+CODE: private $keywords;
+LINE: 9
+CODE: public function setTitle($title) {
+LINE: 26
+
+FILE: catalog/controller/common/header.php
+CODE: $data['scripts'] = $this->document->getScripts();
+LINE: 38
+
+FILE: catalog/view/theme/indigo/template/common/header.tpl
+CODE: </title>
+LINE: 18
+----------------------------------------------------------------
+MOD: Opencart News Seo Url fix OC 2.3
+CODE: $this->request->get['route'] = 'information/information';
+LINE: 160
+CODE: case 'information_id':
+LINE: 261
+CODE: $url = explode('=', $query->row['query']);
+LINE: 31
+CODE: $url[0] != 'information_id' &&
+LINE: 53
+CODE: } elseif (isset($this->request->get['information_id'])) {
+LINE: 70
+CODE: ($data['route'] == 'information/information' && $key == 'information_id')
+LINE: 92
+----------------------------------------------------------------
+MOD: <font color="#15C403"><b>Modulo Watermark fix for Mexica</font>
+
+FILE: catalog/controller/extension/module/banner.php
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 17
+
+FILE: catalog/controller/extension/module/featured_html.php
+CODE: $image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
+NOT FOUND - OPERATIONS ABORTED!
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/product.php
+CODE: $data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'));
+LINE: 310
+LINE: 947
+CODE: $data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_thumb_width'), $this->config->get($this->config->get('config_theme') . '_image_thumb_height'));
+LINE: 316
+LINE: 953
+CODE: 'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'))
+LINE: 965
+CODE: 'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'))
+LINE: 966
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_related_width'), $this->config->get($this->config->get('config_theme') . '_image_related_height'));
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/search.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+LINE: 232
+
+FILE: catalog/model/tool/image.php
+CODE: class ModelToolImage extends Model {
+LINE: 10
+CODE: }
+LINE: 62
+----------------------------------------------------------------

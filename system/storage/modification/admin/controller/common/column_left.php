@@ -60,6 +60,35 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 												
+
+      // OCFilter start
+			$ocfilter = array();
+
+			if ($this->user->hasPermission('access', 'catalog/ocfilter')) {
+				$ocfilter[] = array(
+					'name'     => $this->language->get('text_ocfilter_option'),
+					'href'     => $this->url->link('catalog/ocfilter', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+			if ($this->user->hasPermission('access', 'catalog/ocfilter_page')) {
+				$ocfilter[] = array(
+					'name'	   => $this->language->get('text_ocfilter_page'),
+					'href'     => $this->url->link('catalog/ocfilter_page', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+
+			if ($ocfilter) {
+				$catalog[] = array(
+					'name'	   => $this->language->get('text_ocfilter'),
+					'href'     => '',
+					'children' => $ocfilter
+				);
+			}
+		  // OCFilter end
+      
 			if ($this->user->hasPermission('access', 'catalog/option')) {
 				$catalog[] = array(
 					'name'	   => $this->language->get('text_option'),

@@ -596,6 +596,12 @@ class ControllerCatalogProduct extends Controller {
 	}
 
 	protected function getForm() {
+
+    // OCFilter start
+    $this->document->addStyle('view/stylesheet/ocfilter/ocfilter.css');
+    $this->document->addScript('view/javascript/ocfilter/ocfilter.js');
+    // OCFilter end
+      
     //CKEditor
     if ($this->config->get('config_editor_default')) {
         $this->document->addScript('view/javascript/ckeditor/ckeditor.js');
@@ -716,6 +722,13 @@ class ControllerCatalogProduct extends Controller {
 		$data['button_recurring_add'] = $this->language->get('button_recurring_add');
 
 		$data['tab_general'] = $this->language->get('tab_general');
+
+    // OCFilter start
+    $data['tab_ocfilter'] = $this->language->get('tab_ocfilter');
+    $data['entry_values'] = $this->language->get('entry_values');
+    $data['ocfilter_select_category'] = $this->language->get('ocfilter_select_category');
+    // OCFilter end
+      
 		$data['tab_data'] = $this->language->get('tab_data');
 		$data['tab_attribute'] = $this->language->get('tab_attribute');
 		$data['tab_option'] = $this->language->get('tab_option');

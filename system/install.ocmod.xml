@@ -31,7 +31,7 @@
 
 	<file path="admin/controller/common/column_left.php">
     <operation error="skip">
-      <search><![CDATA[if ($this->user->hasPermission('access', 'catalog/download')) {]]></search>
+      <search><![CDATA[if ($this->user->hasPermission('access', 'catalog/option')) {]]></search>
       <add position="before"><![CDATA[
       // OCFilter start
 			$ocfilter = array();
