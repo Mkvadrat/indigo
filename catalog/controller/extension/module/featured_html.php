@@ -34,10 +34,21 @@ class ControllerExtensionModuleFeaturedHtml extends Controller {
 				$product_info = $this->model_catalog_product->getProduct($product_id);
 
 				if ($product_info) {
+					if (file_exists(DIR_IMAGE . $product_info['image']) && $product_info['image']){
+						list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $product_info['image']);
+						if ($width_orig>900) {
+							$height_orig = $height_orig * 900 / $width_orig;
+							$width_orig = 900;
+						}
+					}elseif($setting['height'] && $setting['width']){
+						$height_orig = $setting['height'] ;
+						$width_orig = $setting['width'];
+					}
+							
 					if ($product_info['image']) {
-						$image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
+						$image = $this->model_tool_image->resize($product_info['image'], $width_orig, $height_orig);
 					} else {
-						$image = $this->model_tool_image->resize('placeholder.png', $setting['width'], $setting['height']);
+						$image = $this->model_tool_image->resize('placeholder.png', $width_orig, $height_orig);
 					}
 					
 					$this->load->model('localisation/currency');

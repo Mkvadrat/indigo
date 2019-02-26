@@ -580,3 +580,134 @@
 2019-02-25 14:16:54 - PHP Notice:  Undefined variable: description in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\information\error_information.tpl on line 29
 2019-02-25 14:17:55 - PHP Notice:  Undefined variable: heading_title in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\information\error_information.tpl on line 28
 2019-02-25 14:17:55 - PHP Notice:  Undefined variable: description in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\information\error_information.tpl on line 29
+2019-02-26 9:32:36 - PHP Notice:  Undefined index: sub_title in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 297
+2019-02-26 10:05:12 - PHP Notice:  Undefined index: sub_title in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 297
+2019-02-26 10:09:38 - PHP Notice:  Undefined index: sub_title in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 302
+2019-02-26 10:25:11 - PHP Notice:  Undefined index: sub_title in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 302
+2019-02-26 10:29:51 - PHP Notice:  Undefined index: sub_title in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 301
+2019-02-26 11:01:09 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:01:09 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:01:09 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:01:09 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:01:09 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:01:09 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:01:09 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:01:09 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:01:09 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:01:09 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:01:09 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:01:09 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:01:09 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:01:09 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:01:09 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:01:09 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:01:09 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:01:09 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:01:09 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:01:09 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:01:09 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:01:09 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:01:09 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:01:09 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:01:38 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:01:38 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:01:38 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:01:38 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:01:38 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:01:38 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:01:38 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:01:38 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:01:38 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:01:38 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:01:38 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:01:38 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:01:38 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:01:38 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:01:38 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:01:38 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:01:38 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:01:38 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:01:38 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:01:38 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:01:38 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:01:38 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:01:38 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:01:38 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:04:20 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:04:20 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:04:20 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:04:20 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:04:20 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:04:20 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:04:20 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:04:20 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:04:20 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:04:20 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:04:20 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:04:20 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:04:20 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:04:20 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:04:20 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:04:20 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:04:20 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:04:20 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:04:20 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:04:20 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:04:20 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:04:20 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:04:20 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:04:20 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:06:51 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:06:51 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:06:51 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:06:51 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:06:51 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:06:51 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:06:51 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:06:51 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:06:51 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:06:51 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:06:51 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:06:51 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:06:51 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:06:51 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:06:51 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:06:51 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:06:51 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:06:51 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:06:51 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:06:51 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:06:51 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:06:51 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:06:51 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:06:51 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:07:50 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:07:50 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:07:50 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:07:50 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:07:50 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:07:50 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:07:50 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:07:50 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:07:50 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:07:50 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:07:50 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:07:50 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:07:50 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:07:50 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:07:50 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:07:50 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:07:50 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:07:50 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 105
+2019-02-26 11:07:50 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 108
+2019-02-26 11:07:50 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 109
+2019-02-26 11:07:50 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 110
+2019-02-26 11:07:50 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 111
+2019-02-26 11:07:50 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 116
+2019-02-26 11:07:50 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, boolean given in D:\OpenServer\domains\indigo.loc\system\library\image.php on line 118
+2019-02-26 11:08:05 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:08:05 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:08:05 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:08:30 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:08:30 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120
+2019-02-26 11:08:30 - PHP Warning:  getimagesize(D:/OpenServer/domains/indigo.loc/image/): failed to open stream: No such file or directory in D:\OpenServer\domains\indigo.loc\catalog\controller\information\news.php on line 120

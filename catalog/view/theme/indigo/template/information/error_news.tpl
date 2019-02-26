@@ -1,16 +1,38 @@
 <?php echo $header; ?>
-	<div class="blog_in_page">
-		<div class="object_title">
-			<a class="backward back"><img src="catalog/view/theme/villacrimea/image/backward.png" alt="">К списку</a>
-
-			<p class="title">Статья не найдена!</p>
-		</div>                
-		<div class="blog_inner">
-			<div class="left_side">
-				<p class="sub-title">Статья не найдена!</p>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 breadcrumbs">
+				<ul>
+				<?php			
+					$count = count($breadcrumbs);
+					$i=1;
+					foreach ($breadcrumbs as $breadcrumb) {
+						if($i!=$count){
+				?>
+						<li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a><?php echo ' ' . $breadcrumb['separator']; ?></li>
+				<?php
+						}else{
+							echo '<li><span> '.$breadcrumb['text'] . '</span></li>'; 
+						}		
+						$i++;
+					} 
+				?>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7 article-l">
+				<div class="article">
+					<h1 class="title">Новость не найдена!</h1>
+					<p>Новость не найдена!</p>
+				</div>
 			</div>
 			
 			<?php echo $column_right; ?>
 		</div>
 	</div>
+	
 <?php echo $footer; ?>

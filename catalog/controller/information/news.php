@@ -44,7 +44,8 @@ class ControllerInformationNews extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
+			'href' => $this->url->link('common/home'),
+			'separator' => $this->language->get('text_separator')
 		);
 
 		$url = '';
@@ -67,7 +68,8 @@ class ControllerInformationNews extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('information/news', $url)
+			'href' => $this->url->link('information/news', $url),
+			'separator' => $this->language->get('text_separator')
 		);
 
 		$filter_data = array(
@@ -113,11 +115,21 @@ class ControllerInformationNews extends Controller {
 			}
 
 			foreach ($news_list as $result) {
+				if (file_exists(DIR_IMAGE . $result['image']) && $result['image']){
+					list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $result['image']);
+					if ($width_orig>900) {
+						$height_orig = $height_orig * 900 / $width_orig;
+						$width_orig = 900;
+					}
+				}elseif($news_setting['news_thumb_height'] && $news_setting['news_thumb_width']){
+					$height_orig = $news_setting['news_thumb_height'];
+					$width_orig = $news_setting['news_thumb_width'];
+				}
 
 				if($result['image']){
-					$image = $this->model_tool_image->resize($result['image'], $news_setting['news_thumb_width'], $news_setting['news_thumb_height']);
+					$image = $this->model_tool_image->resize($result['image'], $width_orig, $height_orig);
 				}else{
-					$image = $this->model_tool_image->resize('placeholder.png', $news_setting['news_thumb_width'], $news_setting['news_thumb_height']);
+					$image = $this->model_tool_image->resize('placeholder.png', $width_orig, $height_orig);
 				}
 
 				$data['news_list'][] = array(
@@ -129,7 +141,6 @@ class ControllerInformationNews extends Controller {
 					'posted' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
 				);
 			}
-
 		}
 
 		$url = '';
@@ -249,12 +260,14 @@ class ControllerInformationNews extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'href' => $this->url->link('common/home'),
-			'text' => $this->language->get('text_home')
+			'text' => $this->language->get('text_home'),
+			'separator' => $this->language->get('text_separator')
 		);
 
 		$data['breadcrumbs'][] = array(
 			'href' => $this->url->link('information/news'),
-			'text' => $this->language->get('heading_title')
+			'text' => $this->language->get('heading_title'),
+			'separator' => $this->language->get('text_separator')
 		);
 
 		if (isset($this->request->get['news_id'])) {
@@ -287,14 +300,14 @@ class ControllerInformationNews extends Controller {
 
 			$data['breadcrumbs'][] = array(
 				'text' => $news_info['title'],
-				'href' => $this->url->link('information/news/info', 'news_id=' . $news_id)
+				'href' => $this->url->link('information/news/info', 'news_id=' . $news_id),
+				'separator' => $this->language->get('text_separator')
 			);
 
 			$this->document->addLink($this->url->link('information/news', 'news_id=' . $this->request->get['news_id']),
 				'canonical');
 
 			$data['description'] = html_entity_decode($news_info['description']);
-			$data['sub_title'] = html_entity_decode($news_info['sub_title']);
 
 			$data['viewed'] = sprintf($this->language->get('text_viewed'), $news_info['viewed']);
 			$data['posted'] = date($this->language->get('date_format_short'), strtotime($news_info['date_added']));
@@ -316,16 +329,25 @@ class ControllerInformationNews extends Controller {
 
 			$this->load->model('tool/image');
 
-			if ($news_info['image']) {
-				$data['image'] = true;
-			} else {
-				$data['image'] = false;
+			if (file_exists(DIR_IMAGE . $news_info['image']) && $news_info['image']){
+				list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $news_info['image']);
+				if ($width_orig>900) {
+					$height_orig = $height_orig * 900 / $width_orig;
+					$width_orig = 900;
+				}
+			}elseif($news_setting['news_popup_height'] && $news_setting['news_popup_width']){
+				$height_orig = $news_setting['news_popup_height'];
+				$width_orig = $news_setting['news_popup_width'];
+			}elseif($news_setting['news_thumb_height'] && $news_setting['news_thumb_width']){
+				$height_orig = $news_setting['news_thumb_height'];
+				$width_orig = $news_setting['news_thumb_width'];
 			}
+			
 			if($news_info['image']){
-				$data['thumb'] = $this->model_tool_image->resize($news_info['image'], $news_setting['news_thumb_width'],
-				$news_setting['news_thumb_height']);
-				$data['popup'] = $this->model_tool_image->resize($news_info['image'], $news_setting['news_popup_width'],
-				$news_setting['news_popup_height']);
+				$data['thumb'] = $this->model_tool_image->resize($news_info['image'], $width_orig,
+				$height_orig);
+				$data['popup'] = $this->model_tool_image->resize($news_info['image'], $width_orig,
+				$height_orig);
 			}else{
 				$data['thumb'] = false;
 				$data['popup'] = false;
@@ -359,6 +381,20 @@ class ControllerInformationNews extends Controller {
 			$this->response->setOutput($this->load->view('information/news', $data));
 		}else{
 			$this->document->setTitle($this->language->get('error_page'));
+			
+			$data['breadcrumbs'] = array();
+
+			$data['breadcrumbs'][] = array(
+				'href' => $this->url->link('common/home'),
+				'text' => $this->language->get('text_home'),
+				'separator' => $this->language->get('text_separator')
+			);
+	
+			$data['breadcrumbs'][] = array(
+				'href' => $this->url->link('information/news'),
+				'text' => $this->language->get('error_page'),
+				'separator' => $this->language->get('text_separator')
+			);
 			
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');

@@ -325,9 +325,23 @@ class ControllerProductProduct extends Controller {
 			$results = $this->model_catalog_product->getProductImages($this->request->get['product_id']);
 
 			foreach ($results as $result) {
+				if (file_exists(DIR_IMAGE . $result['image']) && $result['image']){
+					list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $result['image']);
+					if ($width_orig>900) {
+						$height_orig = $height_orig * 900 / $width_orig;
+						$width_orig = 900;
+					}
+				}elseif($this->config->get($this->config->get('config_theme') . '_image_popup_height') && $this->config->get($this->config->get('config_theme') . '_image_popup_width')){
+					$height_orig = $this->config->get($this->config->get('config_theme') . '_image_popup_height');
+					$width_orig = $this->config->get($this->config->get('config_theme') . '_image_popup_width');
+				}elseif($this->config->get($this->config->get('config_theme') . '_image_additional_height') && $this->config->get($this->config->get('config_theme') . '_image_additional_width')){
+					$height_orig = $this->config->get($this->config->get('config_theme') . '_image_additional_height');
+					$width_orig = $this->config->get($this->config->get('config_theme') . '_image_additional_width');
+				}
+
 				$data['images'][] = array(
-					'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height')),
-					'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'))
+					'popup' => $this->model_tool_image->resize($result['image'], $width_orig, $height_orig),
+					'thumb' => $this->model_tool_image->resize($result['image'], $width_orig, $height_orig),
 				);
 			}
 
@@ -435,11 +449,22 @@ class ControllerProductProduct extends Controller {
 
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
 
-			foreach ($results as $result) {
+			foreach ($results as $result) {				
+				if (file_exists(DIR_IMAGE . $result['image']) && $result['image']){
+					list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $result['image']);
+					if ($width_orig>900) {
+						$height_orig = $height_orig * 900 / $width_orig;
+						$width_orig = 900;
+					}
+				}elseif($this->config->get($this->config->get('config_theme') . '_image_related_height') && $this->config->get($this->config->get('config_theme') . '_image_related_width')){
+					$height_orig = $this->config->get($this->config->get('config_theme') . '_image_related_height');
+					$width_orig = $this->config->get($this->config->get('config_theme') . '_image_related_width');
+				}
+				
 				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_related_width'), $this->config->get($this->config->get('config_theme') . '_image_related_height'));
+					$image = $this->model_tool_image->resize($result['image'], $width_orig, $height_orig);
 				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get($this->config->get('config_theme') . '_image_related_width'), $this->config->get($this->config->get('config_theme') . '_image_related_height'));
+					$image = $this->model_tool_image->resize('placeholder.png', $width_orig, $height_orig);
 				}
 
 				$currencys = $this->model_localisation_currency->getCurrency($result['currency_id']);
@@ -522,7 +547,6 @@ class ControllerProductProduct extends Controller {
 			$results = $this->model_catalog_product->getMapsProducts();
 			
 			foreach($results as $result){
-				
 				if(!empty($result['location'])){				
 					$lat_lng = $result['location'];
 				}else{
