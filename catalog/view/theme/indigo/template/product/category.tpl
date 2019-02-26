@@ -30,7 +30,7 @@
   <?php if($products) { ?>
   <div class="container">
       <div class="row sort-view">
-          <div class="col-md-6">
+          <div class="col-lg-6 col-md-8 col-sm-12">
               <div class="sort">
                   <label>
                       Сортировка:
@@ -60,7 +60,7 @@
                   </label>
               </div>
           </div>
-          <div class="col-md-3 pull-right">
+          <div class="col-lg-3 col-md-4 col-sm-12 pull-right-lg-md">
               <a href="#" class="round-button toAdd">Добавить объявление</a>
           </div>
       </div>
@@ -101,9 +101,9 @@
                           
                           <?php if ($product['price'] || $product['rub']) { ?>
                           <?php if (!$product['special']) { ?>
-                            <p class="prices"><?php echo $product['rub']; ?> / <?php echo $product['price']; ?></p>
+                            <p class="price"><?php echo $product['rub']; ?> / <?php echo $product['price']; ?></p>
                           <?php } else { ?>
-                            <p class="prices"><?php echo $product['special']; ?> <sup><strike><?php echo $product['price']; ?></strike></sup></p>
+                            <p class="price"><?php echo $product['special']; ?> <sup><strike><?php echo $product['price']; ?></strike></sup></p>
                           <?php } ?>
                           <?php } ?>
                       </div>

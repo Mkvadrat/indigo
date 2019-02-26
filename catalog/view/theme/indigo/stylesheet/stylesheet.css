@@ -425,25 +425,34 @@ header .menu>ul ul a:hover {
 }
 
 .labels .label {
-    font-family: 'MyriadPro-Bold', Helvetica, sans-serif;
-    font-size: 12px;
-    color: #fff;
-    line-height: 16px;
-    display: inline-block;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
     float: right;
-    padding: 0 10px;
+    padding: 0;
     margin: 5px 5px 0 0;
     border-radius: 8px;
+    overflow: hidden;
 }
-
-.labels .label.necessary-label {
+.category-list .item .labels .label img,
+.labels .label img {
+    display: block;
+    width: auto;
+    height: 20px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/* .labels .label.necessary-label {
     background-color: #ff7200;
 }
 
 .labels .label.newhouse-label {
     background-color: #00a651;
 }
-
+ */
 .best-proposes .item .text {
     position: absolute;
     left: 10px;
@@ -1145,15 +1154,14 @@ footer .bot-line a img {
 .category-list .item .text {
     padding: 10px 40px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 .news-list .item .text {
     padding: 30px 40px;
 }
-.category-list .item .label {
-    font-size: 16px;
-    line-height: 20px;
+.category-list .item .labels {
+    top: 10px;
 }
 
 .news-list .item .date,
@@ -1163,6 +1171,7 @@ footer .bot-line a img {
     line-height: normal;
     font-weight: bold;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .news-list .item .name,
@@ -1172,18 +1181,20 @@ footer .bot-line a img {
     line-height: normal;
     color: #f1eaa2;
     margin-bottom: 10px;
-    display: inline-block;
+    width: 100%;
 }
 .news-list .item .descr,
 .category-list .item .descr {
     font-size: 18px;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .category-list .item .square {
     font-family: 'MyriadPro-It';
     font-size: 18px;
     margin-bottom: 10px;
+    width: 33.33339%;
 }
 .news-list .item .round-button {
     width: auto;
@@ -1203,6 +1214,7 @@ footer .bot-line a img {
     font-size: 24px;
     line-height: normal;
     color: #f1eaa2;
+    width: 100%;
 }
 .sort-view {
     display: flex;
@@ -1233,7 +1245,7 @@ footer .bot-line a img {
     line-height: 24px;
     display: flex;
     align-items: center;
-    width: 50%;
+    width: 60%;
     float: left;
 }
 .sort-view .view {
@@ -1241,7 +1253,7 @@ footer .bot-line a img {
     width: auto;
 }
 .sort-view  .ui-selectmenu-button.ui-button {
-    width: 150px;
+    width: 210px;
     line-height: 24px;
     border: 1px solid #fff;
     padding: 16px 15px;
@@ -1255,9 +1267,9 @@ footer .bot-line a img {
 .view .ui-selectmenu-button.ui-button {
     width: 3.5em;
 }
-.sort-view .ui-selectmenu-button.ui-button .ui-selectmenu-text {
+/* .sort-view .ui-selectmenu-button.ui-button .ui-selectmenu-text {
     width: auto
-}
+} */
 .sort-view .sort,
 .sort-view .view {
     font-weight: normal
@@ -1315,7 +1327,9 @@ footer .bot-line a img {
 .sort-view .ui-selectmenu-button-open .ui-icon::after {
     transform: rotate(-135deg);
 }
-
+.pull-right-lg-md {
+    float: right;
+}
 .paggination {
     list-style: none;
     margin: 15px auto 30px;
@@ -1344,8 +1358,12 @@ footer .bot-line a img {
 .paggination li .active {
     color: #f1eaa2;
     border: 2px solid #f1eaa2;
-    padding: 14px;
     border-radius: 30px;
+    display: flex;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
 }
 
 .catalog-text-row .text-row {
@@ -2071,3 +2089,70 @@ footer .bot-line a img {
     white-space: normal;
 }
 
+.ocfilter-option[id^="option-"] {
+    width: 20%;
+    float: left;
+    background-color: transparent;
+    border: none;
+}
+
+.ocfilter-option[data-toggle="popover-price"] {
+    width: 80%;
+    float: left;
+    border: none;
+    background-color: transparent;
+}
+
+.ocfilter-option.currency-wraper {
+    width: 20%;
+    float: left;
+    background-color: transparent;
+    border: none;
+}
+.ocfilter-option label:last-child {
+    margin: 0;
+}
+.panel>.list-group,.list-group {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #082b40;
+    padding: 0 10px 15px;
+    border-radius: 0 0 7px 7px;
+}
+
+.ocf-option-name {
+    color: #fff;
+    margin: 0 0 3px;
+}
+
+.panel {
+    border: none;
+    background-color: transparent;
+}
+
+.noUi-connect.noUi-draggable {
+    background-color: #f1eaa2;
+}
+
+.noUi-horizontal .noUi-handle {
+    box-shadow: none;
+}
+.panel-default>.panel-heading {
+    padding-left: 25px;
+}
+
+.dropdown-menu {
+    width: 100%;
+    padding: 5px 13px;
+}
+.popover-title {
+    color: #082b40;
+}
+.popover-content .btn.btn-primary {
+    background-color: #082b40;
+}
+.ocfilter-option label:last-child {
+    margin: 0;
+}

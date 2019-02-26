@@ -101,6 +101,15 @@
     .best-proposes .item .text .description {
         font-size: 14px;
     }
+    .ocfilter-option[id^="option-"] {
+        width: 25%;
+        float: left;
+        background-color: transparent;
+        border: none;
+    }
+    .category-list .item .square {
+        width: 50%;
+    }
 }
 
 @media (max-width: 991px) {
@@ -243,6 +252,26 @@
     footer .socials~.agency-description {
         display: block;
     }
+    .category-list .item {
+        flex-wrap: wrap;
+    }
+    .category-list .item .img, .category-list .item .text {
+        width: 100%;
+    }
+    .ocfilter-option[id^="option-"],
+    .category-list .item .square {
+        width: 33.33339%;
+    }
+    .sort-view {
+        flex-direction: column;
+    }
+    .sort-view {
+        flex-direction: column;
+        margin-top: 30px;
+    }
+    .pull-right-lg-md {
+        float: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -303,6 +332,21 @@
     footer .menu {
         margin: 0 0 10px;
     }
+    .sort-view {
+        align-items: stretch;
+    }
+    .sort-view .sort, .sort-view .view {
+        width: 100%;
+    }
+    .sort-view .sort {
+        margin-bottom: 10px;
+    }
+    .sort-view .round-button {
+        float: none;
+    }
+    .pull-right-lg-md {
+        text-align: center;
+    }
 }
 @media (max-width: 640px) {
     .logo-line {
@@ -351,6 +395,9 @@
     }
     .logo-line .cont-phones .viber, .logo-line .cont-phones .whatsapp {
         float: none;
+    }
+    .ocfilter-option[id^="option-"], .category-list .item .square {
+        width: 50%;
     }
 }
 
@@ -428,8 +475,22 @@
     .news-main {
         margin: 0 -15px;
     }
+    .category-list .item .text {
+        padding: 10px 20px;
+    }
+    .noUi-pips-horizontal {
+        font-size: 10px;
+    }
 }
 
-@media (max-width: 360px) {}
+@media (max-width: 480px) {
+    .news-list .item .img img, .category-list .item .img img {
+        height: 230px;
+    }
+    .ocfilter-option[data-toggle="popover-price"], .ocfilter-option.currency-wraper,
+    .ocfilter-option[id^="option-"], .category-list .item .square {
+        width: 100%;
+    }
+}
 
 @media (max-width: 320px) {}

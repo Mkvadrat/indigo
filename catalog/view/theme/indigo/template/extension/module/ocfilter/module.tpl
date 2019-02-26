@@ -1,6 +1,7 @@
 <?php if ($options || $show_price) { ?>
 <div class="container">
     <div class="row">
+      <div class="col-md-12">
       <div class="panel ocfilter panel-default" id="ocfilter">
         <div class="panel-heading"><?php echo $heading_title; ?></div>
         <div class="hidden" id="ocfilter-button">
@@ -13,6 +14,7 @@
       
           <?php include 'filter_list.tpl'; ?>
         </div>
+      </div>
       </div>
     </div>
 </div>
