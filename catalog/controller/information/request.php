@@ -101,8 +101,8 @@ class ControllerInformationRequest extends Controller {
 				
 				$this->load->model('tool/upload');
 
-				foreach($exp as $name){
-					$filename = $this->model_tool_upload->getImageByName($name);
+				foreach($exp as $imagename){
+					$filename = $this->model_tool_upload->getImageByName($imagename);
 					
 					foreach($filename as $image){
 						if(file_exists(DIR_UPLOAD.$image['filename'])){
@@ -137,8 +137,8 @@ class ControllerInformationRequest extends Controller {
 				
 				$this->load->model('tool/upload');
 
-				foreach($exp as $name){
-					$filename = $this->model_tool_upload->getImageByName($name);
+				foreach($exp as $imagename){
+					$filename = $this->model_tool_upload->getImageByName($imagename);
 					
 					foreach($filename as $image){
 						if(file_exists(DIR_UPLOAD.$image['name'])){

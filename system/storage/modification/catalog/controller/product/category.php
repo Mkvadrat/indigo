@@ -229,7 +229,7 @@ class ControllerProductCategory extends Controller {
 				}
 				
 				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $height_orig, $width_orig);
+					$image = $this->model_tool_image->resize($result['image'], $height_orig, $width_orig, 'category_image');
 				} else {
 					$image = $this->model_tool_image->resize('placeholder.png', $height_orig, $width_orig);
 				}
@@ -286,6 +286,7 @@ class ControllerProductCategory extends Controller {
 					'rub'		  => $rub,
 					'special'     => $special,
 					'tax'         => $tax,
+					'uniq_options'=> $result['uniq_options'] = 1 ? $result['uniq_options'] : 0,
 					'options'     => $this->model_catalog_product->getProductOptions($result['product_id']),//options
 					'filter_options' => $this->model_catalog_ocfilter->getValueOptionsByProduct($result['product_id']),//options
 					'slider_filter_options' => $this->model_catalog_ocfilter->getValueOptionsSliderRangeByProduct($result['product_id']),
