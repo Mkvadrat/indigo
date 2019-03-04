@@ -272,6 +272,7 @@ class ControllerProductCategory extends Controller {
 					'rub'		  => $rub,
 					'special'     => $special,
 					'tax'         => $tax,
+					'uniq_options'=> $result['uniq_options'] = 1 ? $result['uniq_options'] : 0,
 					'options'     => $this->model_catalog_product->getProductOptions($result['product_id']),//options
 					'filter_options' => $this->model_catalog_ocfilter->getValueOptionsByProduct($result['product_id']),//options
 					'slider_filter_options' => $this->model_catalog_ocfilter->getValueOptionsSliderRangeByProduct($result['product_id']),

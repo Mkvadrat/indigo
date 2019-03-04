@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2019-02-14 10:57:59 - PHP Notice:  Undefined index: custommenu_link in D:\OpenServer\domains\indigo.loc\admin\model\design\custommenu.php on line 133
 2019-02-14 10:58:01 - PHP Notice:  Undefined index: custommenu_link in D:\OpenServer\domains\indigo.loc\admin\model\design\custommenu.php on line 133
 2019-02-14 10:58:06 - PHP Notice:  Undefined index: sort_order in D:\OpenServer\domains\indigo.loc\admin\model\design\custommenu.php on line 297
@@ -1747,3 +1748,5 @@
 2019-03-04 15:41:14 - PHP Notice:  Undefined index: children in W:\domains\indigo.loc\catalog\view\theme\indigo\template\common\footer.tpl on line 50
 2019-03-04 15:41:14 - PHP Notice:  Undefined index: children in W:\domains\indigo.loc\catalog\view\theme\indigo\template\common\footer.tpl on line 50
 2019-03-04 15:41:14 - PHP Notice:  Undefined index: children in W:\domains\indigo.loc\catalog\view\theme\indigo\template\common\footer.tpl on line 50
+=======
+>>>>>>> c6ebb604ffa73dc37680b048a1466b6c181e35de

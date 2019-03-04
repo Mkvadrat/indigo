@@ -312,9 +312,20 @@ class ControllerProductProduct extends Controller {
 			} else {
 				$data['popup'] = '';
 			}
+			
+			if (file_exists(DIR_IMAGE . $product_info['image']) && $product_info['image']){
+				list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $product_info['image']);
+				if ($width_orig>900) {
+					$height_orig = $height_orig * 900 / $width_orig;
+					$width_orig = 900;
+				}
+			}elseif($this->config->get($this->config->get('config_theme') . '_image_thumb_height') && $this->config->get($this->config->get('config_theme') . '_image_thumb_width')){
+				$height_orig = $this->config->get($this->config->get('config_theme') . '_image_thumb_height');
+				$width_orig = $this->config->get($this->config->get('config_theme') . '_image_thumb_width');
+			}
 
 			if ($product_info['image']) {
-				$data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_thumb_width'), $this->config->get($this->config->get('config_theme') . '_image_thumb_height'));
+				$data['thumb'] = $this->model_tool_image->resize($product_info['image'], $width_orig, $height_orig);
 				$this->document->setOgImage($data['thumb']);
 			} else {
 				$data['thumb'] = '';
