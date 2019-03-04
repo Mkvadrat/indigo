@@ -264,7 +264,6 @@ class ModelCatalogProduct extends Model {
 			$data['product_reward'] = $this->getProductRewards($product_id);
 			$data['product_special'] = $this->getProductSpecials($product_id);
 			$data['product_category'] = $this->getProductCategories($product_id);
-			$data['product_download'] = $this->getProductDownloads($product_id);
 			$data['product_layout'] = $this->getProductLayouts($product_id);
 			$data['product_store'] = $this->getProductStores($product_id);
 			$data['product_recurrings'] = $this->getRecurrings($product_id);
@@ -294,7 +293,6 @@ class ModelCatalogProduct extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_reward WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_download WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_layout WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_recurring WHERE product_id = " . (int)$product_id);
@@ -547,18 +545,6 @@ class ModelCatalogProduct extends Model {
 		return $product_reward_data;
 	}
 
-	public function getProductDownloads($product_id) {
-		$product_download_data = array();
-
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_download WHERE product_id = '" . (int)$product_id . "'");
-
-		foreach ($query->rows as $result) {
-			$product_download_data[] = $result['download_id'];
-		}
-
-		return $product_download_data;
-	}
-
 	public function getProductStores($product_id) {
 		$product_store_data = array();
 
@@ -675,12 +661,6 @@ class ModelCatalogProduct extends Model {
 
 	public function getTotalProductsByLengthClassId($length_class_id) {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product WHERE length_class_id = '" . (int)$length_class_id . "'");
-
-		return $query->row['total'];
-	}
-
-	public function getTotalProductsByDownloadId($download_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_to_download WHERE download_id = '" . (int)$download_id . "'");
 
 		return $query->row['total'];
 	}

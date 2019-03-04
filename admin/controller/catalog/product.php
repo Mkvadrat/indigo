@@ -666,7 +666,6 @@ class ControllerCatalogProduct extends Controller {
 		$data['entry_additional_image'] = $this->language->get('entry_additional_image');
 		$data['entry_store'] = $this->language->get('entry_store');
 		$data['entry_manufacturer'] = $this->language->get('entry_manufacturer');
-		$data['entry_download'] = $this->language->get('entry_download');
 		$data['entry_category'] = $this->language->get('entry_category');
 		$data['entry_filter'] = $this->language->get('entry_filter');
 		$data['entry_related'] = $this->language->get('entry_related');
@@ -701,7 +700,6 @@ class ControllerCatalogProduct extends Controller {
 		$data['help_points'] = $this->language->get('help_points');
 		$data['help_category'] = $this->language->get('help_category');
 		$data['help_filter'] = $this->language->get('help_filter');
-		$data['help_download'] = $this->language->get('help_download');
 		$data['help_related'] = $this->language->get('help_related');
 		$data['help_tag'] = $this->language->get('help_tag');
 

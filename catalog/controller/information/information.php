@@ -9,7 +9,8 @@ class ControllerInformationInformation extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
+			'href' => $this->url->link('common/home'),
+			'separator' => $this->language->get('text_separator')
 		);
 
 		if (isset($this->request->get['information_id'])) {
@@ -33,7 +34,8 @@ class ControllerInformationInformation extends Controller {
 
 			$data['breadcrumbs'][] = array(
 				'text' => $information_info['title'],
-				'href' => $this->url->link('information/information', 'information_id=' .  $information_id)
+				'href' => $this->url->link('information/information', 'information_id=' .  $information_id),
+				'separator' => $this->language->get('text_separator')
 			);
 
 			if ($information_info['meta_h1']) {
@@ -60,6 +62,20 @@ class ControllerInformationInformation extends Controller {
 			$this->response->setOutput($this->load->view('information/information', $data));
 		} else {
 			$this->document->setTitle($this->language->get('error_page'));
+			
+			$data['breadcrumbs'] = array();
+	
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('text_home'),
+				'href' => $this->url->link('common/home'),
+				'separator' => $this->language->get('text_separator')
+			);
+			
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('404'),
+				'href' => $this->url->link('information/information', 'information_id=' .  $information_id),
+				'separator' => $this->language->get('text_separator')
+			);
 			
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');

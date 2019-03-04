@@ -60,14 +60,6 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 												
-			if ($this->user->hasPermission('access', 'catalog/option')) {
-				$catalog[] = array(
-					'name'	   => $this->language->get('text_option'),
-					'href'     => $this->url->link('catalog/option', 'token=' . $this->session->data['token'], true),
-					'children' => array()		
-				);
-			}
-						
 
       // OCFilter start
 			$ocfilter = array();
@@ -97,14 +89,14 @@ class ControllerCommonColumnLeft extends Controller {
 			}
 		  // OCFilter end
       
-			if ($this->user->hasPermission('access', 'catalog/download')) {
+			if ($this->user->hasPermission('access', 'catalog/option')) {
 				$catalog[] = array(
-					'name'	   => $this->language->get('text_download'),
-					'href'     => $this->url->link('catalog/download', 'token=' . $this->session->data['token'], true),
+					'name'	   => $this->language->get('text_option'),
+					'href'     => $this->url->link('catalog/option', 'token=' . $this->session->data['token'], true),
 					'children' => array()		
 				);
 			}
-						
+												
 			if ($this->user->hasPermission('access', 'catalog/information')) {		
 				$catalog[] = array(
 					'name'	   => $this->language->get('text_information'),
@@ -226,14 +218,6 @@ class ControllerCommonColumnLeft extends Controller {
 					'href'     => $this->url->link('design/sticker', 'token=' . $this->session->data['token'], true),
 					'children' => array()		
 				);	
-			}
-
-			if ($this->user->hasPermission('access', 'design/banner')) {
-				$design[] = array(
-					'name'	   => $this->language->get('text_banner'),
-					'href'     => $this->url->link('design/banner', 'token=' . $this->session->data['token'], true),
-					'children' => array()		
-				);
 			}
 			
 			if ($design) {

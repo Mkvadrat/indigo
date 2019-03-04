@@ -38,6 +38,7 @@
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/nomalize.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/stylesheet.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/media.css">
+<link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/sweetalert.css">
 
 <!-- JS -->
 <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
@@ -47,6 +48,9 @@
 <script src="catalog/view/theme/indigo/js/jquery.mmenu.all.js"></script>
 <script src="catalog/view/theme/indigo/js/jquery.fancybox.min.js"></script>
 <script src="catalog/view/theme/indigo/js/owl.carousel.min.js"></script>
+<script src="catalog/view/theme/indigo/js/sweetalert.min.js"></script>
+<script src="catalog/view/theme/indigo/js/printThis.js"></script>
+<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 
 <?php foreach ($styles as $style) { ?>
 <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />

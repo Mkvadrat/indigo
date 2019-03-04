@@ -19,7 +19,7 @@ $_['text_all_zones']        = 'Все регионы';
 $_['text_pagination']       = 'Показано с %d по %d из %d (всего %d страниц)';
 $_['text_loading']          = 'Загрузка...';
 $_['text_no_results']       = 'Нет результатов!';
-$_['text_separator']        = ' / ';
+$_['text_separator']        = '';
 
 // Buttons
 $_['button_address_add']    = 'Добавить адрес';

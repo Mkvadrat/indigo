@@ -7,6 +7,7 @@
         max-width: 270px;
     }
 }
+
 @media (min-width: 1250px) {
     .logo-line .addres {
         max-width: initial;
@@ -109,6 +110,31 @@
     }
     .category-list .item .square {
         width: 50%;
+    }
+    .object-top .owl-item img {
+        height: 400px;
+    }
+    .object-top .imgs>a {
+        width: 85px;
+        margin: 0 5px 5px 0;
+    }
+    .object-top img {
+        height: 60px;
+    }
+    .object-top .imgs>a:nth-child(6n-4) {
+        margin-left: 8px;
+    }
+    .object-top .owl-carousel {
+        margin-bottom: 10px;
+    }
+    .object-r .obj-price p {
+        font-size: 22px;
+    }
+    .contacts-row .cont {
+        padding: 0 40px 40px;
+    }
+    .request-l .article.form label .radio label {
+        width: 32%;
     }
 }
 
@@ -258,8 +284,7 @@
     .category-list .item .img, .category-list .item .text {
         width: 100%;
     }
-    .ocfilter-option[id^="option-"],
-    .category-list .item .square {
+    .ocfilter-option[id^="option-"], .category-list .item .square {
         width: 33.33339%;
     }
     .sort-view {
@@ -271,6 +296,40 @@
     }
     .pull-right-lg-md {
         float: none;
+    }
+    .object-r, .contacts-r, .article-r {
+        padding-left: 15px;
+        margin-bottom: 30px;
+    }
+    .object-l, .contacts-l, .request-l, .news-l, .article-l {
+        padding-right: 15px;
+    }
+    .object-top .imgs>a:nth-child(n) {
+        width: 19%;
+        margin-right: 5px;
+        margin-left: 0;
+    }
+    .object-top .imgs>a:nth-child(5n-3) {
+        margin-left: 8px;
+    }
+    .object-top img {
+        height: 6em;
+    }
+    .contacts-row .contacts-r .conacts-img {
+        padding-bottom: 56.25%;
+    }
+    .contacts-r .cont-map {
+        padding-bottom: 56.25%;
+    }
+    .contacts-row .contacts-text>div {
+        padding: 40px;
+    }
+    .contacts-row .contacts-text td, .contacts-row .contacts-text td p {
+        font-size: 18px;
+    }
+    .request-l,
+    .article-l {
+        margin-bottom: 7px;
     }
 }
 
@@ -347,7 +406,29 @@
     .pull-right-lg-md {
         text-align: center;
     }
+    .object-top .imgs>a:nth-child(n) {
+        width: 32%;
+        margin-right: 0;
+        margin-left: 1%;
+    }
+    .object-top img {
+        height: 10em;
+    }
+    .contacts-row .contacts-text>div, .contacts-row .cont {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .contacts-row .contacts-text table {
+        min-width: 650px;
+    }
+    .contacts-row .contacts-text>div>div {
+        overflow: auto;
+    }
+    .article {
+        padding: 0 15px;
+    }
 }
+
 @media (max-width: 640px) {
     .logo-line {
         -webkit-box-orient: vertical;
@@ -481,14 +562,105 @@
     .noUi-pips-horizontal {
         font-size: 10px;
     }
+    .object-top img {
+        height: 7em;
+    }
+    .object-top .imgs>a:nth-child(n) {
+        width: 30%;
+        margin-right: 0;
+        margin-left: 2%;
+    }
+    .object-top .imgs>a:nth-child(3n-1) {
+        margin-left: 3%;
+    }
+    .request-l .article.form label {
+        flex-wrap: wrap;
+    }
+    #dZUpload,
+    .request-l .article.form #chose-type-button,
+    .request-l .article.form label .radio,
+    .request-l .article.form .check,
+    .request-l .article.form label input,
+    .request-l .article.form label textarea {
+        width: 100%;
+        margin: 5px 0 0;
+    }
+    .request-l .article.form label .radio {
+        margin: 0;
+        padding-bottom: 0;
+    }
+    .request-l .article.form .check {
+        flex-wrap: nowrap;
+        margin-bottom: 15px;
+    }
 }
 
 @media (max-width: 480px) {
+    .ui-menu-item {
+        font-size: 16px;
+    }
+    .request-l .article.form label .radio label {
+        width: 49%;
+    }
+    #dZUpload .dz-message .round-button {
+        font-size: 18px;
+    }
     .news-list .item .img img, .category-list .item .img img {
         height: 230px;
     }
-    .ocfilter-option[data-toggle="popover-price"], .ocfilter-option.currency-wraper,
-    .ocfilter-option[id^="option-"], .category-list .item .square {
+    .ocfilter-option[data-toggle="popover-price"], .ocfilter-option.currency-wraper, .ocfilter-option[id^="option-"], .category-list .item .square {
+        width: 100%;
+    }
+    .object-top .owl-item img {
+        height: 300px;
+    }
+    .object-top img {
+        height: 5em;
+    }
+    .object-top .title {
+        font-size: 26px;
+        padding: 0 15px;
+    }
+    .object-bot .obj-map {
+        padding-bottom: 90%;
+    }
+    .object-bot, .object-r .obj-price, .object-r .info, .object-r .print-download {
+        padding: 15px;
+    }
+    .object-r .rieltor {
+        padding: 25px 15px;
+    }
+    .object-r .print-download a+a {
+        margin-left: 20px;
+    }
+    .object-r .rieltor .round-button, .object-r .rieltor .rieltor-cont a {
+        font-size: 20px;
+    }
+    .request-l .article.form label,
+    .news-l .article.form label,
+    .contacts-l .cont.form label {
+        flex-wrap: wrap;
+    }
+    
+    .request-l .article.form  .check,
+    .request-l .article.form label input,
+    .request-l .article.form label textarea,
+    .news-l .article.form .check,
+    .news-l .article.form label input,
+    .news-l .article.form label textarea,
+    .contacts-l .cont.form .check,
+    .contacts-l .cont.form label input,
+    .contacts-l .cont.form label textarea {
+        width: 100%;
+        margin: 5px 0 0;
+    }
+    .news-l .article.form .check,
+    .request-l .article.form .check,
+    .contacts-l .cont.form .check {
+        flex-wrap: nowrap;
+        margin-bottom: 15px;
+    }
+    .contacts-row .cont .cont-block>div {
         width: 100%;
     }
 }

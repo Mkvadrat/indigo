@@ -33,6 +33,7 @@
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
             <li><a href="#tab-store" data-toggle="tab"><?php echo $tab_store; ?></a></li>
+            <li><a href="#tab-contacts" data-toggle="tab">Страница контактов</a></li>
             <li><a href="#tab-local" data-toggle="tab"><?php echo $tab_local; ?></a></li>
             <li><a href="#tab-option" data-toggle="tab"><?php echo $tab_option; ?></a></li>
             <li><a href="#tab-image" data-toggle="tab"><?php echo $tab_image; ?></a></li>
@@ -105,17 +106,16 @@
                 </div>
               </div>
             </div>
+            
             <div class="tab-pane" id="tab-store">
               <ul class="nav nav-tabs" id="store-language">
                 <?php foreach ($languages as $language) { ?>
                 <li><a href="#store-language<?php echo $language['language_id']; ?>" data-toggle="tab"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a></li>
                 <?php } ?>
               </ul>
-
               <div class="tab-content">
                 <?php foreach ($languages as $language) { ?>
                 <div class="tab-pane" id="store-language<?php echo $language['language_id']; ?>">
-
                   <div class="form-group required">
                     <label class="col-sm-2 control-label" for="input-name<?php echo $language['language_id']; ?>"><?php echo $entry_name; ?></label>
                     <div class="col-sm-10">
@@ -191,15 +191,6 @@
                   <input type="text" name="config_second_telephone" value="<?php echo $config_second_telephone; ?>" placeholder="Телефон 2" id="input-second-telephone" class="form-control" />
                 </div>
               </div>
-
-
-              
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-geocode"><span data-toggle="tooltip" data-container="#tab-general" title="<?php echo $help_geocode; ?>"><?php echo $entry_geocode; ?></span></label>
-                <div class="col-sm-10">
-                  <input type="text" name="config_geocode" value="<?php echo $config_geocode; ?>" placeholder="<?php echo $entry_geocode; ?>" id="input-geocode" class="form-control" />
-                </div>
-              </div>
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-email"><?php echo $entry_email; ?></label>
                 <div class="col-sm-10">
@@ -229,6 +220,88 @@
                 </div>
               </div>
               <?php } ?>
+            </div>
+            
+            <div class="tab-pane" id="tab-contacts">
+              <ul class="nav nav-tabs" id="contact-language">
+                <?php foreach ($languages as $language) { ?>
+                <li><a href="#contact-language<?php echo $language['language_id']; ?>" data-toggle="tab"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a></li>
+                <?php } ?>
+              </ul>
+              <?php foreach ($languages as $language) { ?>
+              <legend>Блок 1</legend>
+              <div class="tab-pane" id="contact-language<?php echo $language['language_id']; ?>">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-contacts-address<?php echo $language['language_id']; ?>">Адрес офиса</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_langdata[<?php echo $language['language_id']; ?>][contacts_address]" placeholder="Адрес офиса" rows="5" id="input-contacts-address<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['contacts_address'] : ''; ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-contacts-working<?php echo $language['language_id']; ?>">Время работы</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_langdata[<?php echo $language['language_id']; ?>][contacts_working]" placeholder="Время работы" rows="5" id="input-contacts-working<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['contacts_working'] : ''; ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-contacts-sales-tel<?php echo $language['language_id']; ?>">Отдел продаж (Телефоны)</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_langdata[<?php echo $language['language_id']; ?>][contacts_sales_tel]" placeholder="Отдел продаж (Телефоны)" rows="5" id="contacts-sales-tel<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['contacts_sales_tel'] : ''; ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-contacts-sales-emails<?php echo $language['language_id']; ?>">Отдел продаж (Email)</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_langdata[<?php echo $language['language_id']; ?>][contacts_sales_emails]" placeholder="Отдел продаж (Email)" rows="5" id="input-contacts-sales-emails<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['contacts_sales_emails'] : ''; ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-contacts-rents-tel<?php echo $language['language_id']; ?>">Отдел аренды (Телефоны)</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_langdata[<?php echo $language['language_id']; ?>][contacts_rents_tel]" placeholder="Отдел аренды (Телефоны)" rows="5" id="input-contacts-rents-tel<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['contacts_rents_tel'] : ''; ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-contacts-rents-email<?php echo $language['language_id']; ?>">Отдел аренды (Email)</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_langdata[<?php echo $language['language_id']; ?>][contacts_rents_emails]" placeholder="Отдел аренды (Email)" rows="5" id="input-contacts-rents-email<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['contacts_rents_emails'] : ''; ?></textarea>
+                  </div>
+                </div>
+                <legend>Блок 2</legend>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-contacts-contacts-certificate<?php echo $language['language_id']; ?>">Свидетельство</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_langdata[<?php echo $language['language_id']; ?>][contacts_certificate]" placeholder="Свидетельство" rows="5" id="input-contacts-certificate<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['contacts_certificate'] : ''; ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-contacts-contacts-requisite<?php echo $language['language_id']; ?>">Реквизиты</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_langdata[<?php echo $language['language_id']; ?>][contacts_requisite]" placeholder="Реквизиты" rows="5" id="input-contacts-requisite<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['contacts_requisite'] : ''; ?></textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-contacts-contacts-bank-card<?php echo $language['language_id']; ?>">Реквизиты для зачисления денежных средств на банковскую карту</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_langdata[<?php echo $language['language_id']; ?>][contacts_bank_card]" placeholder="Реквизиты для зачисления денежных средств на банковскую карту" rows="5" id="input-bank-card<?php echo $language['language_id']; ?>" class="form-control summernote"><?php echo isset($config_langdata[$language['language_id']]) ? $config_langdata[$language['language_id']]['contacts_bank_card'] : ''; ?></textarea>
+                  </div>
+                </div>
+              </div>
+              <?php } ?>
+              <legend>Блок 3</legend>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-contacts-img">Изображение на странице контактов</label>
+                <div class="col-sm-10"><a href="" id="thumb-contacts-img" data-toggle="image" class="img-thumbnail"><img src="<?php echo $contacts_img; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
+                  <input type="hidden" name="config_contacts_img" value="<?php echo $config_contacts_img; ?>" id="input-contacts-img" />
+                </div>
+              </div>
+              <legend>Блок 4</legend>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-geocode"><span data-toggle="tooltip" data-container="#tab-general" title="<?php echo $help_geocode; ?>"><?php echo $entry_geocode; ?></span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="config_geocode" value="<?php echo $config_geocode; ?>" placeholder="<?php echo $entry_geocode; ?>" id="input-geocode" class="form-control" />
+                </div>
+              </div>
             </div>
             <div class="tab-pane" id="tab-local">
               <div class="form-group">
@@ -1781,6 +1854,7 @@ $('select[name=\'config_country_id\']').on('change', function() {
 $('select[name=\'config_country_id\']').trigger('change');
 
 $('#store-language a:first').tab('show');
+$('#contact-language a:first').tab('show');
 $('#content-language a:first').tab('show');
 //--></script>
   

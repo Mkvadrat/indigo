@@ -46,10 +46,21 @@ class ControllerExtensionModuleNews extends Controller {
 		$this->load->model('tool/image');
 	
 		foreach ($results as $result) {
+			if (file_exists(DIR_IMAGE . $result['image']) && $result['image']){
+				list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $result['image']);
+				if ($width_orig>900) {
+					$height_orig = $height_orig * 900 / $width_orig;
+					$width_orig = 900;
+				}
+			}elseif($setting['height'] && $setting['width']){
+				$height_orig = $setting['height'] ;
+				$width_orig = $setting['width'];
+			}
+			
 			if ($result['image']) {
- 				$image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
+ 				$image = $this->model_tool_image->resize($result['image'], $width_orig, $height_orig);
  			} else {
- 				$image = $this->model_tool_image->resize('placeholder.png', $setting['width'], $setting['height']);
+ 				$image = $this->model_tool_image->resize('placeholder.png', $width_orig, $height_orig);
  			}
 			
 			$data['news'][] = array(

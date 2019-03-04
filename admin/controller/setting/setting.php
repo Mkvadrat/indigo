@@ -29,6 +29,17 @@ class ControllerSettingSetting extends Controller {
 			$this->request->post['config_powered'] = $this->request->post['config_langdata'][$front_language_id]['powered'];
 			$this->request->post['config_mail_regexp'] = trim($this->request->post['config_mail_regexp']);
 			
+			//contacts page
+			$this->request->post['config_contacts_address'] = $this->request->post['config_langdata'][$front_language_id]['contacts_address'];
+			$this->request->post['config_contacts_working'] = $this->request->post['config_langdata'][$front_language_id]['contacts_working'];
+			$this->request->post['config_contacts_sales_tel'] = $this->request->post['config_langdata'][$front_language_id]['contacts_sales_tel'];
+			$this->request->post['config_contacts_sales_emails'] = $this->request->post['config_langdata'][$front_language_id]['contacts_sales_emails'];
+			$this->request->post['config_contacts_rents_tel'] = $this->request->post['config_langdata'][$front_language_id]['contacts_rents_tel'];
+			$this->request->post['config_contacts_rents_emails'] = $this->request->post['config_langdata'][$front_language_id]['contacts_rents_emails'];
+			$this->request->post['config_contacts_certificate'] = $this->request->post['config_langdata'][$front_language_id]['contacts_certificate'];
+			$this->request->post['config_contacts_requisite'] = $this->request->post['config_langdata'][$front_language_id]['contacts_requisite'];
+			$this->request->post['config_contacts_bank_card'] = $this->request->post['config_langdata'][$front_language_id]['contacts_bank_card'];
+			
 			$this->model_setting_setting->editSetting('config', $this->request->post);
 
 			if ($this->config->get('config_currency_auto')) {
@@ -557,6 +568,18 @@ class ControllerSettingSetting extends Controller {
 			$data['config_second_telephone'] = $this->config->get('config_second_telephone');
 		}
 		
+		/*if (isset($this->request->post['config_contacts_address'])) {
+			$data['config_contacts_address'] = $this->request->post['config_contacts_address'];
+		} else {
+			$data['config_contacts_address'] = $this->config->get('config_contacts_address');
+		}
+		
+		if (isset($this->request->post['config_contacts_working'])) {
+			$data['config_contacts_working'] = $this->request->post['config_contacts_working'];
+		} else {
+			$data['config_contacts_working'] = $this->config->get('config_contacts_working');
+		}*/
+		
 		
 
 		if (isset($this->request->post['config_fax'])) {
@@ -1063,6 +1086,20 @@ class ControllerSettingSetting extends Controller {
 			$data['icon'] = $this->model_tool_image->resize($this->config->get('config_icon'), 100, 100);
 		} else {
 			$data['icon'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+		}
+		
+		if (isset($this->request->post['config_contacts_img'])) {
+			$data['config_contacts_img'] = $this->request->post['config_contacts_img'];
+		} else {
+			$data['config_contacts_img'] = $this->config->get('config_contacts_img');
+		}
+
+		if (isset($this->request->post['config_contacts_img']) && is_file(DIR_IMAGE . $this->request->post['config_contacts_img'])) {
+			$data['contacts_img'] = $this->model_tool_image->resize($this->request->post['config_contacts_img'], 100, 100);
+		} elseif ($this->config->get('config_contacts_img') && is_file(DIR_IMAGE . $this->config->get('config_contacts_img'))) {
+			$data['contacts_img'] = $this->model_tool_image->resize($this->config->get('config_contacts_img'), 100, 100);
+		} else {
+			$data['contacts_img'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 		}
 
 		if (isset($this->request->post['config_ftp_hostname'])) {

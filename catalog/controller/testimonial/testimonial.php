@@ -111,6 +111,7 @@ class ControllerTestimonialTestimonial extends Controller
         foreach ($results as $result) {
             $data['reviews'][] = array(
                 'author'     => $result['author'],
+                'city'       => $result['city'],
                 'text'       => nl2br($result['text']),
                 'rating'     => (int)$result['rating'],
                 'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
@@ -152,10 +153,7 @@ class ControllerTestimonialTestimonial extends Controller
             if ((utf8_strlen($this->request->post['text']) < 25) || (utf8_strlen($this->request->post['text']) > 3000)) {
                 $json['error'] = $this->language->get('error_text');
             }
-            if (empty($this->request->post['rating']) || $this->request->post['rating'] < 0 || $this->request->post['rating'] > 5) {
-                $json['error'] = $this->language->get('error_rating');
-            }
-
+            
             if ($this->config->get('config_google_captcha_status')) {
                 $recaptcha = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($this->config->get('config_google_captcha_secret')) . '&response=' . $this->request->post['g-recaptcha-response'] . '&remoteip=' . $this->request->server['REMOTE_ADDR']);
 

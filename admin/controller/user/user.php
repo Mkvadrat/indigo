@@ -374,6 +374,24 @@ class ControllerUserUser extends Controller {
 			$data['agent_description'] = array();
 		}
 		
+		// Categories
+		$this->load->model('catalog/category');
+
+		$filter_data = array(
+			'sort'        => 'name',
+			'order'       => 'ASC'
+		);
+
+		$data['categories'] = $this->model_catalog_category->getCategories($filter_data);
+
+		if (isset($this->request->post['category_id'])) {
+			$data['category_id'] = $this->request->post['category_id'];
+		} elseif (!empty($user_info)) {
+			$data['category_id'] = $user_info['category_id'];
+		} else {
+			$data['category_id'] = '';
+		}
+		
 		$data['text_none'] = $this->language->get('text_none');
 				
 		if (isset($this->request->post['username'])) {

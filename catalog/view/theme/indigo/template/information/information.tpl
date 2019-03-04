@@ -1,21 +1,38 @@
 <?php echo $header; ?>
-  <div class="about_us_page">
-      
-      <?php echo $content_top; ?>
-    
-      <div class="object_title">
-          <h1 class="title"><?php echo $heading_title; ?></h1>
-          
-          <?php if($sub_title){ ?>
-          <p class="center"><?php echo $sub_title; ?></p>
-          <?php } ?>
-      </div>                
-      <div class="about_inner">
-          <div class="left_side">
-            <?php echo $description; ?>
-          </div>
 
-          <?php echo $column_right; ?>
-      </div>
-  </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 breadcrumbs">
+				<ul>
+				<?php			
+					$count = count($breadcrumbs);
+					$i=1;
+					foreach ($breadcrumbs as $breadcrumb) {
+						if($i!=$count){
+                ?>
+						<li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a><?php echo ' ' . $breadcrumb['separator']; ?></li>
+                <?php
+						}else{
+							echo '<li><span> '.$breadcrumb['text'] . '</span></li>'; 
+						}		
+						$i++;
+					} 
+                ?>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7 article-l">
+				<div class="article">
+					<h1 class="title"><?php echo $heading_title; ?></h1>
+					<?php echo $description; ?>
+				</div>
+			</div>
+			
+			<?php echo $column_right; ?>
+		</div>
+	</div>
+	
 <?php echo $footer; ?>

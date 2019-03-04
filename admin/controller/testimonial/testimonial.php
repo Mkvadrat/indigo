@@ -509,14 +509,6 @@ class ControllerTestimonialTestimonial extends Controller {
 			$data['text'] = '';
 		}
 
-		if (isset($this->request->post['rating'])) {
-			$data['rating'] = $this->request->post['rating'];
-		} elseif (!empty($review_info)) {
-			$data['rating'] = $review_info['rating'];
-		} else {
-			$data['rating'] = '';
-		}
-
 		if (isset($this->request->post['status'])) {
 			$data['status'] = $this->request->post['status'];
 		} elseif (!empty($review_info)) {

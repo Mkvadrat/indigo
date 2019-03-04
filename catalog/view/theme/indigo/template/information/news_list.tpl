@@ -1,30 +1,41 @@
 <?php echo $header; ?>
-	<div class="blog_page">
-		
-		<?php echo $content_top; ?>
-		
-		<?php if($news_list){ ?>
-		<?php foreach($news_list as $news){ ?>
-		<div class="blog_item">
-			<a href="<?php echo $news['href']; ?>" class="img" style="background-image: url('<?php echo $news['thumb']; ?>')"></a>
-			<div class="text">
-				<a href="<?php echo $news['href']; ?>" class="title"><h2><?php echo $news['title']; ?></h2></a>
-				<p><?php echo $news['description']; ?></p>
-				<div class="bottomed">
-					<a href="<?php echo $news['href']; ?>" class="casual_button">Подробнее</a>
-					<span class="date"><?php echo $news['posted']; ?></span>
+	
+	<?php echo $content_top; ?>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="news-list">
+					<?php if($news_list){ ?>
+					<?php foreach($news_list as $news){ ?>
+					<div class="item">
+						<a href="<?php echo $news['href']; ?>" class="img">
+							<img src="<?php echo $news['thumb']; ?>" alt="<?php echo $news['title']; ?>">
+						</a>
+						<div class="text">
+							<p class="date"><?php echo $news['posted']; ?></p>
+							<a href="<?php echo $news['href']; ?>" class="name"<?php echo $news['title']; ?><</a>
+							<p class="descr"><?php echo $news['description']; ?></p>
+							<a href="<?php echo $news['href']; ?>" class="round-button">Подробнее</a>
+						</div>
+					</div>
+					<?php } ?>
+					<?php }else{ ?>
+					<p><?php echo $text_empty; ?></p>
+					<div class="buttons">
+						<div class="pull-right"><a href="<?php echo $continue; ?>" class="btn btn-primary"><?php echo $button_continue; ?></a></div>
+					</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
-		<?php } ?>
-		<?php }else{ ?>
-		<p><?php echo $text_empty; ?></p>
-		<div class="buttons">
-			<div class="pull-right"><a href="<?php echo $continue; ?>" class="btn btn-primary"><?php echo $button_continue; ?></a></div>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<?php echo $pagination; ?>
+			</div>
 		</div>
-		<?php } ?>
-		
-		<?php echo $pagination; ?>
 	</div>
 	
 <?php echo $footer; ?>

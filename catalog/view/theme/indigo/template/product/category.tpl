@@ -124,9 +124,9 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <div class="category-list" style="margin: 20px 0px 20px 0px;">
+        <div class="category-empty-list">
           <p><?php echo $text_empty; ?></p>
-          <a href="<?php echo $continue; ?>" class="btn btn-primary"><?php echo $button_continue; ?></a>    
+          <a href="<?php echo $continue; ?>" class="round-button"><?php echo $button_continue; ?></a>    
         </div>
       </div>
     </div>

@@ -850,35 +850,6 @@ $('#product-filter').delegate('.fa-minus-circle', 'click', function() {
 	$(this).parent().remove();
 });
 
-// Downloads
-$('input[name=\'download\']').autocomplete({
-	'source': function(request, response) {
-		$.ajax({
-			url: 'index.php?route=catalog/download/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
-			dataType: 'json',
-			success: function(json) {
-				response($.map(json, function(item) {
-					return {
-						label: item['name'],
-						value: item['download_id']
-					}
-				}));
-			}
-		});
-	},
-	'select': function(item) {
-		$('input[name=\'download\']').val('');
-
-		$('#product-download' + item['value']).remove();
-
-		$('#product-download').append('<div id="product-download' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_download[]" value="' + item['value'] + '" /></div>');
-	}
-});
-
-$('#product-download').delegate('.fa-minus-circle', 'click', function() {
-	$(this).parent().remove();
-});
-
 // Related
 $('input[name=\'related\']').autocomplete({
 	'source': function(request, response) {

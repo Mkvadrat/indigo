@@ -4,7 +4,7 @@ class ModelExtensionModuleTestimonial extends Model
 {
     public function addReview($data)
     {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "review SET author = '" . $this->db->escape($data['name']) . "', customer_id = '" . (int)$this->customer->getId() . "', product_id = '0', text = '" . $this->db->escape($data['text']) . "', rating = '" . (int)$data['rating'] . "', date_added = NOW()");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "review SET author = '" . $this->db->escape($data['name']) . "', email = '" . $this->db->escape($data['email']) . "', city = '" . $this->db->escape($data['city']) . "', customer_id = '" . (int)$this->customer->getId() . "', product_id = '0', text = '" . $this->db->escape($data['text']) . "', date_added = NOW()");
 
         $review_id = $this->db->getLastId();
 
@@ -14,9 +14,8 @@ class ModelExtensionModuleTestimonial extends Model
 
         $message = $this->language->get('text_mail_waiting') . "\n";
         $message .= sprintf($this->language->get('text_mail_author'), $this->db->escape(strip_tags($data['name']))) . "\n";
-        if ($data['rating']) {
-            $message .= sprintf($this->language->get('text_mail_rating'), $this->db->escape(strip_tags($data['rating']))) . "\n";
-        }
+        $message .= sprintf($this->language->get('text_mail_email'), $this->db->escape(strip_tags($data['email']))) . "\n";
+        $message .= sprintf($this->language->get('text_mail_city'), $this->db->escape(strip_tags($data['city']))) . "\n";
         $message .= $this->language->get('text_mail_text') . "\n";
         $message .= $this->db->escape(strip_tags($data['text'])) . "\n\n";
 
@@ -71,7 +70,7 @@ class ModelExtensionModuleTestimonial extends Model
             $limit = 20;
         }
 
-        $query = $this->db->query("SELECT r.review_id, r.customer_id, r.author, r.rating, r.text, r.date_added FROM " . DB_PREFIX . "review r WHERE r.product_id = '0'  AND r.status = '1'  ORDER BY r.date_added DESC LIMIT " . (int)$start . "," . (int)$limit);
+        $query = $this->db->query("SELECT r.review_id, r.customer_id, r.city, r.email, r.author, r.rating, r.text, r.date_added FROM " . DB_PREFIX . "review r WHERE r.product_id = '0'  AND r.status = '1'  ORDER BY r.date_added DESC LIMIT " . (int)$start . "," . (int)$limit);
 
         return $query->rows;
     }
