@@ -492,9 +492,12 @@ header .menu>ul ul a:hover {
 .labels .label img {
     display: block;
     width: auto;
-    height: 20px;
+    height: 16px;
     position: relative;
     top: 50%;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
     -webkit-transform: translateY(-50%);
        -moz-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -1337,7 +1340,7 @@ footer .bot-line a img {
 
 .news-list .item .text,
 .category-list .item .text {
-    padding: 10px 40px;
+    padding: 30px 40px 10px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -1368,7 +1371,9 @@ footer .bot-line a img {
     margin-bottom: 10px;
     width: 100%;
 }
-
+.category-list .item .id {
+    margin: 0;
+}
 .news-list .item .name,
 .category-list .item .name {
     font-family: 'PT_Serif-Regular';
@@ -1377,6 +1382,9 @@ footer .bot-line a img {
     color: #f1eaa2;
     margin-bottom: 10px;
     width: 100%;
+}
+.category-list .item .name {
+    line-height: 28px;
 }
 .news-list .item .descr,
 .category-list .item .descr {
@@ -1388,7 +1396,8 @@ footer .bot-line a img {
 .category-list .item .square {
     font-family: 'MyriadPro-It';
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 0;
+    line-height: 15px;
     width: 33.33339%;
     color: #ffffff80;
 }
@@ -1794,6 +1803,7 @@ footer .bot-line a img {
 }
 .article-l .article .subtitle {
     margin: 25px 0 20px;
+    font-size: 26px;
 }
 
 .article-r .title {
@@ -2163,6 +2173,7 @@ footer .bot-line a img {
 .contacts-row .contacts-l,
 .contacts-row .contacts-r {
     margin-bottom: 7px;
+    width: 49.9%;
 }
 .contacts-row .contacts-l>div,
 .contacts-row .contacts-r>div {
@@ -2369,6 +2380,12 @@ footer .bot-line a img {
 .object-r p {
     margin: 0;
 }
+.object-r #print11 p {
+    color: #ffffff80;
+}
+.object-r #print11 p span {
+    color: #ffffff;
+}
 .object-r .obj-price,
 .object-r .info,
 .object-r .print-download {
@@ -2393,6 +2410,7 @@ footer .bot-line a img {
     -webkit-align-items: center;
        -moz-box-align: center;
             align-items: center;
+    white-space: nowrap;
 }
 
 .object-r .print-download a+a {
@@ -2423,7 +2441,7 @@ footer .bot-line a img {
     font-size: 18px;
     font-weight: bold;
     line-height: normal;
-    margin: 20px 0;
+    margin: 0 0 20px;
 }
 .object-r .info .subtitle {
     margin-bottom: 20px;
