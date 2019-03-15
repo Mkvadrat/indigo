@@ -85,7 +85,7 @@
                       <div class="text">
                           <p class="id">№ <?php echo $product['model']; ?></p>
                           <a href="<?php echo $product['href']; ?>" class="name"><?php echo $product['name']; ?></a>
-                          <p class="descr"><?php echo $product['description']; ?></p>
+
 
                           <?php if($product['uniq_options']){ ?>
                             <?php if($product['options']){ ?>
