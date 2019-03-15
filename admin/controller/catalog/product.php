@@ -863,6 +863,14 @@ class ControllerCatalogProduct extends Controller {
 			$data['location'] = '';
 		}
 		
+		if (isset($this->request->post['address'])) {
+			$data['address'] = $this->request->post['address'];
+		} elseif (!empty($product_info)) {
+			$data['address'] = $product_info['address'];
+		} else {
+			$data['address'] = '';
+		}
+		
 		if (isset($this->request->post['agent'])) {
             $data['agent'] = $this->request->post['agent'];
         } elseif (!empty($product_info)) {

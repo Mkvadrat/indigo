@@ -36,9 +36,9 @@ final class MySQLi {
 			} else {
 				return true;
 			}
-		} else {
+		} /*else {
 			throw new \Exception('Error: ' . $this->connection->error  . '<br />Error No: ' . $this->connection->errno . '<br />' . $sql);
-		}
+		}*/
 	}
 
 	public function escape($value) {

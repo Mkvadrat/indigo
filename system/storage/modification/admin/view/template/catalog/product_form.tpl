@@ -29,6 +29,7 @@
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
             <li><a href="#tab-data" data-toggle="tab"><?php echo $tab_data; ?></a></li>
+            <li><a href="#tab-staff" data-toggle="tab">Для сотрудников</a></li>
             <li><a href="#tab-links" data-toggle="tab"><?php echo $tab_links; ?></a></li>
             <li><a href="#tab-option" data-toggle="tab"><?php echo $tab_option; ?></a></li>
             <li><a href="#tab-special" data-toggle="tab"><?php echo $tab_special; ?></a></li>
@@ -224,6 +225,12 @@
                   <input type="text" name="location" value="<?php echo $location; ?>" placeholder="<?php echo $entry_location; ?>" id="input-location" class="form-control" />
                 </div>
               </div>
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-address">Адрес обьекта (Временный инпут)</label>
+                <div class="col-sm-10">
+                  <input type="text" name="address" value="<?php echo $address; ?>" placeholder="Адрес обьекта (Временный инпут)" id="input-model" class="form-control" />
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-price"><?php echo $entry_price; ?></label>
                 <div class="col-sm-10">
@@ -315,6 +322,27 @@
                   <input type="text" name="sort_order" value="<?php echo $sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" id="input-sort-order" class="form-control" />
                 </div>
               </div>
+            </div>
+            <div class="tab-pane" id="tab-staff">
+              <?php foreach ($languages as $language) { ?>
+              <div class="tab-pane" id="language<?php echo $language['language_id']; ?>">
+                <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-name<?php echo $language['language_id']; ?>"><?php echo $entry_name; ?></label>
+                  <div class="col-sm-10">
+                    <input type="text" name="product_description[<?php echo $language['language_id']; ?>][name]" value="<?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['name'] : ''; ?>" placeholder="<?php echo $entry_name; ?>" id="input-name<?php echo $language['language_id']; ?>" class="form-control" />
+                    <?php if (isset($error_name[$language['language_id']])) { ?>
+                    <div class="text-danger"><?php echo $error_name[$language['language_id']]; ?></div>
+                    <?php } ?>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label" for="input-description<?php echo $language['language_id']; ?>">Дополнительно</label>
+                  <div class="col-sm-10">
+                    <textarea name="product_description[<?php echo $language['language_id']; ?>][hiddenannotation]" placeholder="Дополнительно" id="input-description<?php echo $language['language_id']; ?>" data-lang="<?php echo $lang; ?>" class="form-control summernote"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['hiddenannotation'] : ''; ?></textarea>
+                  </div>
+                </div>
+              </div>
+              <?php } ?>
             </div>
             <div class="tab-pane" id="tab-links">
               <div class="form-group">

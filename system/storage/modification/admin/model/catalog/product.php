@@ -1,7 +1,7 @@
 <?php
 class ModelCatalogProduct extends Model {
 	public function addProduct($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', address = '" . $this->db->escape($data['address']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
 		$product_id = $this->db->getLastId();
 
@@ -10,7 +10,7 @@ class ModelCatalogProduct extends Model {
 		}
 
 		foreach ($data['product_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', features = '" . $this->db->escape($value['features']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_h1 = '" . $this->db->escape($value['meta_h1']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', hiddenannotation = '" . $this->db->escape($value['hiddenannotation']) . "', features = '" . $this->db->escape($value['features']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_h1 = '" . $this->db->escape($value['meta_h1']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
 		}
 
 		if (isset($data['product_store'])) {
@@ -108,7 +108,7 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function editProduct($product_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', address = '" . $this->db->escape($data['address']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
 
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
@@ -117,7 +117,7 @@ class ModelCatalogProduct extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
 
 		foreach ($data['product_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', features = '" . $this->db->escape($value['features']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_h1 = '" . $this->db->escape($value['meta_h1']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', hiddenannotation = '" . $this->db->escape($value['hiddenannotation']) . "', features = '" . $this->db->escape($value['features']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_h1 = '" . $this->db->escape($value['meta_h1']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "', meta_keyword = '" . $this->db->escape($value['meta_keyword']) . "'");
 		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
@@ -411,6 +411,7 @@ class ModelCatalogProduct extends Model {
 			$product_description_data[$result['language_id']] = array(
 				'name'             => $result['name'],
 				'description'      => $result['description'],
+				'hiddenannotation' => $result['hiddenannotation'],
 				'features' 		   => $result['features'],
 				'meta_title'       => $result['meta_title'],
 				'meta_h1'          => $result['meta_h1'],
