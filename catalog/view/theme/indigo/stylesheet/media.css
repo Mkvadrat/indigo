@@ -316,6 +316,7 @@
     }
     .ocfilter-option[id^="option-"], .category-list .item .square {
         width: 33.33339%;
+        margin-bottom: 10px;
     }
     .sort-view {
         -webkit-box-orient: vertical;
