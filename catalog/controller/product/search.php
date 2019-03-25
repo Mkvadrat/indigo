@@ -85,7 +85,8 @@ class ControllerProductSearch extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
+			'href' => $this->url->link('common/home'),
+			'separator' => $this->language->get('text_separator')
 		);
 
 		$url = '';
@@ -132,7 +133,8 @@ class ControllerProductSearch extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('product/search', $url)
+			'href' => $this->url->link('product/search', $url),
+			'separator' => $this->language->get('text_separator')
 		);
 
 		if (isset($this->request->get['search'])) {
@@ -541,8 +543,15 @@ class ControllerProductSearch extends Controller {
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
+		
+		//Redirect find product by model
+        if (count($data['products']) == 1 && !empty($data['products'][0]['href'])) {
+            $this->response->redirect(html_entity_decode($data['products'][0]['href']));
+        } else {
+		    $this->response->setOutput($this->load->view('product/not_found', $data));
+        }
 
-		$this->response->setOutput($this->load->view('product/search', $data));
+		//$this->response->setOutput($this->load->view('product/search', $data));
 	}
 	
 	private function getStickers($product_id) {

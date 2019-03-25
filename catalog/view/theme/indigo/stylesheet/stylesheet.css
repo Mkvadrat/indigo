@@ -252,7 +252,8 @@ header .menu>ul {
 header .menu>ul>li>a {
     font-size: 24px;
     line-height: 42px;
-    padding: 9px 40px;
+    #padding: 9px 40px;
+    padding: 9px 35px;
     position: relative;
     -webkit-transition: .3s;
     -o-transition: .3s;

@@ -61,6 +61,9 @@
               </div>
           </div>
           <div class="col-lg-3 col-md-4 col-sm-12 pull-right-lg-md">
+              <?php echo $search; ?>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-12 pull-right-lg-md">
               <a href="#" class="round-button toAdd">Добавить объявление</a>
           </div>
       </div>

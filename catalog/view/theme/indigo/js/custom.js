@@ -1,4 +1,32 @@
 $(document).ready(function () {
+     //Search object
+    $('#search button').on('click', function() {
+        url = $('base').attr('href');
+        
+        var search = $('input[name=\'search\']').val();
+        
+        if (search) {
+            url += 'search/?search=' + encodeURIComponent(search);
+        }
+
+		location = url;
+    });
+	
+	$('#search input[name=\'search\']').on('keydown', function(e) {
+		if (e.keyCode == 13) {
+		
+			url = $('base').attr('href');
+			
+			var search = $('input[name=\'search\']').val();
+			
+			if (search) {
+				url += 'search/?search=' + encodeURIComponent(search);
+			}
+	
+			location = url;
+		}
+	});
+    
     $('.best-proposes .owl-carousel').owlCarousel({
         responsive: {
             1200: {

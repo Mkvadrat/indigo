@@ -109,3 +109,13 @@
 2019-03-21 12:41:44 - PHP Notice:  Undefined variable: current_category_id in D:\OpenServer\domains\indigo.loc\admin\view\template\user\user_form.tpl on line 76
 2019-03-21 12:41:44 - PHP Notice:  Undefined variable: current_category_id in D:\OpenServer\domains\indigo.loc\admin\view\template\user\user_form.tpl on line 76
 2019-03-21 12:41:44 - PHP Notice:  Undefined variable: current_category_id in D:\OpenServer\domains\indigo.loc\admin\view\template\user\user_form.tpl on line 76
+2019-03-25 10:20:14 - PHP Notice:  Undefined index: sort_order in D:\OpenServer\domains\indigo.loc\admin\model\design\custommenu.php on line 297
+2019-03-25 10:20:14 - PHP Notice:  Undefined index: custommenu_type in D:\OpenServer\domains\indigo.loc\admin\model\design\custommenu.php on line 297
+2019-03-25 10:52:53 - PHP Notice:  Undefined variable: search in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\category.tpl on line 65
+2019-03-25 10:52:53 - PHP Notice:  Undefined variable: text_search in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\category.tpl on line 65
+2019-03-25 11:07:57 - PHP Notice:  Undefined variable: search in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\category.tpl on line 65
+2019-03-25 11:07:57 - PHP Notice:  Undefined variable: text_search in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\category.tpl on line 65
+2019-03-25 11:08:09 - PHP Notice:  Undefined variable: search in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\category.tpl on line 65
+2019-03-25 11:08:09 - PHP Notice:  Undefined variable: text_search in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\category.tpl on line 65
+2019-03-25 14:07:55 - PHP Notice:  Undefined index: separator in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\not_found.tpl on line 8
+2019-03-25 14:07:55 - PHP Notice:  Undefined index: separator in D:\OpenServer\domains\indigo.loc\catalog\view\theme\indigo\template\product\not_found.tpl on line 8
