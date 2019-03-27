@@ -2989,19 +2989,11 @@ footer .bot-line a img {
 /* 26.03.19 */
 
 .collapse.in {
-    width: 20%;
+    width: 100%;
 }
 
-#ocfilter-hidden-options .ocfilter-option[id^="option-"] {
-    width: 33%;
-}
-
-.panel > .list-group, .list-group {
-    align-items: flex-end;
-}
-
-.list-group-item.ocfilter-option.currency-wraper {
-    margin-bottom: 25px;
+#ocfilter-hidden-options{
+    width: 100%;
 }
 
 #search input {
@@ -3034,4 +3026,9 @@ footer .bot-line a img {
 }
 
 
-
+.sort-view {
+    flex-wrap: wrap;
+}
+.sort-view .round-button {
+    text-align: center;
+}

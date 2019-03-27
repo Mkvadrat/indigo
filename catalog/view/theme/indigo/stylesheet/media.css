@@ -807,3 +807,31 @@
         margin: 0 0 5px;
     }
 }
+
+@media (min-width: 1400px) {
+
+    .sort-view .col-lg-7 {
+        width: 50%;
+    }
+    .sort-view .col-lg-2 {
+        width: 25%;
+    }
+}
+@media (max-width: 1200px) {
+
+    .sort-view {
+        padding: 30px 0 0;
+    }
+}
+@media (max-width: 991px) {
+
+    .sort-view {
+        flex-direction: row;
+    }
+}
+@media (max-width: 768px) {
+
+    .sort-view .col-lg-3 #search{
+        margin: 15px 0 0;
+    }
+}

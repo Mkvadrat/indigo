@@ -30,7 +30,7 @@
   <?php if($products) { ?>
   <div class="container">
       <div class="row sort-view">
-          <div class="col-lg-6 col-md-8 col-sm-12">
+          <div class="col-lg-7 col-sm-12">
               <div class="sort">
                   <label>
                       Сортировка:
@@ -60,10 +60,10 @@
                   </label>
               </div>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-12 pull-right-lg-md">
+          <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pull-right-lg-md">
               <?php echo $search; ?>
           </div>
-          <div class="col-lg-3 col-md-4 col-sm-12 pull-right-lg-md">
+          <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 pull-right-lg-md">
               <a href="#" class="round-button toAdd">Добавить объявление</a>
           </div>
       </div>
