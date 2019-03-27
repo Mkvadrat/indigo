@@ -81,7 +81,7 @@
                                 <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
                               <?php } ?>
                               <?php if ($mobile_logo) { ?>
-                                <a class="mob-logo" href="<?php echo $home; ?>"><img src="<?php echo $mobile_logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
+                                <a class="mob-logo" href="<?php echo $home; ?>"><img src="<?php echo $mobile_logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /><img src="/image/catalog/indigo/mob-mob-logo.svg" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive mob-mob-logo" /></a>
                               <?php } else { ?>
                                 <h1><a class="mob-logo" href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
                               <?php } ?>
@@ -91,6 +91,13 @@
                           </div>
                           <div class="query">
                             <?php echo $callback_link; ?>
+                              <div class="link-group">
+                                  <a href="/sale">Продажа недвижимости</a>
+                                  <a href="/information">Информация</a>
+                                  <a href="/uslugi">Услуги</a>
+                                  <a href="/contact-us">Контакты</a>
+                                  <a href="/urgent-buyout">Срочный выкуп</a>
+                              </div>
                           </div>
                           <div class="cont-phones">
                               <div>

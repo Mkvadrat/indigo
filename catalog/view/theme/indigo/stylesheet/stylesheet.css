@@ -2992,7 +2992,7 @@ footer .bot-line a img {
     width: 100%;
 }
 
-#ocfilter-hidden-options{
+#ocfilter-hidden-options {
     width: 100%;
 }
 
@@ -3029,6 +3029,47 @@ footer .bot-line a img {
 .sort-view {
     flex-wrap: wrap;
 }
+
 .sort-view .round-button {
     text-align: center;
+}
+
+.logo-line .mob-logo img.mob-mob-logo, .logo-line .logo img.mob-mob-logo {
+    display: none;
+}
+
+.logo-line .query a {
+    font-size: 18px;
+    margin-bottom: 6px;
+    width: 100%;
+    text-align: center;
+}
+
+.link-group {
+    display: none;
+    flex-wrap: wrap;
+}
+
+.logo-line .query .link-group a {
+    font-family: 'MyriadPro-Bold', Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    border-width: 3px;
+    border-radius: 30px;
+    border-style: solid;
+    text-decoration: none;
+    transition: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f1eaa2;
+    border-color: #f1eaa2;
+    width: 100%;
+    margin: 0 0 6px;
+    text-align: center;
+}
+
+.logo-line .query .link-group a:nth-child(3),
+.logo-line .query .link-group a:nth-child(4) {
+    width: calc(50% - (3px / 2));
 }
