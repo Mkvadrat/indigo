@@ -1040,6 +1040,7 @@
         position: fixed;
         top: 98px;
         right: 0;
+        z-index: 10;
     }
 
     .logo-line .mob-logo img:not(.mob-mob-logo), .logo-line .logo img:not(.mob-mob-logo) {
