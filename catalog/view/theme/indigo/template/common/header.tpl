@@ -81,7 +81,7 @@
                                 <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
                               <?php } ?>
                               <?php if ($mobile_logo) { ?>
-                                <a class="mob-logo" href="<?php echo $home; ?>"><img src="<?php echo $mobile_logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /><img src="/image/catalog/indigo/mob-mob-logo.svg" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive mob-mob-logo" /></a>
+                                <a class="mob-logo" href="<?php echo $home; ?>"><img src="<?php echo $mobile_logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /><img src="/catalog/view/theme/indigo/image/mob-mob-logo.svg" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive mob-mob-logo" /></a>
                               <?php } else { ?>
                                 <h1><a class="mob-logo" href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
                               <?php } ?>
