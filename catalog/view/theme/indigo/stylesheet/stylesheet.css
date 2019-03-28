@@ -3069,7 +3069,6 @@ footer .bot-line a img {
     text-align: center;
 }
 
-.logo-line .query .link-group a:nth-child(3),
-.logo-line .query .link-group a:nth-child(4) {
+.logo-line .query .link-group a.half {
     width: calc(50% - (3px / 2));
 }

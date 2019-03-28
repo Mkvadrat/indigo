@@ -90,12 +90,14 @@
                             <?php echo $address; ?>
                           </div>
                           <div class="query">
-                            <?php echo $callback_link; ?>
                               <div class="link-group">
                                   <a href="/sale">Продажа недвижимости</a>
+                                  <a href="/uslugi" class="half">Услуги</a>
+                                  <a href="/contact-us" class="half">Контакты</a>
+                              </div>
+                            <?php echo $callback_link; ?>
+                              <div class="link-group">
                                   <a href="/information">Информация</a>
-                                  <a href="/uslugi">Услуги</a>
-                                  <a href="/contact-us">Контакты</a>
                                   <a href="/urgent-buyout">Срочный выкуп</a>
                               </div>
                           </div>
