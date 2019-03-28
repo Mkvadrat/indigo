@@ -3072,3 +3072,10 @@ footer .bot-line a img {
 .logo-line .query .link-group a.half {
     width: calc(50% - (3px / 2));
 }
+
+.search-not-found{
+    font-size: 21px;
+    margin: 20px 0 0;
+    line-height: 30px;
+    color: #fff;
+}

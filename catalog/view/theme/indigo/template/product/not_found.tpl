@@ -25,7 +25,14 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+        <div class="col-md-12 article-l">
+            <div class="article">
+                <h1 class="title"><?php echo $heading_title; ?></h1>
+                <p><?php echo $text_empty; ?></p>
+            </div>
+        </div>
+        <?php echo $content_bottom; ?>
+      <!--<div class="col-md-12">
         <div id="content" class="not-found">
           <h1><?php echo $heading_title; ?></h1>
           <div class="border">
@@ -33,7 +40,9 @@
           </div>
           <?php echo $content_bottom; ?>
         </div>
-      </div>
+      </div>-->
+
+
     </div>
   </div>
 

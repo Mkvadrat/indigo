@@ -27,6 +27,12 @@ $(document).ready(function () {
 		}
 	});
     
+    $('#search input[name=\'search\']').on('keydown', function(e){
+      if(e.key.length == 1 && e.key.match(/[^0-9'".]/)){
+        return false;
+      };
+    })
+    
     $('.best-proposes .owl-carousel').owlCarousel({
         responsive: {
             1200: {
