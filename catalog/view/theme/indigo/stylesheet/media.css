@@ -235,6 +235,7 @@
         margin-right: 0;
         margin-left: auto;
         margin-top: 10px;
+        width: 100%;
     }
 
     .logo-line .query a {
@@ -1003,17 +1004,21 @@
     header .mob-menu {
         top: 113px;
     }
-    .contacts-row .contacts-l, .contacts-row .contacts-r{
+
+    .contacts-row .contacts-l, .contacts-row .contacts-r {
         width: 100%;
     }
+
     .contacts-row .contacts-text td, .contacts-row .contacts-text td p {
         display: block;
         width: 100%;
         padding: 0;
     }
+
     .contacts-row .contacts-text td:first-child {
         padding-right: 0;
     }
+
     .contacts-row .contacts-text table {
         min-width: auto;
     }
@@ -1024,9 +1029,11 @@
     .sort-view .col-lg-3 #search {
         margin: 15px 0 0;
     }
+
     .contacts-row .contacts-text table {
         min-width: auto;
     }
+
     .contacts-row .cont .cont-block > div {
         width: 100%;
     }

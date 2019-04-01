@@ -91,7 +91,19 @@
                           </div>
                           <div class="query">
                               <div class="link-group">
-                                  <a href="/sale">Продажа недвижимости</a>
+                                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseSubMenu" aria-expanded="false" aria-controls="collapseSubMenu">Продажа недвижимости</button>
+                                  <div class="collapse-block collapse" id="collapseSubMenu">
+                                      <div class="well">
+                                          <a href="/sale/kvartiry/kvartiry-v-yalte-odnokomnatnye/">1 комн. квартиры</a>
+                                          <a href="/sale/kvartiry/dvuhkomnatnye-kvartiry-v-yalte/">2-х комн. квартиры</a>
+                                          <a href="/sale/kvartiry/trehkomnatnaja-kvartira-yalta/">3-х комн. и более</a>
+                                          <a href="/sale/novostrojki/">Новостройки</a>
+                                          <a href="/sale/elitnye-kvartiry/">Элитные квартиры</a>
+                                          <a href="/sale/doma-garazhi/">Дома, коттеджи</a>
+                                          <a href="/sale/uchastki/">Участки</a>
+                                          <a href="/sale/kommercheskaja-nedvizhimost/">Коммерческая недвижимость</a>
+                                      </div>
+                                  </div>
                                   <a href="/uslugi" class="half">Услуги</a>
                                   <a href="/contact-us" class="half">Контакты</a>
                               </div>

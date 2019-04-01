@@ -3050,7 +3050,8 @@ footer .bot-line a img {
     flex-wrap: wrap;
 }
 
-.logo-line .query .link-group a {
+.logo-line .query .link-group a,
+.logo-line .query .link-group button {
     font-family: 'MyriadPro-Bold', Helvetica, sans-serif;
     font-weight: bold;
     font-size: 18px;
@@ -3067,15 +3068,92 @@ footer .bot-line a img {
     width: 100%;
     margin: 0 0 6px;
     text-align: center;
+    padding: 14px 14px 15px;
+    background: #063a58;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-line .query .link-group a:hover,
+.logo-line .query .link-group button:hover {
+    color: #063a58;
+    background-color: #f1eaa2;
 }
 
 .logo-line .query .link-group a.half {
     width: calc(50% - (3px / 2));
 }
 
-.search-not-found{
+.search-not-found {
     font-size: 21px;
     margin: 20px 0 0;
     line-height: 30px;
     color: #fff;
 }
+
+.logo-line .query .link-group button:focus {
+    outline: none;
+}
+
+.collapse-block {
+    width: 100%;
+    border-radius: 0 0 20px 20px;
+    background: #082b40;
+    margin-top: -35px;
+    position: relative;
+    z-index: 0;
+    margin-bottom: 8px;
+}
+
+.collapse-block .well {
+    min-height: 20px;
+    padding: 44px 5px 17px;
+    margin-bottom: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0 0 20px 20px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.logo-line .query .link-group .collapse-block a {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 4px 0;
+    background: transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
