@@ -110,7 +110,7 @@
                             <?php echo $callback_link; ?>
                               <div class="link-group">
                                   <a href="/information">Информация</a>
-                                  <a href="/urgent-buyout">Срочный выкуп</a>
+                                  <a href="/request">Срочный выкуп</a>
                               </div>
                           </div>
                           <div class="cont-phones">
