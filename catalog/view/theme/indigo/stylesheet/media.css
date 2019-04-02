@@ -1022,6 +1022,11 @@
     .contacts-row .contacts-text table {
         min-width: auto;
     }
+
+    .link-group {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1121,10 +1126,6 @@
         line-height: 1.4;
     }
 
-    .link-group {
-        display: flex;
-        justify-content: space-between;
-    }
 
     .logo-line .query a {
         padding: 14px 14px 15px;
