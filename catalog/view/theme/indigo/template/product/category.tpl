@@ -89,20 +89,7 @@
                           <p class="id">№ <?php echo $product['model']; ?></p>
                           <a href="<?php echo $product['href']; ?>" class="name"><?php echo $product['name']; ?></a>
 
-
                           <?php if($product['uniq_options']){ ?>
-                            <?php if($product['options']){ ?>
-                              <?php foreach($product['options'] as $option){ ?>
-                                <?php if($option['product_option_value']){ ?>
-                                <?php foreach ($option['product_option_value'] as $option_value) { ?>
-                                  <p class="square"><?php echo $option['name']; ?>: <span><?php echo $option_value['name']; ?></span></p>
-                                <?php } ?>
-                                <?php }else{ ?>
-                                  <p class="square"><?php echo $option['name']; ?>: <span><?php echo $option['value']; ?></span></p>
-                                <?php } ?>
-                              <?php } ?>
-                            <?php } ?>	
-                          <?php }else{ ?>
                             <?php if($product['slider_filter_options']){ ?>
                               <?php foreach($product['slider_filter_options'] as $slider_option){ ?>
                                 <p class="square"><?php echo $slider_option['name']; ?>: <span><?php echo $slider_option['value']; ?> <?php echo $slider_option['postfix']; ?></span></p>
@@ -116,8 +103,10 @@
                                 <?php if($i > 12) break; ?>
                               <?php } ?>
                             <?php } ?>
+                          <?php }else{ ?>
+                            <div class="description"><?php echo $product['description']; ?></div>
                           <?php } ?>
-                          
+
                           <?php if ($product['price'] || $product['rub']) { ?>
                           <?php if (!$product['special']) { ?>
                             <p class="price"><?php echo $product['rub']; ?> / <?php echo $product['price']; ?></p>

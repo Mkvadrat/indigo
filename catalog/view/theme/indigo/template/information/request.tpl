@@ -15,11 +15,12 @@
 						<label>Ваш город:<input id="city" type="text"></label>
 						<label for='left'><span class="textarea">Что желаете*:</span>
 							<div class="radio">
-								<label><input type="radio" name="wishes" value="1" checked>Купить</label>
-								<label><input type="radio" name="wishes" value="2">Продать</label>
-								<label><input type="radio" name="wishes" value="3">Обменять</label>
-								<label><input type="radio" name="wishes" value="4">Снять</label>
-								<label><input type="radio" name="wishes" value="5">Сдать</label>
+								<label><input type="radio" name="wishes" value="1" checked>Срочный выкуп</label>
+								<label><input type="radio" name="wishes" value="2">Купить</label>
+								<label><input type="radio" name="wishes" value="3">Продать</label>
+								<label><input type="radio" name="wishes" value="4">Обменять</label>
+								<label><input type="radio" name="wishes" value="5">Снять</label>
+								<label><input type="radio" name="wishes" value="6">Сдать</label>
 							</div>
 						</label>
 						<label>Тип недвижимости:

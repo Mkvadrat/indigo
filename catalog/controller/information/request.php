@@ -73,14 +73,19 @@ class ControllerInformationRequest extends Controller {
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get($site_url), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
 			
 			if($wishes == 1){
-				$wish = 'Купить';
+				$wish = 'Срочный выкуп';
 			}elseif($wishes == 2){
-				$wish = 'Продать';
+				$wish = 'Купить';
 			}elseif($wishes == 3){
-				$wish = 'Обменять';
+				$wish = 'Продать';
+				
 			}elseif($wishes == 4){
-				$wish = 'Снять';
+				$wish = 'Обменять';
+				
 			}elseif($wishes == 5){
+				$wish = 'Снять';
+				
+			}elseif($wishes == 6){
 				$wish = 'Сдать';
 			}
 			
