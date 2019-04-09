@@ -285,7 +285,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="best-proposes">
-					<p class="title">Выгодные предложения</p>
+					<p class="title">Похожие варианты</p>
 					
 					<div class="owl-carousel">
 						<?php foreach ($products as $product) { ?>

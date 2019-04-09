@@ -597,4 +597,58 @@ class ModelCatalogProduct extends Model {
 
         return $data;
     }
+	
+	public function getRelatedPrice($product_id){
+		$response = array();
+		
+		$query = $this->db->query("SELECT ptt.category_id, p.price, p.price_rub, p.price_usd, p.currency_id FROM oc_product AS p
+								  JOIN oc_product_to_category AS ptt ON (p.product_id = ptt.product_id)
+								  AND ptt.main_category = 1
+								  AND p.product_id = '" . $product_id . "'");
+		
+		foreach($query->rows as $result) {
+			if($result['price'] != 0.0000){				
+				$min_rub = 0;
+				$max_rub = 0;
+				$min_usd = 0;
+				$max_usd = 0;
+
+				$min_rub = $result['price_rub']-($result['price_rub']/100*20);
+				
+				$max_rub = $result['price_rub']+($result['price_rub']/100*20);
+				
+				$min_usd = $result['price_usd']-($result['price_usd']/100*20);
+				
+				$max_usd = $result['price_usd']+($result['price_usd']/100*20);
+				
+				$query = $this->db->query("SELECT * FROM oc_product AS p
+										  JOIN oc_product_description AS pd
+										  JOIN oc_product_to_layout AS ptl
+										  JOIN oc_product_to_store AS pts
+										  JOIN oc_product_to_category AS ptt
+										  ON (p.product_id = pd.product_id)
+										  AND (p.product_id = ptt.product_id)
+										  AND (p.product_id = ptl.product_id)
+										  AND (p.product_id = pts.product_id)
+										  AND price_rub >= '" . $min_rub . "'
+										  AND price_rub <= '" . $max_rub . "'
+										  AND price_usd >= '" . $min_usd . "'
+										  AND price_usd <= '" . $max_usd . "'
+										  AND ptt.category_id = '" . $result['category_id'] . "'
+										  AND p.status = 1");
+
+				foreach($query->rows as $result_t) {
+					if($result['currency_id'] == 1){
+						$response[] = $this->getProduct($result_t['product_id']);
+					}elseif($result['currency_id'] == 2){
+						$response[] = $this->getProduct($result_t['product_id']);
+					}
+				}
+				
+				
+			}
+		}
+		
+		return $response;
+	}
 }

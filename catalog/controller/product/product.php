@@ -453,86 +453,165 @@ class ControllerProductProduct extends Controller {
 			$data['share'] = $this->url->link('product/product', 'product_id=' . (int)$this->request->get['product_id']);
 
 			$data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
-
+			
 			$data['products'] = array();
 			
 			$data['action_pdf'] = $this->url->link('product/product/pdf', 'product_id=' . (int)$this->request->get['product_id'] . '-' . $this->generate_value(7), true);
-
+			
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
-
-			foreach ($results as $result) {				
-				if (file_exists(DIR_IMAGE . $result['image']) && $result['image']){
-					list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $result['image']);
-					if ($width_orig>900) {
-						$height_orig = $height_orig * 900 / $width_orig;
-						$width_orig = 900;
-					}
-				}elseif($this->config->get($this->config->get('config_theme') . '_image_related_height') && $this->config->get($this->config->get('config_theme') . '_image_related_width')){
-					$height_orig = $this->config->get($this->config->get('config_theme') . '_image_related_height');
-					$width_orig = $this->config->get($this->config->get('config_theme') . '_image_related_width');
-				}
+			
+			$relateds = $this->model_catalog_product->getRelatedPrice($this->request->get['product_id']);
 				
-				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $width_orig, $height_orig);
-				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', $width_orig, $height_orig);
-				}
-
-				$currencys = $this->model_localisation_currency->getCurrency($result['currency_id']);
-		
-				foreach($currencys as $currency){
-					if ($result['currency_id'] != 5) {
-						$price_rub = $this->currency->convert($result['price'], $currency['code'], 'RUB');
-						$rub = $this->currency->format($this->tax->calculate($price_rub, $result['tax_class_id'], $this->config->get('config_tax')), 'RUB', 1, $format= true);
-					} else {
-						$rub = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), 'RUB', 1, $format= true);
+			if(!empty($results)){
+				foreach ($results as $result) {				
+					if (file_exists(DIR_IMAGE . $result['image']) && $result['image']){
+						list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $result['image']);
+						if ($width_orig>900) {
+							$height_orig = $height_orig * 900 / $width_orig;
+							$width_orig = 900;
+						}
+					}elseif($this->config->get($this->config->get('config_theme') . '_image_related_height') && $this->config->get($this->config->get('config_theme') . '_image_related_width')){
+						$height_orig = $this->config->get($this->config->get('config_theme') . '_image_related_height');
+						$width_orig = $this->config->get($this->config->get('config_theme') . '_image_related_width');
 					}
-		
-				   if ($result['currency_id'] != 2) {
-						$price_dollar = $this->currency->convert($result['price'], $currency['code'], 'USD');
-						$price = $this->currency->format($this->tax->calculate($price_dollar, $result['tax_class_id'], $this->config->get('config_tax')), 'USD', 1, $format= true);
+					
+					if ($result['image']) {
+						$image = $this->model_tool_image->resize($result['image'], $width_orig, $height_orig);
 					} else {
-						$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), 'USD', 1, $format= true);
+						$image = $this->model_tool_image->resize('placeholder.png', $width_orig, $height_orig);
 					}
+	
+					$currencys = $this->model_localisation_currency->getCurrency($result['currency_id']);
+			
+					foreach($currencys as $currency){
+						if ($result['currency_id'] != 1) {
+							$price_rub = $this->currency->convert($result['price'], $currency['code'], 'RUB');
+							$rub = $this->currency->format($this->tax->calculate($price_rub, $result['tax_class_id'], $this->config->get('config_tax')), 'RUB', 1, $format= true);
+						} else {
+							$rub = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), 'RUB', 1, $format= true);
+						}
+			
+					   if ($result['currency_id'] != 2) {
+							$price_dollar = $this->currency->convert($result['price'], $currency['code'], 'USD');
+							$price = $this->currency->format($this->tax->calculate($price_dollar, $result['tax_class_id'], $this->config->get('config_tax')), 'USD', 1, $format= true);
+						} else {
+							$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), 'USD', 1, $format= true);
+						}
+					}
+	
+					if ((float)$result['special']) {
+						$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')), 'USD', $format= true);
+					} else {
+						$special = false;
+					}
+	
+					if ($this->config->get('config_tax')) {
+						$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price'], $this->session->data['currency']);
+					} else {
+						$tax = false;
+					}
+	
+					if ($this->config->get('config_review_status')) {
+						$rating = (int)$result['rating'];
+					} else {
+						$rating = false;
+					}
+					
+					$stickers = $this->getStickers($result['product_id']);
+	
+					$data['products'][] = array(
+						'product_id'  => $result['product_id'],
+						'thumb'       => $image,
+						'name'        => $result['name'],
+						'model'       => $result['model'],
+						'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
+						'price'       => $price,
+						'rub'		  => $rub,
+						'special'     => $special,
+						'tax'         => $tax,
+						'sticker'     => $stickers,
+						'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
+						'filter_options' => $this->model_catalog_ocfilter->getValueOptionsByProduct($result['product_id']),//options
+						'uniq_options' => $result['uniq_options'] = 1 ? $result['uniq_options'] : 0,
+						'rating'      => $rating,
+						'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
+					);
 				}
-
-				if ((float)$result['special']) {
-					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')), 'USD', $format= true);
-				} else {
-					$special = false;
+			}else{
+				foreach($relateds as $related){
+					if (file_exists(DIR_IMAGE . $related['image']) && $related['image']){
+						list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $related['image']);
+						if ($width_orig>900) {
+							$height_orig = $height_orig * 900 / $width_orig;
+							$width_orig = 900;
+						}
+					}elseif($this->config->get($this->config->get('config_theme') . '_image_related_height') && $this->config->get($this->config->get('config_theme') . '_image_related_width')){
+						$height_orig = $this->config->get($this->config->get('config_theme') . '_image_related_height');
+						$width_orig = $this->config->get($this->config->get('config_theme') . '_image_related_width');
+					}
+					
+					if ($related['image']) {
+						$image = $this->model_tool_image->resize($related['image'], $width_orig, $height_orig);
+					} else {
+						$image = $this->model_tool_image->resize('placeholder.png', $width_orig, $height_orig);
+					}
+					
+					$currencys = $this->model_localisation_currency->getCurrency($related['currency_id']);
+			
+					foreach($currencys as $currency){
+						if ($related['currency_id'] != 1) {
+							$price_rub = $this->currency->convert($related['price'], $currency['code'], 'RUB');
+							$rub = $this->currency->format($this->tax->calculate($price_rub, $related['tax_class_id'], $this->config->get('config_tax')), 'RUB', 1, $format= true);
+						} else {
+							$rub = $this->currency->format($this->tax->calculate($related['price'], $related['tax_class_id'], $this->config->get('config_tax')), 'RUB', 1, $format= true);
+						}
+			
+					   if ($related['currency_id'] != 2) {
+							$price_dollar = $this->currency->convert($related['price'], $currency['code'], 'USD');
+							$price = $this->currency->format($this->tax->calculate($price_dollar, $related['tax_class_id'], $this->config->get('config_tax')), 'USD', 1, $format= true);
+						} else {
+							$price = $this->currency->format($this->tax->calculate($related['price'], $related['tax_class_id'], $this->config->get('config_tax')), 'USD', 1, $format= true);
+						}
+					}
+	
+					if ((float)$related['special']) {
+						$special = $this->currency->format($this->tax->calculate($related['special'], $related['tax_class_id'], $this->config->get('config_tax')), 'USD', $format= true);
+					} else {
+						$special = false;
+					}
+	
+					if ($this->config->get('config_tax')) {
+						$tax = $this->currency->format((float)$related['special'] ? $related['special'] : $related['price'], $this->session->data['currency']);
+					} else {
+						$tax = false;
+					}
+	
+					if ($this->config->get('config_review_status')) {
+						$rating = (int)$related['rating'];
+					} else {
+						$rating = false;
+					}
+					
+					$stickers = $this->getStickers($related['product_id']);
+	
+					$data['products'][] = array(
+						'product_id'  => $related['product_id'],
+						'thumb'       => $image,
+						'name'        => $related['name'],
+						'model'       => $related['model'],
+						'description' => utf8_substr(strip_tags(html_entity_decode($related['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
+						'price'       => $price,
+						'rub'		  => $rub,
+						'special'     => $special,
+						'tax'         => $tax,
+						'sticker'     => $stickers,
+						'minimum'     => $related['minimum'] > 0 ? $related['minimum'] : 1,
+						'filter_options' => $this->model_catalog_ocfilter->getValueOptionsByProduct($related['product_id']),//options
+						'uniq_options' => $related['uniq_options'] = 1 ? $related['uniq_options'] : 0,
+						'rating'      => $rating,
+						'href'        => $this->url->link('product/product', 'product_id=' . $related['product_id'])
+					);
 				}
-
-				if ($this->config->get('config_tax')) {
-					$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price'], $this->session->data['currency']);
-				} else {
-					$tax = false;
-				}
-
-				if ($this->config->get('config_review_status')) {
-					$rating = (int)$result['rating'];
-				} else {
-					$rating = false;
-				}
-				
-				$stickers = $this->getStickers($result['product_id']);
-
-				$data['products'][] = array(
-					'product_id'  => $result['product_id'],
-					'thumb'       => $image,
-					'name'        => $result['name'],
-					'model'       => $result['model'],
-					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
-					'price'       => $price,
-					'rub'		  => $rub,
-					'special'     => $special,
-					'tax'         => $tax,
-					'sticker'     => $stickers,
-					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
-					'filter_options' => $this->model_catalog_ocfilter->getValueOptionsByProduct($result['product_id']),//options
-					'uniq_options' => $result['uniq_options'] = 1 ? $result['uniq_options'] : 0,
-					'rating'      => $rating,
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
-				);
 			}
 			
 			$data['tags'] = array();

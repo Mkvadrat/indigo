@@ -64,7 +64,7 @@
               <?php echo $search; ?>
           </div>
           <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 pull-right-lg-md">
-              <a href="#" class="round-button toAdd">Добавить объявление</a>
+              <a href="<?php echo $request; ?>" class="round-button toAdd">Добавить объявление</a>
           </div>
       </div>
   </div>
