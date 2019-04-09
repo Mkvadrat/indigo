@@ -224,7 +224,7 @@
 							<?php } ?>
 							<?php if($filter_options){ ?>
 								<?php foreach($filter_options as $option){ ?>
-									<p><i><?php echo $option['name']; ?>: <span><?php echo $option['value']; ?></span></i></p>
+									<p><i><?php echo $option['name']; ?>: <span><?php echo $option['value']; ?></span> <?php echo $option['postfix']; ?></i></p>
 								<?php } ?>
 							<?php } ?>
 						<?php } ?>
