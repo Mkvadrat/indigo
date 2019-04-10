@@ -188,7 +188,7 @@
 			<div class="col-md-5 object-r">
 				<div class="print-download">
 					<a href="<?php echo $action_pdf; ?>"><img src="catalog/view/theme/indigo/image/save.png" alt="Сохранить PDF">Сохранить PDF</a>
-					<a id="print"><img src="catalog/view/theme/indigo/image/print.png" alt="Напечатать страницу">Напечатать страницу</a>
+					<a id="print"><img src="catalog/view/theme/indigo/image/print.png" alt="Напечатать">Напечатать</a>
 				</div>
 				<div class="info">
 					<?php if($stickers){ ?>
