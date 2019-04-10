@@ -74,7 +74,7 @@
               <div class="category-list">
                 <?php foreach ($products as $product) { ?>
                   <div class="item">
-                      <div class="img">
+                      <a href="<?php echo $product['href']; ?>" class="img">
                           <img src="<?php echo $product['thumb']; ?>" alt="">
                           
                           <?php if($product['sticker']){ ?>
@@ -84,7 +84,7 @@
                               <?php } ?>
                           </div>
                           <?php } ?>
-                      </div>
+                      </a>
                       <div class="text">
                           <p class="id">№ <?php echo $product['model']; ?></p>
                           <a href="<?php echo $product['href']; ?>" class="name"><?php echo $product['name']; ?></a>
