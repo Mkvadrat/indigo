@@ -453,6 +453,12 @@
     .article-l {
         margin-bottom: 7px;
     }
+
+    #ocfilter,
+    .logo-line .query .link-group + a{
+        display: none;
+    }
+
 }
 
 @media (max-width: 768px) {

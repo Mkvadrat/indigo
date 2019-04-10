@@ -108,10 +108,6 @@
                                   <a href="/contact-us" class="half">Контакты</a>
                               </div>
                             <?php echo $callback_link; ?>
-                              <div class="link-group">
-                                  <a href="/information">Информация</a>
-                                  <a href="/request">Срочный выкуп</a>
-                              </div>
                           </div>
                           <div class="cont-phones">
                               <div>

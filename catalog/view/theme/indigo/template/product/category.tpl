@@ -74,7 +74,7 @@
               <div class="category-list">
                 <?php foreach ($products as $product) { ?>
                   <div class="item">
-                      <a href="<?php echo $product['href']; ?>" class="img">
+                      <div class="img">
                           <img src="<?php echo $product['thumb']; ?>" alt="">
                           
                           <?php if($product['sticker']){ ?>
@@ -84,7 +84,7 @@
                               <?php } ?>
                           </div>
                           <?php } ?>
-                      </a>
+                      </div>
                       <div class="text">
                           <p class="id">№ <?php echo $product['model']; ?></p>
                           <a href="<?php echo $product['href']; ?>" class="name"><?php echo $product['name']; ?></a>
@@ -106,14 +106,15 @@
                           <?php }else{ ?>
                             <div class="description"><?php echo $product['description']; ?></div>
                           <?php } ?>
-
+                          <div class="podrobnee-grid">
+                          <a href="<?php echo $product['href']; ?>" class="podrobnee">Подробнее</a>
                           <?php if ($product['price'] || $product['rub']) { ?>
                           <?php if (!$product['special']) { ?>
                             <p class="price"><?php echo $product['rub']; ?> / <?php echo $product['price']; ?></p>
                           <?php } else { ?>
                             <p class="price"><?php echo $product['special']; ?> <sup><strike><?php echo $product['price']; ?></strike></sup></p>
                           <?php } ?>
-                          <?php } ?>
+                          <?php } ?></div>
                       </div>
                   </div>
               <?php } ?>  
