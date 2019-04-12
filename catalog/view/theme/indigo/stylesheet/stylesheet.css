@@ -3158,7 +3158,24 @@ footer .bot-line a img {
 }
 
 
-
+.view-btnchange_view .btn{
+    border: none;
+    background: transparent;
+    opacity: .3;
+    box-shadow: none;
+}
+.change_view .btn:focus{
+    outline: none;
+}
+.change_view .btn:active:focus,
+.change_view .btn.active:hover,
+.change_view .btn.active:focus{
+    background: transparent;
+}
+.change_view .btn:active,
+.change_view .btn.active{
+    opacity: 1;
+}
 
 
 

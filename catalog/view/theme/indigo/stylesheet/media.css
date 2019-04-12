@@ -19,6 +19,9 @@
         width: 100%;
         text-align: center;
     }
+    .logo-line .cont-phones a {
+        font-size: 26px;
+    }
 }
 
 @media (max-width: 1200px) {
@@ -463,7 +466,7 @@
 
 @media (max-width: 768px) {
     .logo-line .cont-phones a {
-        font-size: 28px;
+        font-size: 26px;
     }
 
     .logo-line .logo {
