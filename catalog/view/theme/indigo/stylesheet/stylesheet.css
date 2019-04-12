@@ -3235,14 +3235,14 @@ footer .bot-line a img {
     bottom: -13px;
     background: no-repeat center;
     background-size: cover;
-    -webkit-filter: blur(13px);
-    filter: blur(13px);
-    opacity: .85;
+    -webkit-filter: blur(8px);
+    filter: blur(8px);
+    opacity: 1;
 }
 .fotorama__html div span + img{
     position: relative;
     z-index: 1;
-    width: 80%;
+    height: 100%;
 }
 
 .fotorama__wrap--slide .fotorama__stage__frame:before{
