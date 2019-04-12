@@ -3158,11 +3158,12 @@ footer .bot-line a img {
 }
 
 
-.view-btnchange_view .btn{
+.change_view .btn{
     border: none;
     background: transparent;
     opacity: .3;
     box-shadow: none;
+    padding: 0 6px;
 }
 .change_view .btn:focus{
     outline: none;
@@ -3176,21 +3177,88 @@ footer .bot-line a img {
 .change_view .btn.active{
     opacity: 1;
 }
+.change_view {
+    width: auto;
+    display: inline-flex;
+    align-items: center;
+}
 .change_view span{
+    color: #fff;
+    font-family: 'MyriadPro-Regular';
+    font-size: 24px;
+    line-height: 24px;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+.custom-flex{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#search input {
+    width: 100%;
+    height: 100%;
+}
+.custom-flex #search.input-group {
+    height: 58px;
+    max-width: 220px;
+}
 
+.custom-flex .round-button.toAdd{
+    max-width: 297px;
+}
+.sort-view .custom-flex .sort{
+    max-width: 360px;
 }
 
 
 
 
+.fotorama__html div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.fotorama__stage > .fotorama__img{
+    display: none;
+}
+.fotorama__html div span{
+    position: absolute;
+    display: block;
+    top: -13px;
+    left: -13px;
+    right: -13px;
+    bottom: -13px;
+    background: no-repeat center;
+    background-size: cover;
+    -webkit-filter: blur(13px);
+    filter: blur(13px);
+    opacity: .85;
+}
+.fotorama__html div span + img{
+    position: relative;
+    z-index: 1;
+}
 
+.fotorama__wrap--slide .fotorama__stage__frame:before{
+    content: '';
+    position: absolute;
+    display: block;
+    top: -13px;
+    left: -13px;
+    right: -13px;
+    bottom: -13px;
+    background: no-repeat center;
+    background-size: cover;
+    -webkit-filter: blur(13px);
+    filter: blur(13px);
+    opacity: .4;
+}
 
-
-
-
-
-
-
-
-
-
+.fullscreen .fotorama__html{
+    display: none;
+}

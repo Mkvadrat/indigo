@@ -32,7 +32,7 @@
 					<?php if ($images) { ?>
 							<?php $i = 0; ?>
 							<?php foreach ($images as $image) { ?>
-							<a href="<?php echo $image['popup']; ?>"><img src="<?php echo $image['popup']; ?>" data-hash="<?php echo $i; ?>" alt="<?php echo $heading_title; ?>"></a>
+							<div data-img="<?php echo $image['popup']; ?>"><span style="background-image: url('<?php echo $image['popup']; ?>');"></span><img src="<?php echo $image['popup']; ?>"/></div>
 							<?php $i++; ?>
 							<?php } ?>
 					<?php }else{ ?>
