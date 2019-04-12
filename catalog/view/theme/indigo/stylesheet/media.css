@@ -19,11 +19,14 @@
         width: 100%;
         text-align: center;
     }
+
+}
+
+@media (max-width: 1400px) {
     .logo-line .cont-phones a {
         font-size: 26px;
     }
 }
-
 @media (max-width: 1200px) {
     .logo-line .logo {
         width: 200px;
