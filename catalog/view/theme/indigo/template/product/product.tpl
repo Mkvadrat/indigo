@@ -1,4 +1,6 @@
 <?php echo $header; ?>
+<link  href="catalog/view/javascript/jquery/fotorama/fotorama.css" rel="stylesheet">
+<script src="catalog/view/javascript/jquery/fotorama/fotorama.js"></script>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 breadcrumbs">
@@ -25,32 +27,19 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-7 object-l">
-				<div class="object-top">
-					<p class="title" id="print1"><?php echo $heading_title; ?></p>
+
+				<div class="fotorama" data-navposition="bottom" data-nav="thumbs" data-thumbwidth="80" data-allowfullscreen="true" data-loop="true">
 					<?php if ($images) { ?>
-						<div class="imgs" id="print2">
-							<div class="owl-carousel">
-								<?php $i = 0; ?>
-								<?php foreach ($images as $image) { ?>
-									<a href="<?php echo $image['popup']; ?>" data-fancybox="gallery"><img src="<?php echo $image['popup']; ?>" data-hash="<?php echo $i; ?>" alt="<?php echo $heading_title; ?>"></a>
-								<?php $i++; ?>
-								<?php } ?>
-							</div>
 							<?php $i = 0; ?>
 							<?php foreach ($images as $image) { ?>
-								<a href="#<?php echo $i; ?>"><img src="<?php echo $image['thumb']; ?>" alt="<?php echo $heading_title; ?>"></a>
+							<a href="<?php echo $image['popup']; ?>"><img src="<?php echo $image['popup']; ?>" data-hash="<?php echo $i; ?>" alt="<?php echo $heading_title; ?>"></a>
 							<?php $i++; ?>
 							<?php } ?>
-						</div>
 					<?php }else{ ?>
-						<div class="imgs">
-							<div class="owl-carousel">
-								<a href="<?php echo $thumb; ?>" data-fancybox="gallery"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>"></a>
-							</div>
-						</div>
+							<a href="<?php echo $thumb; ?>"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>"></a>
 					<?php } ?>
 				</div>
-				
+
 				<div class="object-bot">
 					<p class="title">Описание</p>
 					<p id="print3"><?php echo $description; ?></p>
