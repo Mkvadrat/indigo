@@ -28,11 +28,11 @@
 		<div class="row">
 			<div class="col-md-7 object-l">
 
-				<div class="fotorama" data-navposition="bottom" data-nav="thumbs" data-thumbwidth="80" data-allowfullscreen="true" data-loop="true" data-width="100%">
+				<div class="fotorama" data-navposition="bottom" data-nav="thumbs" data-thumbwidth="80" data-allowfullscreen="true" data-loop="true" data-width="100%" data-fit="contain">
 					<?php if ($images) { ?>
 							<?php $i = 0; ?>
 							<?php foreach ($images as $image) { ?>
-							<div data-img="<?php echo $image['popup']; ?>"><span style="background-image: url('<?php echo $image['popup']; ?>');"></span><img src="<?php echo $image['popup']; ?>"/></div>
+							<div data-fit="contain" data-img="<?php echo $image['popup']; ?>"><span style="background-image: url('<?php echo $image['popup']; ?>');"></span></div>
 							<?php $i++; ?>
 							<?php } ?>
 					<?php }else{ ?>

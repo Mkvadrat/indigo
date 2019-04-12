@@ -3223,8 +3223,8 @@ footer .bot-line a img {
     justify-content: center;
     height: 100%;
 }
-.fotorama__stage > .fotorama__img{
-    display: none;
+.fotorama__stage .fotorama__img{
+    z-index: 100;
 }
 .fotorama__html div span{
     position: absolute;
@@ -3240,12 +3240,7 @@ footer .bot-line a img {
     opacity: 1;
 }
 .fotorama__html div span + img{
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    width: auto;
-    display: block;
-    max-height: 100%;
+    display: none;
 }
 
 .fotorama__wrap--slide .fotorama__stage__frame:before{
