@@ -1565,7 +1565,7 @@ footer .bot-line a img {
 }
 
 .sort-view .ui-menu .ui-menu-item-wrapper {
-    padding-left: 5px 15px 5px;
+    padding: 5px 15px 5px;
 }
 
 .sort-view .ui-menu .ui-menu-item:last-child .ui-menu-item-wrapper {
@@ -3129,28 +3129,31 @@ footer .bot-line a img {
 }
 
 /*02/04/2019*/
-.description{
+.description {
     color: #fff;
 }
 
-.category-list{
+.category-list {
     margin-bottom: 20px;
 }
 
-.news-list .item .img::before, .category-list .item .img::before{
+.news-list .item .img::before, .category-list .item .img::before {
     content: none;
 }
-.podrobnee{
+
+.podrobnee {
     font-family: 'PT_Serif-Regular';
     font-size: 24px;
     line-height: 28px;
     color: #f1eaa2;
     margin-bottom: 10px;
 }
-.podrobnee:hover{
+
+.podrobnee:hover {
     color: #f1eaa2;
 }
-.podrobnee-grid{
+
+.podrobnee-grid {
     width: 100%;
     display: flex;
     align-items: flex-end;
@@ -3158,31 +3161,36 @@ footer .bot-line a img {
 }
 
 
-.change_view .btn{
+.change_view .btn {
     border: none;
     background: transparent;
     opacity: .3;
     box-shadow: none;
     padding: 0 6px;
 }
-.change_view .btn:focus{
+
+.change_view .btn:focus {
     outline: none;
 }
+
 .change_view .btn:active:focus,
 .change_view .btn.active:hover,
-.change_view .btn.active:focus{
+.change_view .btn.active:focus {
     background: transparent;
 }
+
 .change_view .btn:active,
-.change_view .btn.active{
+.change_view .btn.active {
     opacity: 1;
 }
+
 .change_view {
     width: auto;
     display: inline-flex;
     align-items: center;
 }
-.change_view span{
+
+.change_view span {
     color: #fff;
     font-family: 'MyriadPro-Regular';
     font-size: 24px;
@@ -3192,41 +3200,45 @@ footer .bot-line a img {
     margin-bottom: 5px;
     font-weight: 700;
 }
-.custom-flex{
+
+.custom-flex {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 #search input {
     width: 100%;
     height: 100%;
 }
+
 .custom-flex #search.input-group {
     height: 58px;
     max-width: 220px;
 }
 
-.custom-flex .round-button.toAdd{
+.custom-flex .round-button.toAdd {
     max-width: 297px;
 }
-.sort-view .custom-flex .sort{
+
+.sort-view .custom-flex .sort {
     max-width: 360px;
 }
 
 
-
-
-.fotorama__html div{
+.fotorama__html div {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
 }
-.fotorama__stage .fotorama__img{
+
+.fotorama__stage .fotorama__img {
     z-index: 100;
 }
-.fotorama__html div span{
+
+.fotorama__html div span {
     position: absolute;
     display: block;
     top: -13px;
@@ -3239,11 +3251,12 @@ footer .bot-line a img {
     filter: blur(8px);
     opacity: 1;
 }
-.fotorama__html div span + img{
+
+.fotorama__html div span + img {
     display: none;
 }
 
-.fotorama__wrap--slide .fotorama__stage__frame:before{
+.fotorama__wrap--slide .fotorama__stage__frame:before {
     content: '';
     position: absolute;
     display: block;
@@ -3258,6 +3271,84 @@ footer .bot-line a img {
     opacity: 1;
 }
 
-.fullscreen .fotorama__html{
+.fullscreen .fotorama__html {
     display: none;
 }
+
+.category-list.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    padding: 0;
+}
+
+.category-list.product-grid .item {
+    width: calc(33.33% - 16px);
+    flex-wrap: wrap;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.category-list.product-grid .item .description {
+    display: none;
+}
+
+.category-list.product-grid .item .img {
+    width: 100%;
+}
+
+.category-list.product-grid .item .img img {
+    height: 281px;
+}
+
+.category-list.product-grid .item .text {
+    padding: 16px 22px 20px;
+}
+
+.category-list.product-grid .item .id {
+    font-size: 15px;
+    margin: 0 0 6px;
+}
+
+.category-list.product-grid .podrobnee-grid {
+    flex-wrap: wrap;
+}
+
+.category-list.product-grid .item .price {
+    order: 1;
+    text-align: left;
+    margin-bottom: 14px;
+}
+
+.category-list.product-grid .podrobnee {
+    order: 2;
+}
+
+.category-list.product-grid .item .name {
+    margin-bottom: 13px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

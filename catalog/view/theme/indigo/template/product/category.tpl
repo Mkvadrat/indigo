@@ -62,8 +62,8 @@
             </div>
             <div class="change_view">
                 <span>Вид:</span>
-                <button id="grid-view" class="btn tab_veiw active"><img src="/catalog/view/theme/indigo/image/grid.svg"/></button>
-                <button id="list-view" class="btn list_veiw"><img src="/catalog/view/theme/indigo/image/list.svg"/></button>
+                <button id="grid-view" class="btn tab_veiw"><img src="/catalog/view/theme/indigo/image/grid.svg"/></button>
+                <button id="list-view" class="btn list_veiw active"><img src="/catalog/view/theme/indigo/image/list.svg"/></button>
             </div>
             <?php echo $search; ?>
             <a href="<?php echo $request; ?>" class="round-button toAdd">Добавить объявление</a>
@@ -203,10 +203,9 @@
 <script>
     // Product List
     $('#list-view').click(function() {
-        console.log('list');
         $('.container .product-grid > .clearfix').remove();
 
-        $('.container .product-grid').attr('class', 'product-layout product-list col-xs-12');
+        $('.container .product-grid').attr('class', 'category-list product-layout product-list col-xs-12');
         $('#grid-view').removeClass('active');
         $('#list-view').addClass('active');
 
@@ -215,22 +214,21 @@
 
     // Product Grid
     $('#grid-view').click(function() {
-        console.log('grid');
         // What a shame bootstrap does not take into account dynamically loaded columns
         var cols = $('#column-right, #column-left').length;
 
         if (cols == 2) {
-            $('.container .product-list').attr('class', 'product-layout product-grid col-lg-6 col-md-6 col-sm-12 col-xs-12');
+            $('.container .product-list').attr('class', 'category-list product-layout product-grid col-lg-6 col-md-6 col-sm-12 col-xs-12');
         } else if (cols == 1) {
-            $('.container .product-list').attr('class', 'product-layout product-grid col-lg-4 col-md-4 col-sm-6 col-xs-12');
+            $('.container .product-list').attr('class', 'category-list product-layout product-grid col-lg-4 col-md-4 col-sm-6 col-xs-12');
         } else {
-            $('.container .product-list').attr('class', 'product-layout product-grid col-lg-3 col-md-3 col-sm-6 col-xs-12');
+            $('.container .product-list').attr('class', 'category-list product-layout product-grid col-xs-12');
         }
 
         $('#list-view').removeClass('active');
         $('#grid-view').addClass('active');
 
-        localStorage.setItem('display', 'grid');
+        localStorage.setItem('display', 'list');
     });
 
     if (localStorage.getItem('display') == 'list') {
