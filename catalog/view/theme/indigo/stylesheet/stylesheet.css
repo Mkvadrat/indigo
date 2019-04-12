@@ -3244,6 +3244,8 @@ footer .bot-line a img {
     z-index: 1;
     height: 100%;
     width: auto;
+    display: block;
+    max-height: 100%;
 }
 
 .fotorama__wrap--slide .fotorama__stage__frame:before{
