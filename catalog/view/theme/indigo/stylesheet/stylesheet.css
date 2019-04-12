@@ -3243,6 +3243,7 @@ footer .bot-line a img {
     position: relative;
     z-index: 1;
     height: 100%;
+    width: auto;
 }
 
 .fotorama__wrap--slide .fotorama__stage__frame:before{
