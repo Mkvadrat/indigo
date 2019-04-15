@@ -3328,9 +3328,15 @@ footer .bot-line a img {
     margin-bottom: 13px;
 }
 
-
-
-
+.category-list.product-grid .item .labels .label img, .labels .label img{
+    height: 16px;
+}
+.sort-view .sort, .sort-view .view, .change_view span, #search input, .custom-flex .round-button.toAdd{
+    font-size: 18px;
+}
+.view .ui-selectmenu-button.ui-button {
+    width: 80px;
+}
 
 
 

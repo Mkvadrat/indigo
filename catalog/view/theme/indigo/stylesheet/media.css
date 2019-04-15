@@ -1082,6 +1082,18 @@
         width: 100%;
         margin-bottom: 30px;
     }
+    .change_view {
+        display: none;
+    }
+    .custom-flex .round-button.toAdd {
+        width: 100%;
+    }
+    .ymaps-2-1-73-map {
+        max-height: 234px;
+    }
+    .ymaps-2-1-73-zoom {
+        height: 50px!important;
+    }
 }
 
 @media (max-width: 768px) {
