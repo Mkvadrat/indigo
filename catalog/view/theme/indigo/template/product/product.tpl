@@ -28,7 +28,7 @@
 		<div class="row">
 			<div class="col-md-7 object-l">
 
-				<div class="fotorama" data-navposition="bottom" data-nav="thumbs" data-thumbwidth="80" data-allowfullscreen="true" data-loop="true" data-width="100%" data-fit="contain">
+				<div class="fotorama" data-navposition="bottom" data-nav="thumbs" data-thumbwidth="80" data-allowfullscreen="true" data-loop="true" data-width="100%" data-ratio="640/424" data-maxheight="515" data-fit="contain">
 					<?php if ($images) { ?>
 							<?php $i = 0; ?>
 							<?php foreach ($images as $image) { ?>

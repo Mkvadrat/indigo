@@ -69,7 +69,7 @@ define ('K_PATH_IMAGES', K_PATH_MAIN.'images/');
  * Deafult image logo used be the default Header() method.
  * Please set here your own logo or an empty string to disable it.
  */
-define ('PDF_HEADER_LOGO', 'logo.png');
+define ('PDF_HEADER_LOGO', '');
 
 /**
  * Header logo image width in user units.
@@ -129,27 +129,27 @@ define ('PDF_MARGIN_HEADER', 0);
 /**
  * Footer margin.
  */
-define ('PDF_MARGIN_FOOTER', 10);
+define ('PDF_MARGIN_FOOTER', 0);
 
 /**
  * Top margin.
  */
-define ('PDF_MARGIN_TOP', 30);
+define ('PDF_MARGIN_TOP', 0);
 
 /**
  * Bottom margin.
  */
-define ('PDF_MARGIN_BOTTOM', 25);
+define ('PDF_MARGIN_BOTTOM', 0);
 
 /**
  * Left margin.
  */
-define ('PDF_MARGIN_LEFT', 15);
+define ('PDF_MARGIN_LEFT', 0);
 
 /**
  * Right margin.
  */
-define ('PDF_MARGIN_RIGHT', 15);
+define ('PDF_MARGIN_RIGHT', 0);
 
 /**
  * Default main font name.

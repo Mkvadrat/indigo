@@ -1009,7 +1009,9 @@ class ControllerProductProduct extends Controller {
 			$data['product_id'] = (int)$this->request->get['product_id'];
 			$data['model'] = $product_info['model'];
 			$data['stickers'] = $this->getStickers($product_info['product_id']);
-			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
+			
+			$data['description'] = $this->cutStr(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8'), 600);
+			
 			$data['features'] = html_entity_decode($product_info['features'], ENT_QUOTES, 'UTF-8');
 			$data['product_options'] = $this->model_catalog_product->getProductOptions((int)$this->request->get['product_id']);
 			$data['options'] = $this->model_catalog_product->getProductOptions($product_info['product_id']);
@@ -1017,6 +1019,9 @@ class ControllerProductProduct extends Controller {
 			$data['slider_filter_options'] = $this->model_catalog_ocfilter->getValueOptionsSliderRangeByProduct($product_info['product_id']);
 			$data['uniq_options'] = $product_info['uniq_options'] = 1 ? $product_info['uniq_options'] : 0;
 			$data['href'] = $this->url->link('product/product', 'product_id=' . $product_info['product_id']);
+			$data['current_date'] = date("d.m.y");
+			
+			$data['thead'] = 'thead';
 			
 			if ($product_info['meta_h1']) {
 				$data['heading_title'] = $product_info['meta_h1'];
@@ -1158,11 +1163,13 @@ class ControllerProductProduct extends Controller {
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 	
 			$pdf->SetCreator($_SERVER['HTTP_HOST']);
-			$pdf->SetAuthor('crimean.property');
+			$pdf->SetAuthor('indigo');
 			$pdf->SetTitle($this->data['heading_title']);
 			$pdf->SetSubject($this->data['heading_title']);
 			$pdf->SetKeywords('');
-	
+			$pdf->SetPrintHeader(false);
+			$pdf->SetPrintFooter(false);
+			
 			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
 	
 			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
@@ -1181,11 +1188,25 @@ class ControllerProductProduct extends Controller {
 			$pdf->SetFont('dejavusans', '', 10);
 	
 			$pdf->AddPage();
-	
+			
+			ob_start();
+			
 			$pdf->writeHTML($html, true, false, true, false, '');
-	
+			
+			ob_end_clean();
+			
 			$pdf->Output('object-' ./*$this->generate_value(7).*/ (int)$this->request->get['product_id'] . '.pdf', 'D');
-		
+		}
+	}
+	
+	public function cutStr($str, $lenght = 100, $end = ' …', $charset = 'UTF-8', $token = '~') {
+		$str = strip_tags($str);
+		if (mb_strlen($str, $charset) >= $lenght) {
+			$wrap = wordwrap($str, $lenght, $token);
+			$str_cut = mb_substr($wrap, 0, mb_strpos($wrap, $token, 0, $charset), $charset);  
+			return $str_cut .= $end;
+		} else {
+			return $str;
 		}
 	}
 	
