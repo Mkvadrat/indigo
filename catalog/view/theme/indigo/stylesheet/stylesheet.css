@@ -3206,6 +3206,7 @@ footer .bot-line a img {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 15px;
 }
 
 #search input {
@@ -3280,6 +3281,9 @@ footer .bot-line a img {
     flex-wrap: wrap;
     align-items: stretch;
     padding: 0;
+    margin-left: -8px;
+    margin-right: -8px;
+    width: auto;
 }
 
 .category-list.product-grid .item {
