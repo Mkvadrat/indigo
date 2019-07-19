@@ -88,7 +88,11 @@ class ControllerCommonImageManager extends Controller {
 						'image/png',
 						'image/x-png',
 						'image/gif',
-						'application/x-shockwave-flash'
+						'application/x-shockwave-flash',
+						'application/msword',
+						'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+						'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+						'application/vnd.openxmlformats-officedocument.presentationml.presentation',
 					),
 					'uploadOverwrite'=>true,
 					'uploadOrder'=> array( 'allow', 'deny' ),
@@ -117,7 +121,11 @@ class ControllerCommonImageManager extends Controller {
 						'image/png',
 						'image/x-png',
 						'image/gif',
-						'application/x-shockwave-flash'
+						'application/x-shockwave-flash',
+						'application/msword',
+						'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+						'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+						'application/vnd.openxmlformats-officedocument.presentationml.presentation',
 					),
 					'uploadOrder'=> array( 'allow', 'deny' ),     // Same as above
 					'accessControl' => 'access',                    // Same as above

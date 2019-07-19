@@ -69,6 +69,12 @@ class ControllerStartupSeoPro extends Controller {
 						} else {
 							$this->request->get['path'] .= '_' . $url[1];
 						}
+					} elseif ($url[0] == 'blog_category_id') {
+						if (!isset($this->request->get['blog_category_id'])) {
+							$this->request->get['blog_category_id'] = $url[1];
+						} else {
+							$this->request->get['blog_category_id'] .= '_' . $url[1];
+						}
 					} elseif (count($url) > 1) {
 						$this->request->get[$url[0]] = $url[1];
 					}
@@ -85,6 +91,16 @@ class ControllerStartupSeoPro extends Controller {
 				}
 			} elseif (isset($this->request->get['path'])) {
 				$this->request->get['route'] = 'product/category';
+			//blog
+			} elseif (isset($this->request->get['article_id'])) {
+				$this->request->get['route'] = 'blog/article';
+				if (!isset($this->request->get['blog_category_id'])) {
+					$blog_category_id = $this->getPathByArticle($this->request->get['article_id']);
+					if ($blog_category_id) $this->request->get['blog_category_id'] = $blog_category_id;
+				}
+			} elseif (isset($this->request->get['blog_category_id'])) {
+				$this->request->get['route'] = 'blog/category';
+			//blog
 			} elseif (isset($this->request->get['manufacturer_id'])) {
 				$this->request->get['route'] = 'product/manufacturer/info';
 			} elseif (isset($this->request->get['information_id'])) {
@@ -149,7 +165,27 @@ class ControllerStartupSeoPro extends Controller {
 					if (!$data['path']) return $link;
 				}
 				break;
-
+			//blog	
+			case 'blog/article':
+				if (isset($data['article_id'])) {
+					$tmp = $data;
+					$data = array();
+					if ($this->config->get('config_seo_url_include_path')) {
+						$data['blog_category_id'] = $this->getPathByArticle($tmp['article_id']);
+						if (!$data['blog_category_id']) return $link;
+					}
+					$data['article_id'] = $tmp['article_id'];
+				}
+				break;	
+			case 'blog/category':
+				if (isset($data['blog_category_id'])) {
+					$blog_category_id = explode('_', $data['blog_category_id']);
+					$blog_category_id = end($blog_category_id);
+					$data['blog_category_id'] = $this->getPathByBlogCategory($blog_category_id);
+					if (!$data['blog_category_id']) return $link;
+				}
+				break;
+			//blog	
 			case 'product/product/review':
 			case 'information/information/agree':
 				return $link;
@@ -176,6 +212,7 @@ class ControllerStartupSeoPro extends Controller {
 		foreach ($data as $key => $value) {
 				switch ($key) {
 					case 'product_id':
+					case 'article_id':
 					case 'manufacturer_id':
 					case 'category_id':
 					case 'news_id':
@@ -194,8 +231,17 @@ class ControllerStartupSeoPro extends Controller {
 						unset($data[$key]);
 						break;
 
+					//blog
+					case 'blog_category_id':
+						$blog_categories = explode('_', $value);
+						foreach ($blog_categories as $blog_category) {
+							$queries[] = 'blog_category_id=' . $blog_category;
+						}
+						unset($data[$key]);
+						break;
 					default:
 						break;
+					//blog	
 				}
 			}
 		}
@@ -302,7 +348,51 @@ class ControllerStartupSeoPro extends Controller {
 
 		return $path[$category_id];
 	}
-
+	
+	//blog	
+	private function getPathByBlogCategory($blog_category_id) {
+		$blog_category_id = (int)$blog_category_id;
+		if ($blog_category_id < 1) return false;
+		static $path = null;
+		if (!is_array($path)) {
+			$path = $this->cache->get('blog_category.seopath');
+			if (!is_array($path)) $path = array();
+		}
+		if (!isset($path[$blog_category_id])) {
+			$max_level = 10;
+			$sql = "SELECT CONCAT_WS('_'";
+			for ($i = $max_level-1; $i >= 0; --$i) {
+				$sql .= ",t$i.blog_category_id";
+			}
+			$sql .= ") AS path FROM " . DB_PREFIX . "blog_category t0";
+			for ($i = 1; $i < $max_level; ++$i) {
+				$sql .= " LEFT JOIN " . DB_PREFIX . "blog_category t$i ON (t$i.blog_category_id = t" . ($i-1) . ".parent_id)";
+			}
+			$sql .= " WHERE t0.blog_category_id = '" . $blog_category_id . "'";
+			$query = $this->db->query($sql);
+			$path[$blog_category_id] = $query->num_rows ? $query->row['path'] : false;
+			$this->cache->set('blog_category.seopath', $path);
+		}
+		return $path[$blog_category_id];
+	}
+	
+	private function getPathByArticle($article_id) {
+		$article_id = (int)$article_id;
+		if ($article_id < 1) return false;
+		static $path = null;
+		if (!is_array($path)) {
+			$path = $this->cache->get('article.seopath');
+			if (!is_array($path)) $path = array();
+		}
+		if (!isset($path[$article_id])) {
+			$query = $this->db->query("SELECT blog_category_id FROM " . DB_PREFIX . "article_to_blog_category WHERE article_id = '" . $article_id . "' ORDER BY main_blog_category DESC LIMIT 1");
+			$path[$article_id] = $this->getPathByBlogCategory($query->num_rows ? (int)$query->row['blog_category_id'] : 0);
+			$this->cache->set('article.seopath', $path);
+		}
+		return $path[$article_id];
+	}
+	//blog
+	
 	private function validate() {
 		if (isset($this->request->get['route']) && $this->request->get['route'] == 'error/not_found') {
 			return;

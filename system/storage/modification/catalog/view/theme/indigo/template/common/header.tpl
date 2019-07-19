@@ -121,10 +121,10 @@
                                   <div class="messengers">
                                     <?php echo $messenger; ?>
                                   </div>
-                                  <a href="tel:<?php echo $first_telephone; ?>"><?php echo $first_telephone; ?></a>
+                                  <?php echo $first_telephone; ?>
                               </div>
                               <div>
-                                  <a href="tel:<?php echo $second_telephone; ?>"><?php echo $second_telephone; ?></a>
+                                  <?php echo $second_telephone; ?>
                               </div>
                           </div>
                       </div>

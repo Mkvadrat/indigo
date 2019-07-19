@@ -49,8 +49,8 @@ class ControllerCommonFooter extends Controller {
 		$data['descr_agency'] = html_entity_decode($this->config->get('config_descr_agency'), ENT_QUOTES, 'UTF-8');
 		$data['callback_link'] = html_entity_decode($this->config->get('config_callback_footer_link'), ENT_QUOTES, 'UTF-8');
 		$data['address'] = html_entity_decode($this->config->get('config_address'));
-		$data['first_telephone'] = $this->config->get('config_first_telephone');
-		$data['second_telephone'] = $this->config->get('config_second_telephone');
+		$data['first_telephone'] = html_entity_decode($this->config->get('config_first_telephone'), ENT_QUOTES, 'UTF-8');
+		$data['second_telephone'] = html_entity_decode($this->config->get('config_second_telephone'), ENT_QUOTES, 'UTF-8');
 		$data['social'] = html_entity_decode($this->config->get('config_social'));
 		$data['powered'] = html_entity_decode(nl2br($this->config->get('config_powered')), ENT_QUOTES, 'UTF-8');
 		

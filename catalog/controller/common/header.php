@@ -95,8 +95,8 @@ class ControllerCommonHeader extends Controller {
 		$data['address'] = html_entity_decode($this->config->get('config_address'));
 		$data['callback_link'] = html_entity_decode($this->config->get('config_callback_link'));
 		$data['messenger'] = html_entity_decode($this->config->get('config_messenger'));
-		$data['first_telephone'] = $this->config->get('config_first_telephone');
-		$data['second_telephone'] = $this->config->get('config_second_telephone');
+		$data['first_telephone'] = html_entity_decode($this->config->get('config_first_telephone'), ENT_QUOTES, 'UTF-8');
+		$data['second_telephone'] = html_entity_decode($this->config->get('config_second_telephone'), ENT_QUOTES, 'UTF-8');
 		
 		$this->load->model('account/download');
 		

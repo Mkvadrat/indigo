@@ -16,7 +16,7 @@ class ModelBlogArticle extends Model {
 			$customer_group_id = $this->config->get('config_customer_group_id');
 		}	
 				
-		$query = $this->db->query("SELECT DISTINCT *, pd.name AS name, p.image, p.sort_order FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) LEFT JOIN " . DB_PREFIX . "article_to_store p2s ON (p.article_id = p2s.article_id)  WHERE p.article_id = '" . (int)$article_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT *, pd.name AS name, p.image, (SELECT AVG(rating) AS total FROM " . DB_PREFIX . "review_article r1 WHERE r1.article_id = p.article_id AND r1.status = '1' GROUP BY r1.article_id) AS rating, (SELECT COUNT(*) AS total FROM " . DB_PREFIX . "review_article r2 WHERE r2.article_id = p.article_id AND r2.status = '1' GROUP BY r2.article_id) AS reviews, p.sort_order FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) LEFT JOIN " . DB_PREFIX . "article_to_store p2s ON (p.article_id = p2s.article_id)  WHERE p.article_id = '" . (int)$article_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
 		
 		if ($query->num_rows) {
 			return array(
@@ -24,18 +24,17 @@ class ModelBlogArticle extends Model {
 				'noindex'          => $query->row['noindex'],
 				'meta_h1'          => $query->row['meta_h1'],
 				'article_id'       => $query->row['article_id'],
-				'product_case_id'  => $query->row['product_case_id'],
 				'name'             => $query->row['name'],
-				'sub_name'         => $query->row['sub_name'],
 				'description'      => $query->row['description'],
-				'short_description'=> $query->row['short_description'],
-				'detail'           => $query->row['detail'],
 				'meta_description' => $query->row['meta_description'],
 				'meta_keyword'     => $query->row['meta_keyword'],
 				'image'            => $query->row['image'],
+				'rating'           => round($query->row['rating']),
+				'reviews'          => $query->row['reviews'],
 				'sort_order'       => $query->row['sort_order'],
+				'article_review'   => $query->row['article_review'],
 				'status'           => $query->row['status'],
-				'gstatus'          => $query->row['gstatus'],
+				'gstatus'           => $query->row['gstatus'],
 				'date_added'       => $query->row['date_added'],
 				'date_modified'    => $query->row['date_modified'],
 				'viewed'           => $query->row['viewed']
@@ -57,7 +56,7 @@ class ModelBlogArticle extends Model {
 		$article_data = $this->cache->get('article.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . (int)$customer_group_id . '.' . $cache);
 		
 		if (!$article_data) {
-			$sql = "SELECT p.article_id FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) LEFT JOIN " . DB_PREFIX . "article_to_store p2s ON (p.article_id = p2s.article_id)"; 
+			$sql = "SELECT p.article_id, (SELECT AVG(rating) AS total FROM " . DB_PREFIX . "review_article r1 WHERE r1.article_id = p.article_id AND r1.status = '1' GROUP BY r1.article_id) AS rating FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) LEFT JOIN " . DB_PREFIX . "article_to_store p2s ON (p.article_id = p2s.article_id)"; 
 						
 			if (!empty($data['filter_category_id'])) {
 				$sql .= " LEFT JOIN " . DB_PREFIX . "article_to_blog_category p2c ON (p.article_id = p2c.article_id)";			
@@ -142,6 +141,7 @@ class ModelBlogArticle extends Model {
 				//opencart.pro
 				'p.viewed',
 				//opencart.pro
+				'rating',
 				'p.sort_order',
 				'p.date_added'
 			);	
@@ -431,23 +431,6 @@ class ModelBlogArticle extends Model {
 		
 		return $article_data;
 	}
-	
-	public function getPreviusArticles($article_id){
-		$query = $this->db->query("SELECT article_id AS previousid FROM " . DB_PREFIX . "article WHERE article_id < '".(int)$article_id."' AND status = 1 ORDER BY article_id DESC LIMIT 1");
-
-		return $query->rows;
-	}
-	
-	public function getNextArticles($article_id){
-		$query = $this->db->query("SELECT article_id AS nextid FROM " . DB_PREFIX . "article WHERE article_id > '".(int)$article_id."' AND status = 1 ORDER BY article_id ASC LIMIT 1");
 		
-		return $query->rows;
-	}
-	
-	public function getCountArticles($category_case_id){
-		$query = $this->db->query("SELECT COUNT(*) FROM (SELECT article_id FROM  oc_article_to_blog_category AS atbc JOIN oc_category AS c ON (c.category_case_id = atbc.blog_category_id) AND c.category_case_id = '" . (int)$category_case_id . "') AS T");
-		
-		return $query->row['COUNT(*)'];
-	}
 }
 ?>

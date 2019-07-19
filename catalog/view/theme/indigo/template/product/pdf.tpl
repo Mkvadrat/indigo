@@ -4,28 +4,34 @@
         padding: 0;
         margin: 0;
     }
+
     body {
         font-family: "GothamPro";
         font-size: 20px;
         color: #000;
         padding: 40px;
     }
+
     .title {
         font-size: 26px;
         font-weight: normal;
     }
+
     p {
         font-size: 14px;
         margin: 0;
     }
+
     p span {
         font-family: "GothamPro_Med";
     }
+
     table {
         width: 100%;
         margin: 0;
         padding: 0;
     }
+
     table, tbody, tr, td {
         padding: 0;
         margin: 0;
@@ -37,29 +43,37 @@
     table, tbody, tr {
         width: 100%;
     }
+
     table td {
         padding: 0;
     }
+
     .red {
         color: red;
         font-size: 20px;
         font-weight: bold;
     }
+
     .grey {
         color: #7d7d7d;
     }
+
     .price {
         font-size: 18px;
     }
+
     img {
         max-width: 100%;
     }
+
     .object_description p {
         margin: 0;
     }
+
     .name {
         text-align: center;
     }
+
     .name a {
         display: block;
         text-align: center;
@@ -113,9 +127,13 @@
                             <tbody>
 
                             <?php if($uniq_options){ ?>
+
                             <?php if($product_options){ ?>
+
                             <?php foreach($product_options as $option){ ?>
+
                             <tr>
+
                                 <?php if($option['product_option_value']){ ?>
                                 <?php foreach ($option['product_option_value'] as $option_value) { ?>
                                 <td width="150" align="top" class="grey">
@@ -124,6 +142,7 @@
                                 <td width="150" align="top">
                                     <?php echo $option_value['name']; ?>
                                 </td>
+
                                 <?php } ?>
                                 <?php }else{ ?>
                                 <td width="150" align="top" class="grey">
@@ -141,13 +160,18 @@
                             <?php } ?>
 
                             <?php }else{ ?>
+
                             <?php if($slider_filter_options){ ?>
+
                             <?php foreach($slider_filter_options as $slider_option){ ?>
+
                             <tr>
                                 <td width="150" align="top" class="grey"><?php echo $slider_option['name']; ?>:</td>
                                 <td width="150"
                                     align="top"><?php echo $slider_option['value']; ?> <?php echo $slider_option['postfix']; ?></td>
                             </tr>
+
+
                             <?php } ?>
 
                             <?php } ?>
@@ -155,11 +179,14 @@
                             <?php } ?>
 
                             <?php if($filter_options){ ?>
+
                             <?php foreach($filter_options as $option){ ?>
+
                             <tr>
                                 <td width="150" align="top" class="grey"><?php echo $option['name']; ?>:</td>
                                 <td width="150" align="top"><?php echo $option['value']; ?></td>
                             </tr>
+
                             <?php } ?>
 
                             <?php } ?>
@@ -185,7 +212,9 @@
                             <?php foreach($slices as $image){ ?>
                             <?php $i++; ?>
                             <?php if($i > 2) break; ?>
+
                             <img src="<?php echo $image['popup']; ?>" class="add__img" align="top" style="margin: 0; padding: 0; display: block">
+
                             <?php } ?>
                             <?php } ?>
                             <?php } ?>

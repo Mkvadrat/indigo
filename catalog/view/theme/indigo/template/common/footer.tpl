@@ -29,8 +29,8 @@
                             <?php echo $address; ?>
                         </div>
                         <div class="cont-phones">
-                            <a href="tel:<?php echo $first_telephone; ?>"><?php echo $first_telephone; ?></a><br>
-                            <a href="tel:<?php echo $second_telephone; ?>"><?php echo $second_telephone; ?></a>
+                            <?php echo $first_telephone; ?><br>
+                            <?php echo $second_telephone; ?>
                         </div>
                         
                         <?php echo $social; ?>

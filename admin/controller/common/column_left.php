@@ -75,23 +75,7 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => array()		
 				);					
 			}
-			
-			if ($this->user->hasPermission('access', 'catalog/news')) {		
-				$catalog[] = array(
-					'name'	   => $this->language->get('text_news'),
-					'href'     => $this->url->link('catalog/news', 'token=' . $this->session->data['token'], true),
-					'children' => array()		
-				);					
-			}
-			
-			if ($this->user->hasPermission('access', 'catalog/news')) {		
-				$catalog[] = array(
-					'name'	   => $this->language->get('text_settings_news'),
-					'href'     => $this->url->link('catalog/news/setting', 'token=' . $this->session->data['token'], true),
-					'children' => array()		
-				);					
-			}
-			
+						
 			// Testimonials
 			if ($this->user->hasPermission('access', 'testimonial/testimonial')) {
 				$catalog[] = array(
@@ -108,6 +92,43 @@ class ControllerCommonColumnLeft extends Controller {
 					'name'	   => $this->language->get('text_catalog'),
 					'href'     => '',
 					'children' => $catalog
+				);		
+			}
+			
+			// BLOG
+			$blog = array();
+
+			if ($this->user->hasPermission('access', 'blog/article')) {		
+				$blog[] = array(
+					'name'	   => $this->language->get('text_blog_article'),
+					'href'     => $this->url->link('blog/article', 'token=' . $this->session->data['token'], true),
+					'children' => array()		
+				);					
+			}	
+			
+			if ($this->user->hasPermission('access', 'blog/category')) {		
+				$blog[] = array(
+					'name'	   => $this->language->get('text_blog_category'),
+					'href'     => $this->url->link('blog/category', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+			}
+								
+			if ($this->user->hasPermission('access', 'blog/setting')) {
+				$blog[] = array(
+					'name'	   => $this->language->get('text_blog_setting'),
+					'href'     => $this->url->link('blog/setting', 'token=' . $this->session->data['token'], true),
+					'children' => array()		
+				);
+			}
+					
+			if ($blog) {					
+				$data['menus'][] = array(
+					'id'       => 'menu-blog',
+					'icon'	   => 'fa-book', 
+					'name'	   => $this->language->get('text_blog'),
+					'href'     => '',
+					'children' => $blog
 				);		
 			}
 
