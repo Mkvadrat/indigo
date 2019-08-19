@@ -58,7 +58,7 @@ class ModelBlogArticle extends Model {
 		if (!$article_data) {
 			$sql = "SELECT p.article_id, (SELECT AVG(rating) AS total FROM " . DB_PREFIX . "review_article r1 WHERE r1.article_id = p.article_id AND r1.status = '1' GROUP BY r1.article_id) AS rating FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) LEFT JOIN " . DB_PREFIX . "article_to_store p2s ON (p.article_id = p2s.article_id)"; 
 						
-			if (!empty($data['filter_category_id'])) {
+			if (!empty($data['filter_blog_category_id'])) {
 				$sql .= " LEFT JOIN " . DB_PREFIX . "article_to_blog_category p2c ON (p.article_id = p2c.article_id)";			
 			}
 			
@@ -114,15 +114,15 @@ class ModelBlogArticle extends Model {
 				}					
 			}
 			
-			if (!empty($data['filter_category_id'])) {
+			if (!empty($data['filter_blog_category_id'])) {
 				if (!empty($data['filter_sub_category'])) {
 					$implode_data = array();
 					
-					$implode_data[] = (int)$data['filter_category_id'];
+					$implode_data[] = (int)$data['filter_blog_category_id'];
 					
 					$this->load->model('blog/category');
 					
-					$categories = $this->model_blog_category->getCategoriesByParentId($data['filter_category_id']);
+					$categories = $this->model_blog_category->getCategoriesByParentId($data['filter_blog_category_id']);
 										
 					foreach ($categories as $blog_category_id) {
 						$implode_data[] = (int)$blog_category_id;
@@ -130,7 +130,7 @@ class ModelBlogArticle extends Model {
 								
 					$sql .= " AND p2c.blog_category_id IN (" . implode(', ', $implode_data) . ")";			
 				} else {
-					$sql .= " AND p2c.blog_category_id = '" . (int)$data['filter_category_id'] . "'";
+					$sql .= " AND p2c.blog_category_id = '" . (int)$data['filter_blog_category_id'] . "'";
 				}
 			}		
 					
@@ -410,7 +410,7 @@ class ModelBlogArticle extends Model {
 					
 					$this->load->model('blog/category');
 					
-					$categories = $this->model_blog_category->getCategoriesByParentId($data['filter_category_id']);
+					$categories = $this->model_blog_category->getCategoriesByParentId($data['filter_blog_category_id']);
 										
 					foreach ($categories as $blog_category_id) {
 						$implode_data[] = (int)$blog_category_id;

@@ -68,49 +68,6 @@
             <?php echo $search; ?>
             <a href="<?php echo $request; ?>" class="round-button toAdd">Добавить объявление</a>
         </div>
-
-        <!--<div class="col-lg-7 col-sm-12">
-            <div class="sort">
-                <label>
-                    Сортировка:
-                    <select id="sort-items" onchange="location = this.value;">
-                        <?php foreach ($sorts as $sorts) { ?>
-                        <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
-                        <option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
-                        <?php } else { ?>
-                        <option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
-                        <?php } ?>
-                        <?php } ?>
-                    </select>
-                </label>
-            </div>
-            <div class="view">
-                <label>
-                    На странице:
-                    <select id="view-items">
-                        <?php foreach ($limits as $limits) { ?>
-                        <?php if ($limits['value'] == $limit) { ?>
-                        <option value="<?php echo $limits['href']; ?>" selected="selected"><?php echo $limits['text']; ?></option>
-                        <?php } else { ?>
-                        <option value="<?php echo $limits['href']; ?>"><?php echo $limits['text']; ?></option>
-                        <?php } ?>
-                        <?php } ?>
-                    </select>
-                </label>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 pull-right-lg-md">
-            <div class="change_view">
-                <span>Вид:</span>
-                <button id="grid-view" class="btn tab_veiw active"><img src="/catalog/view/theme/indigo/image/grid.svg"/></button>
-                <button id="list-view" class="btn list_veiw"><img src="/catalog/view/theme/indigo/image/list.svg"/></button>
-            </div>
-            <?php echo $search; ?>
-        </div>
-        <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12 pull-right-lg-md">
-            <a href="<?php echo $request; ?>" class="round-button toAdd">Добавить объявление</a>
-        </div>-->
-
     </div>
 </div>
 <div class="container">

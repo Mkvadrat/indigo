@@ -13,7 +13,7 @@
 							<img src="<?php echo $news['thumb']; ?>" alt="<?php echo $news['name']; ?>">
 						</a>
 						<div class="text">
-							<p class="date"><?php echo $news['date_added']; ?></p>
+							<!--<p class="date"><?php echo $news['date_added']; ?></p>-->
 							<a href="<?php echo $news['href']; ?>" class="name"><?php echo $news['name']; ?></a>
 							<p class="descr"><?php echo $news['description']; ?></p>
 							<a href="<?php echo $news['href']; ?>" class="round-button">Подробнее</a>

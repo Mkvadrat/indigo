@@ -5,7 +5,7 @@
 		<ul class="hot-news">
 			<?php foreach ($articles as $news_item) { ?>
 				<li>
-					<span class="date"><?php echo $news_item['date_added']; ?></span>
+					<!--<span class="date"><?php echo $news_item['date_added']; ?></span>-->
 					<a href="<?php echo $news_item['href']; ?>"><?php echo $news_item['name']; ?></a>
 				</li>
 			<?php } ?>

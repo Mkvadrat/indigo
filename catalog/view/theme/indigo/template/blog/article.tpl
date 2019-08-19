@@ -26,13 +26,11 @@
 		<div class="row">
 			<div class="col-md-7 article-l">
 				<div class="article">
-					<p class="date"><?php echo $date_added; ?></p>
+					<!--<p class="date"><?php echo $date_added; ?></p>-->
 					<?php if($heading_title) {?>
 					<h1 class="title"><?php echo $heading_title; ?></h1>
 					<?php } ?>
-					
-					<p><img src="<?php echo $popup; ?>" alt="<?php echo $heading_title; ?>"></p>
-					
+				
 					<?php echo $description; ?>
 				</div>
 			</div>

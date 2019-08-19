@@ -637,7 +637,7 @@ class ControllerCatalogProduct extends Controller {
 		$data['entry_meta_description'] = $this->language->get('entry_meta_description');
 		$data['entry_meta_keyword'] = $this->language->get('entry_meta_keyword');
 		$data['entry_keyword'] = $this->language->get('entry_keyword');
-		$data['entry_model'] = $this->language->get('entry_model');
+		//$data['entry_model'] = $this->language->get('entry_model');
 		$data['entry_sku'] = $this->language->get('entry_sku');
 		$data['entry_upc'] = $this->language->get('entry_upc');
 		$data['entry_ean'] = $this->language->get('entry_ean');
@@ -744,11 +744,11 @@ class ControllerCatalogProduct extends Controller {
 			$data['error_name'] = array();
 		}
 
-		if (isset($this->error['model'])) {
+		/*if (isset($this->error['model'])) {
 			$data['error_model'] = $this->error['model'];
 		} else {
 			$data['error_model'] = '';
-		}
+		}*/
 
 		if (isset($this->error['keyword'])) {
 			$data['error_keyword'] = $this->error['keyword'];
@@ -847,13 +847,13 @@ class ControllerCatalogProduct extends Controller {
 			$data['product_description'] = array();
 		}
 
-		if (isset($this->request->post['model'])) {
+		/*if (isset($this->request->post['model'])) {
 			$data['model'] = $this->request->post['model'];
 		} elseif (!empty($product_info)) {
 			$data['model'] = $product_info['model'];
 		} else {
 			$data['model'] = '';
-		}
+		}*/
 
 		if (isset($this->request->post['location'])) {
 			$data['location'] = $this->request->post['location'];
@@ -1212,9 +1212,9 @@ class ControllerCatalogProduct extends Controller {
 			}
 		}
 
-		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
+		/*if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = $this->language->get('error_model');
-		}
+		}*/
 
 		if (utf8_strlen($this->request->post['keyword']) > 0) {
 			$this->load->model('catalog/url_alias');

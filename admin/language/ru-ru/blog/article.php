@@ -23,6 +23,7 @@ $_['column_action']          = 'Действия';
 
 // Entry
 $_['entry_name']             = 'Название статьи';
+$_['entry_date_available']   = 'Дата публикации';
 $_['entry_description']      = 'Текст статьи';
 $_['entry_meta_title'] 	     = 'Мета-тег Title';
 $_['entry_meta_h1'] 	     = 'HTML-тег H1';

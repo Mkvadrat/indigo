@@ -1,7 +1,7 @@
 <?php
 class ModelCatalogProduct extends Model {
 	public function addProduct($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', address = '" . $this->db->escape($data['address']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . /*$this->db->escape($data['model'])*/ $this->generateModel() . "', agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', address = '" . $this->db->escape($data['address']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
 		$product_id = $this->db->getLastId();
 
@@ -80,7 +80,11 @@ class ModelCatalogProduct extends Model {
 		}
 
 		if ($data['keyword']) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+				$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+		}else{
+			foreach ($data['product_description'] as $language_id => $value) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'product_id=" . (int)$product_id . "', keyword = '" . $this->translit($this->db->escape($value['name'])) . "'");
+			}
 		}
 
 		$this->cache->delete('product');
@@ -89,7 +93,7 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function editProduct($product_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['model']) . "', agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', address = '" . $this->db->escape($data['address']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "product SET /*model = '" . $this->db->escape($data['model']) . "',*/ agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', address = '" . $this->db->escape($data['address']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
 
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
@@ -640,4 +644,72 @@ class ModelCatalogProduct extends Model {
 
 		return $query->row['total'];
 	}
+	
+	public function generateModel(){
+		$query = $this->db->query("SELECT MAX(model) FROM  " . DB_PREFIX . "product");
+                
+        $curent_id = $query->row['MAX(model)'];
+		
+		if($curent_id){
+			$model_id = $curent_id + 1;
+		}else{
+			$shuffleproducts = array("1","2","3","4","5","6","7","8","9","0"); 
+			shuffle($shuffleproducts);
+			foreach ($shuffleproducts as $codenumber)
+			$model_id = strval($codenumber);
+		}
+
+        return $model_id;
+	}
+	
+	public function translit($string) {
+        $replace = array(
+            'а' => 'a',
+            'б' => 'b',
+            'в' => 'v',
+            'г' => 'g',
+            'ґ' => 'g',
+            'д' => 'd',
+            'е' => 'e',
+            'є' => 'je',
+            'ё' => 'e',
+            'ж' => 'zh',
+            'з' => 'z',
+            'и' => 'i',
+            'і' => 'i',
+            'ї' => 'ji',
+            'й' => 'j',
+            'к' => 'k',
+            'л' => 'l',
+            'м' => 'm',
+            'н' => 'n',
+            'о' => 'o',
+            'п' => 'p',
+            'р' => 'r',
+            'с' => 's',
+            'т' => 't',
+            'у' => 'u',
+            'ф' => 'f',
+            'х' => 'h',
+            'ц' => 'ts',
+            'ч' => 'ch',
+            'ш' => 'sh',
+            'щ' => 'sch',
+            'ъ' => '',
+            'ы' => 'y',
+            'ь' => '',
+            'э' => 'e',
+            'ю' => 'ju',
+            'я' => 'ja',
+            ' ' => '-',
+            '+' => 'plus'
+        );
+        
+        $string = mb_strtolower($string, 'UTF-8');
+        $string = strtr($string, $replace);
+        $string = preg_replace('![^a-zа-яёйъ0-9]+!isu', '-', $string);
+        $string = preg_replace('!\-{2,}!si', '-', $string);
+        
+        return $string;
+    }
 }

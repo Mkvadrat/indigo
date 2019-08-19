@@ -393,6 +393,12 @@ class ControllerUserUser extends Controller {
 		}
 		
 		$data['text_none'] = $this->language->get('text_none');
+		
+		if(!empty($user_info)) {
+			$data['current_category_id'] = $user_info['category_id'];
+		}else {
+			$data['current_category_id'] = '';
+		}
 				
 		if (isset($this->request->post['username'])) {
 			$data['username'] = $this->request->post['username'];

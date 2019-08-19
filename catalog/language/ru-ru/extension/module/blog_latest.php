@@ -5,7 +5,7 @@
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
 // Heading
-$_['heading_title'] = 'Последние новости';
+$_['heading_title'] = 'Новости и статьи';
 $_['text_views'] 	= 'Просмотров:';
 $_['button_more']   = 'подробнее';
 
