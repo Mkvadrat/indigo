@@ -93,7 +93,7 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function editProduct($product_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "product SET /*model = '" . $this->db->escape($data['model']) . "',*/ agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', address = '" . $this->db->escape($data['address']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "product SET agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', address = '" . $this->db->escape($data['address']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE product_id = '" . (int)$product_id . "'");
 
 		if (isset($data['image'])) {
 			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");

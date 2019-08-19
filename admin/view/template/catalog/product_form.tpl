@@ -25,6 +25,9 @@
         <h3 class="panel-title"><i class="fa fa-pencil"></i> <?php echo $text_form; ?></h3>
       </div>
       <div class="panel-body">
+        <div class="panel-heading">
+          <h3 class="panel-title"><?php echo $model ? 'ID обьекта в системе - ' . $model : "Сохраните данные для отображения ID объекта"; ?></h3>
+        </div>
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-product" class="form-horizontal">
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>

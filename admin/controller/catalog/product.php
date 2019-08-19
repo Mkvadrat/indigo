@@ -854,6 +854,12 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$data['model'] = '';
 		}*/
+		
+		if (!empty($product_info)) {
+			$data['model'] = $product_info['model'];
+		} else {
+			$data['model'] = '';
+		}
 
 		if (isset($this->request->post['location'])) {
 			$data['location'] = $this->request->post['location'];
