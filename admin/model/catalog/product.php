@@ -228,7 +228,48 @@ class ModelCatalogProduct extends Model {
 		}
 	}
 
+	private function delete_image($path) {
+		if (isset($path)) {
+			$path = rtrim(DIR_IMAGE  . $path);
+
+			if (!file_exists($path)) {
+				$error= 1;
+			}
+
+			if ($path == rtrim(DIR_IMAGE . 'catalog/', '/')) {
+				$error = 1;
+			}
+		} else {
+			$error = 1;
+		}
+
+		if (!$this->user->hasPermission('modify', 'common/filemanager')) {
+      		$error = 1;  
+    	}
+
+		if (!isset($error)) {
+			if (is_file($path)) {
+				unlink($path);
+			} elseif (is_dir($path)) {
+				//$this->recursiveDelete($path);
+			}
+		}				
+	}
+
 	public function deleteProduct($product_id) {
+		
+		$query = $this->db->query("SELECT p.image FROM " . DB_PREFIX . "product p WHERE p.product_id = '" . (int)$product_id . "'");
+		
+		if($query->row){
+			$this->delete_image($query->row['image']);
+
+			$results = $this->getProductImages($product_id);
+
+			foreach ($results as $result) {
+				$this->delete_image($result['image']);
+			}
+		}
+		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
