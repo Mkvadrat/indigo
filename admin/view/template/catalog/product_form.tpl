@@ -34,6 +34,7 @@
             <li><a href="#tab-data" data-toggle="tab"><?php echo $tab_data; ?></a></li>
             <li><a href="#tab-staff" data-toggle="tab">Для сотрудников</a></li>
             <li><a href="#tab-links" data-toggle="tab"><?php echo $tab_links; ?></a></li>
+            <li><a href="#tab-attribute" data-toggle="tab"><?php echo $tab_attribute; ?></a></li>
             <li><a href="#tab-option" data-toggle="tab"><?php echo $tab_option; ?></a></li>
             <li><a href="#tab-image" data-toggle="tab"><?php echo $tab_image; ?></a></li>
             <li><a href="#tab-design" data-toggle="tab"><?php echo $tab_design; ?></a></li>
@@ -378,6 +379,19 @@
                   <a onclick="$(this).parent().find(':checkbox').prop('checked', true);"><?php echo $text_select_all; ?></a> / <a onclick="$(this).parent().find(':checkbox').prop('checked', false);"><?php echo $text_unselect_all; ?></a></div>
               </div>
               <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-filter"><span data-toggle="tooltip" title="<?php echo $help_filter; ?>"><?php echo $entry_filter; ?></span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="filter" value="" placeholder="<?php echo $entry_filter; ?>" id="input-filter" class="form-control" />
+                  <div id="product-filter" class="well well-sm" style="height: 150px; overflow: auto;">
+                    <?php foreach ($product_filters as $product_filter) { ?>
+                    <div id="product-filter<?php echo $product_filter['filter_id']; ?>"><i class="fa fa-minus-circle"></i> <?php echo $product_filter['name']; ?>
+                      <input type="hidden" name="product_filter[]" value="<?php echo $product_filter['filter_id']; ?>" />
+                    </div>
+                    <?php } ?>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="col-sm-2 control-label"><?php echo $entry_store; ?></label>
                 <div class="col-sm-10">
                   <div class="well well-sm" style="height: 150px; overflow: auto;">
@@ -420,6 +434,41 @@
                     <?php } ?>
                   </div>
                 </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="tab-attribute">
+              <div class="table-responsive">
+                <table id="attribute" class="table table-striped table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <td class="text-left"><?php echo $entry_attribute; ?></td>
+                      <td class="text-left"><?php echo $entry_text; ?></td>
+                      <td></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $attribute_row = 0; ?>
+                    <?php foreach ($product_attributes as $product_attribute) { ?>
+                    <tr id="attribute-row<?php echo $attribute_row; ?>">
+                      <td class="text-left" style="width: 40%;"><input type="text" name="product_attribute[<?php echo $attribute_row; ?>][name]" value="<?php echo $product_attribute['name']; ?>" placeholder="<?php echo $entry_attribute; ?>" class="form-control" />
+                        <input type="hidden" name="product_attribute[<?php echo $attribute_row; ?>][attribute_id]" value="<?php echo $product_attribute['attribute_id']; ?>" /></td>
+                      <td class="text-left"><?php foreach ($languages as $language) { ?>
+                        <div class="input-group"><span class="input-group-addon"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>" /></span>
+                          <textarea name="product_attribute[<?php echo $attribute_row; ?>][product_attribute_description][<?php echo $language['language_id']; ?>][text]" rows="5" placeholder="<?php echo $entry_text; ?>" class="form-control"><?php echo isset($product_attribute['product_attribute_description'][$language['language_id']]) ? $product_attribute['product_attribute_description'][$language['language_id']]['text'] : ''; ?></textarea>
+                        </div>
+                        <?php } ?></td>
+                      <td class="text-left"><button type="button" onclick="$('#attribute-row<?php echo $attribute_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                    </tr>
+                    <?php $attribute_row++; ?>
+                    <?php } ?>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="2"></td>
+                      <td class="text-left"><button type="button" onclick="addAttribute();" data-toggle="tooltip" title="<?php echo $button_attribute_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                    </tr>
+                  </tfoot>
+                </table>
               </div>
             </div>
             <div class="tab-pane" id="tab-option">
@@ -839,7 +888,26 @@ $('#product-related').delegate('.fa-minus-circle', 'click', function() {
 	$(this).parent().remove();
 });
 //--></script>
-  <script type="text/javascript"><!--
+ <script type="text/javascript"><!--
+var attribute_row = <?php echo $attribute_row; ?>;
+
+function addAttribute() {
+    html  = '<tr id="attribute-row' + attribute_row + '">';
+	html += '  <td class="text-left" style="width: 20%;"><input type="text" name="product_attribute[' + attribute_row + '][name]" value="" placeholder="<?php echo $entry_attribute; ?>" class="form-control" /><input type="hidden" name="product_attribute[' + attribute_row + '][attribute_id]" value="" /></td>';
+	html += '  <td class="text-left">';
+	<?php foreach ($languages as $language) { ?>
+	html += '<div class="input-group"><span class="input-group-addon"><img src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" title="<?php echo $language['name']; ?>" /></span><textarea name="product_attribute[' + attribute_row + '][product_attribute_description][<?php echo $language['language_id']; ?>][text]" rows="5" placeholder="<?php echo $entry_text; ?>" class="form-control"></textarea></div>';
+    <?php } ?>
+	html += '  </td>';
+	html += '  <td class="text-left"><button type="button" onclick="$(\'#attribute-row' + attribute_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+    html += '</tr>';
+
+	$('#attribute tbody').append(html);
+
+	attributeautocomplete(attribute_row);
+
+	attribute_row++;
+}
 
 function attributeautocomplete(attribute_row) {
 	$('input[name=\'product_attribute[' + attribute_row + '][name]\']').autocomplete({

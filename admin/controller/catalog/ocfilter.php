@@ -255,6 +255,7 @@ class ControllerCatalogOCFilter extends Controller {
 
     $data['types'] = array(
       'checkbox' => $this->language->get('text_checkbox'),
+      'text' => $this->language->get('text_text'),
       'radio' => $this->language->get('text_radio'),
       'slide' => $this->language->get('text_slide'),
       'slide_dual' => $this->language->get('text_slide_dual'),
@@ -386,6 +387,7 @@ class ControllerCatalogOCFilter extends Controller {
 
     $data['types'] = array(
       'checkbox' => $this->language->get('text_checkbox'),
+      'text' => $this->language->get('text_text'),
       'radio' => $this->language->get('text_radio'),
       'slide' => $this->language->get('text_slide'),
       'slide_dual' => $this->language->get('text_slide_dual'),
@@ -517,6 +519,7 @@ class ControllerCatalogOCFilter extends Controller {
             'type' => $option['type'],
             'slide_value_min' => '',
             'slide_value_max' => '',
+            'text' => '',
             'description' => $description,
             'values' => $values
           );
@@ -526,6 +529,7 @@ class ControllerCatalogOCFilter extends Controller {
             $json['options'][$key]['description']     = $product_value['description'];
             $json['options'][$key]['slide_value_min'] = ((float) $product_value['slide_value_min'] ? preg_replace('!(0+?$)|(\.0+?$)!', '', $product_value['slide_value_min']) : '');
             $json['options'][$key]['slide_value_max'] = ((float) $product_value['slide_value_max'] ? preg_replace('!(0+?$)|(\.0+?$)!', '', $product_value['slide_value_max']) : '');
+            $json['options'][$key]['text'] = $product_value['text'] ? $product_value['text'] : '';
           }
         }
       } else {

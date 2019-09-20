@@ -437,8 +437,12 @@ var ocfilter = {
 
           html.push('<tr' + (!option.status ? ' class="disabled"' : '') + '>');
           html.push('<td width="20%">' + option.name + '</td><td width="80%">');
-
-          if (option.type == 'slide' || option.type == 'slide_dual') {
+			
+		  if(option.type == 'text') {
+			console.log(option);
+			html.push('<input type="hidden" name="ocfilter_product_option[' + option.option_id + '][values][0][selected]" value="1" />');
+			html.push('<input type="text" name="ocfilter_product_option[' + option.option_id + '][values][0][text]" value="' + option.text + '" size="10" class="text" />' + option.postfix + '');
+          } else if (option.type == 'slide' || option.type == 'slide_dual') {
 						html.push('<input type="hidden" name="ocfilter_product_option[' + option.option_id + '][values][0][selected]" value="1" />');
 						html.push('<input type="text" name="ocfilter_product_option[' + option.option_id + '][values][0][slide_value_min]" value="' + option.slide_value_min + '" size="5" class="slide-value-min" />&nbsp;&mdash;&nbsp;<input type="text" name="ocfilter_product_option[' + option.option_id + '][values][0][slide_value_max]" value="' + option.slide_value_max + '" size="5" class="slide-value-max" />' + option.postfix + '');
 					} else {
@@ -460,7 +464,7 @@ var ocfilter = {
 	            if (!selecteds.length) selecteds = ['<b>' + ocfilter.php.text_select + '</b>'];
 
 	            html.push('<div class="switcher"><div class="selected">' + selecteds.join('') + '</div><div class="values">' + values.join('') + '</div>');
-	          } else {
+			  }else{
 	            html.push('<a href="index.php?route=catalog/ocfilter/update&token=' + ocfilter.url['token'] + '&option_id=' + option.option_id + '" target="_blank">' + ocfilter.php.entry_values + '</a>');
 	          }
 					}

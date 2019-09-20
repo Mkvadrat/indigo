@@ -82,6 +82,7 @@
   ga('send', 'pageview');
 
 </script>
+<meta name="yandex-verification" content="c287b46de1a54159" />
 </head>
 <body>
   <div class="page">
