@@ -556,7 +556,7 @@ class ControllerCatalogOCFilter extends Controller {
       if ($this->request->post['field'] == 'type' && ($this->request->post['value'] == 'slide' || $this->request->post['value'] == 'slide_dual')) {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE option_id = '" . (int)$this->request->post['option_id'] . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
-        foreach ($query->rows as $result) {
+        foreach ($query->rows as $result) {;
           $slide_value = str_replace(',', '.', $result['name']);
           $slide_value = trim(preg_replace('/[^0-9\.\-]+/s', '', $slide_value));
 

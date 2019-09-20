@@ -439,7 +439,7 @@ var ocfilter = {
           html.push('<td width="20%">' + option.name + '</td><td width="80%">');
 			
 		  if(option.type == 'text') {
-			console.log(option);
+			//console.log(option);
 			html.push('<input type="hidden" name="ocfilter_product_option[' + option.option_id + '][values][0][selected]" value="1" />');
 			html.push('<input type="text" name="ocfilter_product_option[' + option.option_id + '][values][0][text]" value="' + option.text + '" size="10" class="text" />' + option.postfix + '');
           } else if (option.type == 'slide' || option.type == 'slide_dual') {
