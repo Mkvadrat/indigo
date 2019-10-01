@@ -28,7 +28,7 @@ Math.easeIn = function (val, min, max, strength) {
 		ocfilter.currencys_update();
 	});
 	
-	
+		
   function setSlider(_, target) {
     var
       that = this,
@@ -129,6 +129,7 @@ Math.easeIn = function (val, min, max, strength) {
     });
 
     $element.get(0).noUiSlider.on('change', function(_, __, values, tap, positions) {
+			
       that.params.remove.call(that, $element.data().optionId);
 
       if ((positions[1] - positions[0]) < 100) {
@@ -197,7 +198,7 @@ Math.easeIn = function (val, min, max, strength) {
 
         that.options.php.params = $element.val();
 
-        if ($element.is(':radio')) {
+        if ($element.is(':radio') || $element.is(':text')) {
           $element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
         }
 

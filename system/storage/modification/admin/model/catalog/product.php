@@ -1,5 +1,28 @@
 <?php
 class ModelCatalogProduct extends Model {
+
+        public function translitValue($string) {
+          $replace = array(
+            'а' => 'a', 'б' => 'b',
+            'в' => 'v', 'г' => 'g', 'ґ' => 'g', 'д' => 'd', 'е' => 'e',
+            'є' => 'je', 'ё' => 'e', 'ж' => 'zh', 'з' => 'z', 'и' => 'i',
+            'і' => 'i', 'ї' => 'ji', 'й' => 'j', 'к' => 'k', 'л' => 'l',
+            'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r',
+            'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h',
+            'ц' => 'ts', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch', 'ъ' => '',
+            'ы' => 'y', 'ь' => '', 'э' => 'e', 'ю' => 'ju', 'я' => 'ja',
+      
+            ' ' => '-', '+' => 'plus'
+          );
+      
+          $string = mb_strtolower($string, 'UTF-8');
+          $string = strtr($string, $replace);
+          $string = preg_replace('![^a-zа-яёйъ0-9]+!isu', '-', $string);
+          $string = preg_replace('!\-{2,}!si', '-', $string);
+      
+          return $string;
+        }
+      
 	public function addProduct($data) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . /*$this->db->escape($data['model'])*/ $this->generateModel() . "', agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', address = '" . $this->db->escape($data['address']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
@@ -58,7 +81,39 @@ class ModelCatalogProduct extends Model {
 			foreach ($data['ocfilter_product_option'] as $option_id => $values) {
 				foreach ($values['values'] as $value_id => $value) {
 					if (isset($value['selected'])) {
-						$this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (string)$value_id . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = '" . (isset($value['text']) ? (float)$value['text'] : '') . "'");
+            if(isset($value['type']) && $value['type'] == 'text'){
+              if(isset($value['text'])){
+                $text_val = trim($value['text']);
+              }else{
+                $text_val = '';
+              }
+
+              $name_options = array();
+              
+              $query_name = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE option_id = '" . $option_id . "' AND name <> ''");
+
+              foreach($query_name->rows as $current_opt){
+                $name_options[] = $current_opt['name'];
+              }
+
+              if (in_array($text_val, $name_options)) {
+                $query_value = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE name LIKE '" . $text_val . "%' AND option_id = '" . $option_id . "' AND name <> ''");
+                
+                foreach($query_value->rows as $current_val){
+                  $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (string)$current_val['value_id'] . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = '" . (string)$text_val . "'");
+                }
+              }elseif(!empty($text_val)){
+                $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value SET option_id = '" . (int)$option_id . "', sort_order = '0', `keyword` = '" . $this->db->escape($this->translitValue($text_val)) . "', color = '', image = ''");
+
+                $last_id = $this->db->getLastId();
+                
+                $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_description SET value_id = '" . (string)$last_id . "', option_id = '" . (int)$option_id . "', language_id = '1', name = '" . $this->db->escape($text_val) . "'");
+                
+                $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . $last_id . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = '" . (string)$text_val . "'");
+              }
+            }else{
+              $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (string)$value_id . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = ''");
+            }
 					}
 				}
 			}
@@ -142,19 +197,58 @@ class ModelCatalogProduct extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
 
 
-    // OCFilter start
-    $this->db->query("DELETE FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE product_id = '" . (int)$product_id . "'");
-
-		if (isset($data['ocfilter_product_option'])) {
-			foreach ($data['ocfilter_product_option'] as $option_id => $values) {
-				foreach ($values['values'] as $value_id => $value) {
-					if (isset($value['selected'])) {
-						$this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (string)$value_id . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = '" . (isset($value['text']) ? (float)$value['text'] : '') . "'");
-					}
-				}
-			}
-		}
-		// OCFilter end
+      // OCFilter start
+      if (isset($data['ocfilter_product_option'])) {
+        foreach ($data['ocfilter_product_option'] as $option_id => $values) {
+          foreach ($values['values'] as $value_id => $value) {
+            if (isset($value['selected'])) {
+              if(isset($value['type']) && $value['type'] == 'text'){
+                if(isset($value['text'])){
+                  $text_val = trim($value['text']);
+                }else{
+                  $text_val = '';
+                }
+                
+                $name_options = array();
+                
+                $query_name = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE option_id = '" . $option_id . "' AND name <> ''");
+  
+                foreach($query_name->rows as $current_opt){
+                  $name_options[] = $current_opt['name'];
+                }
+  
+                if (in_array($text_val, $name_options)) {
+                  var_dump($name_options);
+                  $query_value = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE name LIKE '" . $text_val . "%' AND option_id = '" . $option_id . "' AND name <> ''");
+                  
+                  $this->db->query("DELETE FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE product_id = '" . (int)$product_id . "'");
+                  
+                  foreach($query_value->rows as $current_val){
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (string)$current_val['value_id'] . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = '" . (string)$text_val . "'");
+                  }
+                }elseif(!empty($text_val)){
+                  $this->db->query("DELETE FROM " . DB_PREFIX . "ocfilter_option_value WHERE option_id = '" . (int)$option_id . "'");
+                  
+                  $this->db->query("DELETE FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE option_id = '" . (int)$option_id . "'");
+                
+                  $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value SET option_id = '" . (int)$option_id . "', sort_order = '0', `keyword` = '" . $this->db->escape($this->translitValue($text_val)) . "', color = '', image = ''");
+  
+                  $last_id = $this->db->getLastId();
+                  
+                  $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_description SET value_id = '" . (string)$last_id . "', option_id = '" . (int)$option_id . "', language_id = '1', name = '" . $this->db->escape($text_val) . "'");
+                  
+                  $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . $last_id . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = '" . (string)$text_val . "'");
+                }
+              }else{
+                $this->db->query("DELETE FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE product_id = '" . (int)$product_id . "'");
+                
+                $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (string)$value_id . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = ''");
+              }
+            }
+          }
+        }
+      }
+      // OCFilter end
       
 		if (isset($data['product_store'])) {
 			foreach ($data['product_store'] as $store_id) {

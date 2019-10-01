@@ -114,15 +114,7 @@ class ModelCatalogOCFilter extends Model {
         }
       }
     }
-    
-    if ($data['type'] == 'text') {
-      $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE option_id = '" . (int)$option_id . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
-
-      foreach ($query->rows as $result) {
-  		  $this->db->query("UPDATE IGNORE " . DB_PREFIX . "ocfilter_option_value_to_product SET value_id = '0', text = '" . $result['name'] . "' WHERE option_id = '" . (int)$result['option_id'] . "' AND value_id = '" . (string)$result['value_id'] . "'");
-      }
-    }
-
+  
     $this->cache->delete('ocfilter');
     $this->cache->delete('product');
   }
@@ -184,6 +176,16 @@ class ModelCatalogOCFilter extends Model {
     }
 
     return $options_data;
+  }
+  
+  public function getText($product_id, $option_id){
+    if($product_id != 0){
+      $options_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE product_id = '" . $product_id . "' AND option_id = '" . $option_id . "'");
+  
+      foreach ($options_query->rows as $value){
+        return $value['text'];
+      }
+    }
   }
 
   public function getOptionCategories($option_id) {

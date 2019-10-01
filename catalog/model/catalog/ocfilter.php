@@ -48,6 +48,12 @@ class ModelCatalogOCFilter extends Model {
 
         $option_data['values'] = $values_query->rows;
       }
+      
+      if ($option['type'] == 'text') {
+        $values_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product AS oovtp WHERE oovtp.option_id = '" . (int)$option['option_id'] . "'");
+        
+        $option_data['values'] = $values_query->rows;
+      }
 
       $options_data[] = $option_data;
     }
@@ -831,6 +837,32 @@ class ModelCatalogOCFilter extends Model {
 	
 		return $query->rows;
 	}
+  
+  public function getAutocomplete($data = array()) {
+    $sql = "SELECT DISTINCT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE option_id = '" . $this->db->escape($data['option_id']) . "'";
+
+		if (!empty($data['filter_name'])) {
+			$sql .= " AND text LIKE '" . $this->db->escape($data['filter_name']) . "%' GROUP BY text";
+		}
+    
+    $sql .= " ORDER BY product_id ASC ";
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+  }
 }
 
 ?>

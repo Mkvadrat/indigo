@@ -4,7 +4,7 @@ class ModelCatalogManufacturer extends Model {
 
 		$this->load->model('localisation/language');
 		$language_info = $this->model_localisation_language->getLanguageByCode($this->config->get('config_language'));
-    $front_language_id = $language_info['language_id'];
+		$front_language_id = $language_info['language_id'];
 		$data['name'] = $data['manufacturer_description'][$front_language_id ]['name'];
 		
 		$this->db->query("INSERT INTO " . DB_PREFIX . "manufacturer SET name = '" . $this->db->escape($data['name']) . "', sort_order = '" . (int)$data['sort_order'] . "'");

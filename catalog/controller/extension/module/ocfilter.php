@@ -290,12 +290,12 @@ class ControllerExtensionModuleOCFilter extends Controller {
         $option['type'] = 'radio';
         $option['selectbox'] = true;
       }
-
+      
       $this_option = isset($this->options_get[$option['option_id']]);
 
 			$values = array();
 
-      if ($option['type'] != 'slide' && $option['type'] != 'slide_dual') {
+      if ($option['type'] != 'slide' && $option['type'] != 'slide_dual' && $option['type'] != 'text') {
 				foreach ($option['values'] as $value) {
 					$this_value = isset($this->options_get[$option['option_id']]) && in_array($value['value_id'], $this->options_get[$option['option_id']]);
 
@@ -335,7 +335,29 @@ class ControllerExtensionModuleOCFilter extends Controller {
         if (!$values) {
         	continue;
         }
-      } else {
+      } elseif($option['type'] == 'text') {
+        
+        $params = $this->cancelOptionParams($option['option_id']);
+
+				if (isset($this->counters[$option['option_id'] . 'all'])) {
+					$count = $this->counters[$option['option_id'] . 'all'];
+				} else {
+					$count = 1;
+				}
+        
+        foreach ($option['values'] as $value) {
+          array_unshift($values, array(
+            'value_id' => $option['option_id'],
+            'id'       => 'cancel-' . $option['option_id'],
+            'name'     => $this->language->get('text_any'),
+            'params'   => $params,
+            'count'    => $count,
+            'selected' => !$this_option
+          ));
+          
+          
+        }
+      }else{
         $range = $this->model_catalog_ocfilter->getSliderRange($option['option_id'], array(
     			'filter_category_id' => $this->category_id,
           'filter_ocfilter' => $this->cancelOptionParams($option['option_id']),
@@ -1096,5 +1118,40 @@ class ControllerExtensionModuleOCFilter extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
   }
+  
+  public function autocomplete() {
+		$json = array();
+
+		if (isset($this->request->get['filter_name'])) {
+			$this->load->model('catalog/ocfilter');
+
+			$filter_data = array(
+				'filter_name' => $this->request->get['filter_name'],
+        'option_id'   => $this->request->get['option_id'],
+				'start'       => 0,
+				'limit'       => 5
+			);
+      
+			$results = $this->model_catalog_ocfilter->getAutocomplete($filter_data);
+
+			foreach ($results as $result) {
+				$json[] = array(
+					'option_id' => $result['option_id'],
+					'name'      => strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8'))
+				);
+			}
+		}
+
+		$sort_order = array();
+
+		foreach ($json as $key => $value) {
+			$sort_order[$key] = $value['name'];
+		}
+
+		array_multisort($sort_order, SORT_ASC, $json);
+
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
 }
 ?>

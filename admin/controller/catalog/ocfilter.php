@@ -510,6 +510,11 @@ class ControllerCatalogOCFilter extends Controller {
               }
             }
           }
+          
+          if($option['type'] == 'text'){
+            $product_id = isset($this->request->get['product_id']) ? $this->request->get['product_id'] : 0;
+            $text = $this->model_catalog_ocfilter->getText($product_id, $option['option_id']);
+          }
 
           $json['options'][$key] = array(
             'option_id' => (string)$option['option_id'],
@@ -519,17 +524,16 @@ class ControllerCatalogOCFilter extends Controller {
             'type' => $option['type'],
             'slide_value_min' => '',
             'slide_value_max' => '',
-            'text' => '',
+            'text' => $text ? $text : '',
             'description' => $description,
             'values' => $values
           );
-
+          
           if (isset($product_values[$option['option_id']][0])) {
             $product_value                            = array_shift($product_values[$option['option_id']]);
             $json['options'][$key]['description']     = $product_value['description'];
             $json['options'][$key]['slide_value_min'] = ((float) $product_value['slide_value_min'] ? preg_replace('!(0+?$)|(\.0+?$)!', '', $product_value['slide_value_min']) : '');
             $json['options'][$key]['slide_value_max'] = ((float) $product_value['slide_value_max'] ? preg_replace('!(0+?$)|(\.0+?$)!', '', $product_value['slide_value_max']) : '');
-            $json['options'][$key]['text'] = $product_value['text'] ? $product_value['text'] : '';
           }
         }
       } else {
