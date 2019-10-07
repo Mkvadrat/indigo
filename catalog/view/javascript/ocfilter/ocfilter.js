@@ -196,8 +196,12 @@ Math.easeIn = function (val, min, max, strength) {
           $buttonTarget = $element.closest('label'),
           $dropdown = $element.closest('.dropdown');
 
-        that.options.php.params = $element.val();
-
+				if ($element.is(':text')) {
+					that.options.php.params = $element.attr('value');
+				}else{
+					that.options.php.params = $element.val();
+				}
+       
         if ($element.is(':radio') || $element.is(':text')) {
           $element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
         }

@@ -13,8 +13,8 @@
 
   <div class="ocf-option-values">
     
-    <?php if($option['type'] == 'text'){ var_dump($value)?>
-    <label id="v-48540" class="ocf-selected" data-option-id="<?php echo $option['option_id']; ?>">
+    <?php if($option['type'] == 'text'){ ?>
+    <label class="ocf-selected" data-option-id="<?php echo $option['option_id']; ?>">
       <input type="text" name="ocf[<?php echo $option['option_id']; ?>]" value="" class="ocf-target" />
     </label>  
       <script>
@@ -27,15 +27,16 @@
                 response($.map(json, function(item) {
                   return {
                     label: item['name'],
-                    option_id: item['option_id'],
+                    params: item['params'],
+                    id: item['id'],
                   }
                 }));
               }
             });
           },
-          'select': function( event, ui ) {            
-            $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').attr('value', ui['item']['option_id'] + ':' + ui['item']['label']);
-            //$('label[data-option-id=\'<?php echo $option['option_id']; ?>\']').attr('id', ui['item']['option_id'] + ui['item']['label']);
+          'select': function( event, ui ) {
+            $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').attr('value', ui['item']['params']);
+            $('label[data-option-id=\'<?php echo $option['option_id']; ?>\']').attr('id', 'v-' + ui['item']['id']);
           }
         });
       </script>

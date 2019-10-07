@@ -337,25 +337,27 @@ class ControllerExtensionModuleOCFilter extends Controller {
         }
       } elseif($option['type'] == 'text') {
         
-        $params = $this->cancelOptionParams($option['option_id']);
-
-				if (isset($this->counters[$option['option_id'] . 'all'])) {
-					$count = $this->counters[$option['option_id'] . 'all'];
-				} else {
-					$count = 1;
-				}
-        
         foreach ($option['values'] as $value) {
-          array_unshift($values, array(
-            'value_id' => $option['option_id'],
-            'id'       => 'cancel-' . $option['option_id'],
-            'name'     => $this->language->get('text_any'),
+          $this_value = isset($this->options_get[$option['option_id']]) && in_array($value['value_id'], $this->options_get[$option['option_id']]);
+          
+          $params = $this->getValueParams($option['option_id'], $value['value_id'], 'text');
+
+          $count = 0;
+  
+          if (isset($this->counters[$option['option_id'] . 'all'])) {
+            $count = $this->counters[$option['option_id'] . 'all'];
+          } else {
+            $count = 1;
+          }
+          
+          $values[] = array(
+            'value_id' => $value['value_id'],
+            'id'       => $option['option_id'] . $value['value_id'],
+            'name'     => $value['text'],
             'params'   => $params,
             'count'    => $count,
             'selected' => !$this_option
-          ));
-          
-          
+          );          
         }
       }else{
         $range = $this->model_catalog_ocfilter->getSliderRange($option['option_id'], array(
@@ -435,7 +437,7 @@ class ControllerExtensionModuleOCFilter extends Controller {
 	protected function getValueParams($option_id, $value_id, $type = 'checkbox') {
 		$decoded_params = decodeParamsFromString($this->params, $this->config);
 
-		if ($type == 'checkbox') {
+		if ($type == 'checkbox' || $type == 'text') {
 			if (isset($decoded_params[$option_id])) {
 				if (false !== $key = array_search($value_id, $decoded_params[$option_id])) {
 					unset($decoded_params[$option_id][$key]);
@@ -1137,7 +1139,9 @@ class ControllerExtensionModuleOCFilter extends Controller {
 			foreach ($results as $result) {
 				$json[] = array(
 					'option_id' => $result['option_id'],
-					'name'      => strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8'))
+					'name'      => strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')),
+          'params'    => $this->getValueParams($result['option_id'], $result['value_id'], 'text'),
+          'id'        => $result['option_id'] . $result['value_id']
 				);
 			}
 		}
