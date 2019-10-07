@@ -395,11 +395,14 @@ class ControllerCatalogProduct extends Controller {
 		$data['categories'] = $this->model_catalog_category->getCategories($filter_data);
 
 		foreach ($results as $result) {
-
+			$images = $this->model_catalog_product->getProductImages($result['product_id']);
+			
+			$image_lk = isset($images[0]['image']) ? $images[0]['image'] : '';
+			
 			$category =  $this->model_catalog_product->getProductCategories($result['product_id']);
-
-			if (is_file(DIR_IMAGE . $result['image'])) {
-				$image = $this->model_tool_image->resize($result['image'], 40, 40);
+			
+			if (is_file(DIR_IMAGE . $image_lk)  && $image_lk) {
+				$image = $this->model_tool_image->resize($image_lk, 40, 40);
 			} else {
 				$image = $this->model_tool_image->resize('no_image.png', 40, 40);
 			}
@@ -1012,54 +1015,6 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$data['product_category'] = array();
 		}
-		
-		$this->load->model('catalog/filter');
-
-		if (isset($this->request->post['product_filter'])) {
-			$filters = $this->request->post['product_filter'];
-		} elseif (isset($this->request->get['product_id'])) {
-			$filters = $this->model_catalog_product->getProductFilters($this->request->get['product_id']);
-		} else {
-			$filters = array();
-		}
-
-		$data['product_filters'] = array();
-
-		foreach ($filters as $filter_id) {
-			$filter_info = $this->model_catalog_filter->getFilter($filter_id);
-
-			if ($filter_info) {
-				$data['product_filters'][] = array(
-					'filter_id' => $filter_info['filter_id'],
-					'name'      => $filter_info['group'] . ' &gt; ' . $filter_info['name']
-				);
-			}
-		}
-		
-		// Attributes
-		$this->load->model('catalog/attribute');
-
-		if (isset($this->request->post['product_attribute'])) {
-			$product_attributes = $this->request->post['product_attribute'];
-		} elseif (isset($this->request->get['product_id'])) {
-			$product_attributes = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
-		} else {
-			$product_attributes = array();
-		}
-
-		$data['product_attributes'] = array();
-
-		foreach ($product_attributes as $product_attribute) {
-			$attribute_info = $this->model_catalog_attribute->getAttribute($product_attribute['attribute_id']);
-
-			if ($attribute_info) {
-				$data['product_attributes'][] = array(
-					'attribute_id'                  => $product_attribute['attribute_id'],
-					'name'                          => $attribute_info['name'],
-					'product_attribute_description' => $product_attribute['product_attribute_description']
-				);
-			}
-		}
 
 		// Options
 		$this->load->model('catalog/option');
@@ -1247,92 +1202,6 @@ class ControllerCatalogProduct extends Controller {
 		}
 	
 		$data['stickers'] = $this->model_design_sticker->getStickersProduct();
-		
-		//ocfilter
-		$this->load->language('catalog/ocfilter');
-		$this->load->model('catalog/ocfilter');
-		$this->load->model('localisation/language');
-	
-		$languages = $this->model_localisation_language->getLanguages();
-	
-		$data['message'] = '';
-		$data['options'] = array();
-	
-		//if (isset($this->request->get['category_id'])) {
-		
-			if (isset($this->request->post['category_id'])) {
-				$category_id = $this->request->post['category_id'];
-			} elseif (isset($product_info)) {
-				$category_id = $this->model_catalog_product->getProductMainCategoryId($this->request->get['product_id']);
-			} else {
-				$category_id = 0;
-			}
-	
-			if (isset($this->request->get['product_id'])) {
-			  $product_values = $this->model_catalog_ocfilter->getProductValues($this->request->get['product_id']);
-			} else {
-			  $product_values = array();
-			}
-	
-		  //if ($results = $this->model_catalog_ocfilter->getOptionsByCategoryId($this->request->get['category_id'])) {
-			$results = $this->model_catalog_ocfilter->getOptionsByCategoryId($category_id);
-			foreach (array_values($results) as $key => $option) {
-			  if (!$option['status']) {
-				continue;
-			  }
-	
-			  $values      = array();
-			  $description = array();
-	
-			  foreach ($languages as $language) {
-				$description[$language['language_id']] = array(
-				  'description' => ''
-				);
-			  }
-	
-			  if ($option['type'] != 'slide' && $option['type'] != 'slide_dual' && $option['type'] != 'text') {
-				foreach ($option['values'] as $_key => $value) {
-				  $values[$_key] = array(
-					'value_id' => (string)$value['value_id'],
-					'name' => $value['name'],
-					'description' => $description,
-					'selected' => (bool)false
-				  );
-	
-				  if (isset($product_values[$option['option_id']][$value['value_id']])) {
-					$values[$_key]['selected']    = (bool)true;
-					$values[$_key]['description'] = $product_values[$option['option_id']][$value['value_id']]['description'];
-				  }
-				}
-			  }
-	
-			  $data['options'][$key] = array(
-				'option_id' => (string)$option['option_id'],
-				'name' => $option['name'],
-				'postfix' => $option['postfix'],
-				'status' => (int) $option['status'],
-				'type' => $option['type'],
-				'slide_value_min' => '',
-				'slide_value_max' => '',
-				'text' => '',
-				'description' => $description,
-				'values' => $values
-			  );
-	
-			  if (isset($product_values[$option['option_id']][0])) {
-				$product_value                            = array_shift($product_values[$option['option_id']]);
-				$data['options'][$key]['description']     = $product_value['description'];
-				$data['options'][$key]['slide_value_min'] = ((float) $product_value['slide_value_min'] ? preg_replace('!(0+?$)|(\.0+?$)!', '', $product_value['slide_value_min']) : '');
-				$data['options'][$key]['slide_value_max'] = ((float) $product_value['slide_value_max'] ? preg_replace('!(0+?$)|(\.0+?$)!', '', $product_value['slide_value_max']) : '');
-				$data['options'][$key]['text'] = ($product_value['text'] ? $product_value['text'] : '');
-			  }
-			}
-		 /* } else {
-			$data['message'] = $this->language->get('text_no_options');
-		  }*/
-		/*} else {
-		  $data['message'] = $this->language->get('text_select_category');
-		}*/
 
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');

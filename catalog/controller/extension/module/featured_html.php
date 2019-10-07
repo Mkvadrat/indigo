@@ -34,8 +34,12 @@ class ControllerExtensionModuleFeaturedHtml extends Controller {
 				$product_info = $this->model_catalog_product->getProduct($product_id);
 
 				if ($product_info) {
-					if (file_exists(DIR_IMAGE . $product_info['image']) && $product_info['image']){
-						list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $product_info['image']);
+					$images = $this->model_catalog_product->getProductImages($product_info['product_id']);
+				
+					$image_lk = isset($images[0]['image']) ? $images[0]['image'] : '';
+					
+					if (file_exists(DIR_IMAGE . $image_lk) && $image_lk){
+						list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $image_lk);
 						if ($width_orig>900) {
 							$height_orig = $height_orig * 900 / $width_orig;
 							$width_orig = 900;
@@ -45,8 +49,8 @@ class ControllerExtensionModuleFeaturedHtml extends Controller {
 						$width_orig = $setting['width'];
 					}
 							
-					if ($product_info['image']) {
-						$image = $this->model_tool_image->resize($product_info['image'], $width_orig, $height_orig);
+					if ($image_lk) {
+						$image = $this->model_tool_image->resize($image_lk, $width_orig, $height_orig);
 					} else {
 						$image = $this->model_tool_image->resize('placeholder.png', $width_orig, $height_orig);
 					}
