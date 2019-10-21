@@ -27,7 +27,6 @@ Math.easeIn = function (val, min, max, strength) {
 	$(document).on('change', "select[name='currencys']", function() {
 		ocfilter.currencys_update();
 	});
-	
 		
   function setSlider(_, target) {
     var
@@ -197,18 +196,29 @@ Math.easeIn = function (val, min, max, strength) {
           $dropdown = $element.closest('.dropdown');
 
 				if ($element.is(':text')) {
-					that.options.php.params = $element.attr('value');
+					
+						that.options.php.params = $element.val();
+
 				}else{
+					
 					that.options.php.params = $element.val();
 				}
        
-        if ($element.is(':radio') || $element.is(':text')) {
+        if ($element.is(':radio')) {
           $element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
         }
 
-        $buttonTarget.toggleClass('ocf-selected', $element.prop('checked'));
+				if ($element.is(':text')) {
+					
+					$buttonTarget.toggleClass('ocf-selected', $element.val());
+					
+					that.update($buttonTarget);
+					
+				}else{
+					$buttonTarget.toggleClass('ocf-selected', $element.prop('checked'));
 
-        that.update($buttonTarget);
+					that.update($buttonTarget);
+				}
       });
 
       this.$element.on('click.ocf', '.dropdown-menu', function(e) {

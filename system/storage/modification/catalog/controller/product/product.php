@@ -463,9 +463,13 @@ class ControllerProductProduct extends Controller {
 			$relateds = $this->model_catalog_product->getRelatedPrice($this->request->get['product_id']);
 				
 			if(!empty($results)){
-				foreach ($results as $result) {				
-					if (file_exists(DIR_IMAGE . $result['image']) && $result['image']){
-						list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $result['image']);
+				foreach ($results as $result) {
+					$images = $this->model_catalog_product->getProductImages($result['product_id']);
+				
+					$image_lk = isset($images[0]['image']) ? $images[0]['image'] : '';
+					
+					if (file_exists(DIR_IMAGE . $image_lk) && $image_lk){
+						list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $image_lk);
 						if ($width_orig>900) {
 							$height_orig = $height_orig * 900 / $width_orig;
 							$width_orig = 900;
@@ -476,7 +480,7 @@ class ControllerProductProduct extends Controller {
 					}
 					
 					if ($result['image']) {
-						$image = $this->model_tool_image->resize($result['image'], $width_orig, $height_orig, 'product_related');
+						$image = $this->model_tool_image->resize($image_lk, $width_orig, $height_orig);
 					} else {
 						$image = $this->model_tool_image->resize('placeholder.png', $width_orig, $height_orig);
 					}

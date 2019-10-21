@@ -104,42 +104,7 @@ class ControllerCommonColumnLeft extends Controller {
 					'children' => array()		
 				);					
 			}
-			
-			if ($this->user->hasPermission('access', 'catalog/filter')) {
-				$catalog[] = array(
-					'name'	   => $this->language->get('text_filter'),
-					'href'     => $this->url->link('catalog/filter', 'token=' . $this->session->data['token'], true),
-					'children' => array()		
-				);
-			}
-			
-			// Attributes
-			$attribute = array();
-			
-			if ($this->user->hasPermission('access', 'catalog/attribute')) {
-				$attribute[] = array(
-					'name'     => $this->language->get('text_attribute'),
-					'href'     => $this->url->link('catalog/attribute', 'token=' . $this->session->data['token'], true),
-					'children' => array()	
-				);
-			}
-			
-			if ($this->user->hasPermission('access', 'catalog/attribute_group')) {
-				$attribute[] = array(
-					'name'	   => $this->language->get('text_attribute_group'),
-					'href'     => $this->url->link('catalog/attribute_group', 'token=' . $this->session->data['token'], true),
-					'children' => array()		
-				);
-			}
-			
-			if ($attribute) {
-				$catalog[] = array(
-					'name'	   => $this->language->get('text_attribute'),
-					'href'     => '',
-					'children' => $attribute
-				);
-			}
-					
+						
 			// Testimonials
 			if ($this->user->hasPermission('access', 'testimonial/testimonial')) {
 				$catalog[] = array(

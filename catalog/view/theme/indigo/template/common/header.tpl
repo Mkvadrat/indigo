@@ -39,12 +39,14 @@
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/stylesheet.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/media.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/sweetalert.css">
+<link rel="stylesheet" href="catalog/view/javascript/ocfilter/jquery-ui/jquery-ui.min.css">
+
 
 <!-- JS -->
 <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
+<script src="catalog/view/javascript/ocfilter/jquery-ui/jquery-ui.min.js"></script>
 <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js"></script>
 <script src="catalog/view/theme/indigo/js/dropzone.js"></script>
-<script src="catalog/view/theme/indigo/js/jquery-ui.min.js"></script>
 <script src="catalog/view/theme/indigo/js/jquery.mmenu.all.js"></script>
 <script src="catalog/view/theme/indigo/js/jquery.fancybox.min.js"></script>
 <script src="catalog/view/theme/indigo/js/owl.carousel.min.js"></script>

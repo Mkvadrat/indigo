@@ -35,7 +35,7 @@
 <meta property="og:site_name" content="<?php echo $name; ?>" />
 
 <!-- STYLESHEET -->
-<link rel="stylesheet" href="catalog/view/javascript/ocfilter/jquery-ui/jquery-ui.min.css">
+<link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/jquery-ui.min.css">
 <link rel="stylesheet" href="catalog/view/javascript/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/jquery.mmenu.all.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/jquery.fancybox.min.css">
@@ -46,6 +46,8 @@
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/stylesheet.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/media.css">
 <link rel="stylesheet" href="catalog/view/theme/indigo/stylesheet/sweetalert.css">
+<link rel="stylesheet" href="catalog/view/javascript/ocfilter/jquery-ui/jquery-ui.min.css">
+
 
 <!-- JS -->
 <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js"></script>
@@ -57,7 +59,7 @@
 <script src="catalog/view/theme/indigo/js/owl.carousel.min.js"></script>
 <script src="catalog/view/theme/indigo/js/sweetalert.min.js"></script>
 <script src="catalog/view/theme/indigo/js/printThis.js"></script>
-<!--<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>-->
+<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 
 <?php foreach ($styles as $style) { ?>
 <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />

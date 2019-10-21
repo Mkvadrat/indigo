@@ -222,8 +222,12 @@ class ControllerProductCategory extends Controller {
 			$results = $this->model_catalog_product->getProducts($filter_data);
 
 			foreach ($results as $result) {
-				if (file_exists(DIR_IMAGE . $result['image']) && $result['image']){
-					list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $result['image']);
+				$images = $this->model_catalog_product->getProductImages($result['product_id']);
+				
+				$image_lk = isset($images[0]['image']) ? $images[0]['image'] : '';
+				
+				if (file_exists(DIR_IMAGE . $image_lk) && $image_lk){
+					list($width_orig, $height_orig) = getimagesize(DIR_IMAGE . $image_lk);
 					if ($width_orig>900) {
 						$height_orig = $height_orig * 900 / $width_orig;
 						$width_orig = 900;
@@ -233,8 +237,8 @@ class ControllerProductCategory extends Controller {
 					$width_orig = $this->config->get($this->config->get('config_theme') . '_image_product_width');
 				}
 				
-				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $height_orig, $width_orig, 'category_image');
+				if ($image_lk) {
+					$image = $this->model_tool_image->resize($image_lk, $height_orig, $width_orig);
 				} else {
 					$image = $this->model_tool_image->resize('placeholder.png', $height_orig, $width_orig);
 				}
