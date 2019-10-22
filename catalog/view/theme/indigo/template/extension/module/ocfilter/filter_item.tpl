@@ -18,6 +18,7 @@
       <input type="text" name="ocf[<?php echo $option['option_id']; ?>]" value="" class="ocf-target" />
     </label>  
       <script>
+        
         $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').autocomplete({
           'source': function(request, response) {
             $.ajax({
@@ -25,45 +26,27 @@
               dataType: 'json',
               success: function(json) {
                 response($.map(json, function(item) {
-                  
-                  var i =  {
+                  return {
                     label: item['name'],
-                    value: item['params'],
+                    params: item['params'],
                     id: item['id'],
-                  };
-                 
-                  return i;
+                  }
                 }));
-               
               }
             });
           },
-          'select': function( e, ui ) {
+          'select': function( event, ui ) {
             
-            $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').val(ui['item']['label']);
+            $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').attr('value', ui['item']['params']);
             
             $('label[data-option-id=\'<?php echo $option['option_id']; ?>\']').attr('id', 'v-' + ui['item']['id']);
-            
-
           },
-          /*'focus': function(event, ui) {
+          'focus': function(event, ui) {
             event.preventDefault();
-            $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').val(ui['item']['label']);
+            
+            $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').attr('value', ui['item']['params']);
           
-          },
-          'change': function(event, ui) {
-            if($('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').val().length > 0){
-              $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').attr('value', ui['item']['value']);
-              $('label[data-option-id=\'<?php echo $option['option_id']; ?>\']').attr('id', 'v-' + ui['item']['id']);
-             
-            }else{
-              $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').attr('value', "");
-              $('label[data-option-id=\'<?php echo $option['option_id']; ?>\']').attr('id', "");
-         
-            }
-            
-            
-          }*/
+          }
         });
 
       </script>

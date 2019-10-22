@@ -197,7 +197,7 @@ Math.easeIn = function (val, min, max, strength) {
 
 				if ($element.is(':text')) {
 					
-						that.options.php.params = $element.val();
+					that.options.php.params = $element.attr('value');
 
 				}else{
 					
@@ -210,10 +210,12 @@ Math.easeIn = function (val, min, max, strength) {
 
 				if ($element.is(':text')) {
 					
-					$buttonTarget.toggleClass('ocf-selected', $element.val());
-					
+					$buttonTarget.toggleClass('ocf-selected', $element.attr('value'));
+			
 					that.update($buttonTarget);
 					
+					$element.removeAttr( "value" );
+
 				}else{
 					$buttonTarget.toggleClass('ocf-selected', $element.prop('checked'));
 
