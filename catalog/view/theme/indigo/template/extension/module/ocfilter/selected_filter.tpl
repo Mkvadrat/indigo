@@ -10,6 +10,7 @@
   <?php } ?>
 	<?php $count = count($selecteds); $selected = $selecteds; $first = array_shift($selected); ?>
   <?php if ($count > 1 || count($first['values']) > 1) { ?>
+  <?php var_dump($selecteds)?>
   <button type="button" onclick="location = '<?php echo $link; ?>';" class="btn btn-block btn-danger" style="border-radius: 0;"><i class="fa fa-times-circle"></i> <?php echo $text_cancel_all; ?></button>
   <?php } ?>
 </div>

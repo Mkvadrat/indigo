@@ -50,7 +50,14 @@ class ModelCatalogOCFilter extends Model {
       }
       
       if ($option['type'] == 'text') {
-        $values_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product AS oovtp WHERE oovtp.option_id = '" . (int)$option['option_id'] . "'");
+        $values_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value oov
+                                         LEFT JOIN " . DB_PREFIX . "ocfilter_option_value_description oovd ON (oov.value_id = oovd.value_id)
+                                         LEFT JOIN " . DB_PREFIX . "ocfilter_option_value_to_product oovtp ON (oov.value_id = oovtp.value_id)
+                                         WHERE oov.option_id = '" . (int)$option['option_id'] . "'
+                                         AND oovd.language_id = '" . (int)$this->config->get('config_language_id') . "'
+                                         ORDER BY oov.sort_order, (oovd.name = '-') DESC, (oovd.name = '0') DESC, (oovd.name + 0 > 0) DESC, (oovd.name + 0), oovd.name");
+        
+        //$values_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product AS oovtp WHERE oovtp.option_id = '" . (int)$option['option_id'] . "'");
         
         $option_data['values'] = $values_query->rows;
       }
@@ -471,7 +478,7 @@ class ModelCatalogOCFilter extends Model {
         }
 
         if ($i > 1) {
-          $implode_join[] = "ocfilter_option_value_to_product oov2p" . (int)$i . " ON (oov2p1.product_id = oov2p" . (int)$i . ".product_id)";
+          $implode_join[] = "ocfilter_option_value_to_product oov2p" . (int)$i . " ON (oov2p1.product_id = oov2p" . (int)$i . ".product_id) ";
         }
 
         $i++;

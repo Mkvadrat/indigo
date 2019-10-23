@@ -1,5 +1,4 @@
 // https://codepen.io/martinAnsty/pen/BCotE
-
 Math.easeIn = function (val, min, max, strength) {
 	val /= max;
 
@@ -166,6 +165,8 @@ Math.easeIn = function (val, min, max, strength) {
       });
     }
   };
+	
+
 
   var ocfilter = {
     timers: {},
@@ -186,6 +187,71 @@ Math.easeIn = function (val, min, max, strength) {
       this.$values.each(function() {
         that.values[$(this).attr('id')] = this;
       });
+		
+			$('[data-value-id]').bind({
+				/*change: function(){
+					that.options.php.params = false;
+					that.update($(this).closest('label'));
+				},*/
+				keydown: function(event){
+					if (event.keyCode == 13) {
+						var option_id = $(this).attr('data-value-id');
+						that.options.php.params = $('input[name=\'ocf[' + option_id + ']\']:hidden').val();
+					}else{
+						that.options.php.params = false;
+					}
+					
+					that.update($(this).closest('label'));
+				},
+			});
+			
+			$(this.$target).autocomplete({
+				'source': function(request, response) {
+					$.ajax({
+						url: 'index.php?route=extension/module/ocfilter/autocomplete&option_id=' + $(this.bindings).attr('data-value-id') + '&filter_name=' +  encodeURIComponent(request.term),
+						dataType: 'json',
+						success: function(json) {
+							response($.map(json, function(item) {
+								return {
+									option_id: item['option_id'],
+									label: item['name'],
+									value: item['params'],
+									id: item['id'],
+								}
+							}));
+						}
+					});
+				},
+				'select': function( event, ui ) {
+					$('input[name=\'ocf[' + ui['item']['option_id'] + ']\']').val(ui['item']['label']);
+					
+					$('input[name=\'ocf[' + ui['item']['option_id'] + ']\']:hidden').val(ui['item']['value']);
+					
+					$('label[data-option-id=\'' + ui['item']['option_id'] + '\']').attr('id', 'v-' + ui['item']['id']);
+					
+					that.options.php.params = $('input[name=\'ocf[' + ui['item']['option_id'] + ']\']:hidden').val();
+					
+					$(this).closest('label').toggleClass('ocf-selected', $('input[name=\'ocf[' + ui['item']['option_id'] + ']\']:hidden').val());
+
+					that.update($(this).closest('label'));
+					
+					return false;
+					//$(this).removeAttr("value");
+				},
+				/*'focus':function( event, ui ) {
+					$('input[name=\'ocf[' + ui['item']['option_id'] + ']\']').attr('value', ui['item']['params']);
+					
+					$('label[data-option-id=\'' + ui['item']['option_id'] + '\']').attr('id', 'v-' + ui['item']['id']);
+					
+					that.options.php.params = $(this).attr("value");
+					
+					$(this).closest('label').toggleClass('ocf-selected', $(this).attr("value"));
+
+					that.update($(this).closest('label'));
+					
+					$(this).removeAttr("value");
+				},*/
+			});
 
       this.$target.on('change', function(e) {
         e.preventDefault();
@@ -196,25 +262,21 @@ Math.easeIn = function (val, min, max, strength) {
           $dropdown = $element.closest('.dropdown');
 
 				if ($element.is(':text')) {
-					
-					that.options.php.params = $element.attr('value');
-
+					//that.options.php.params = $element.val();
 				}else{
-					
 					that.options.php.params = $element.val();
 				}
        
         if ($element.is(':radio')) {
           $element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
         }
-
+			
 				if ($element.is(':text')) {
-					
-					$buttonTarget.toggleClass('ocf-selected', $element.attr('value'));
+					/*$buttonTarget.toggleClass('ocf-selected', $element.val());
 			
 					that.update($buttonTarget);
 					
-					$element.removeAttr( "value" );
+					$element.removeAttr("value");*/
 
 				}else{
 					$buttonTarget.toggleClass('ocf-selected', $element.prop('checked'));

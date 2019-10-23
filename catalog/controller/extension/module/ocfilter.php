@@ -308,7 +308,7 @@ class ControllerExtensionModuleOCFilter extends Controller {
 							$count = $this->counters[$option['option_id'] . $value['value_id']];
 						}
 					}
-
+      
           if ($count || !$this->config->get('ocfilter_hide_empty_values')) {
 						if (isset($option['image']) && $option['image'] && isset($value['image']) && $value['image'] && file_exists(DIR_IMAGE . $value['image'])) {
               $image = $this->model_tool_image->resize($value['image'], 19, 19);
@@ -336,29 +336,37 @@ class ControllerExtensionModuleOCFilter extends Controller {
         	continue;
         }
       } elseif($option['type'] == 'text') {
-        
         foreach ($option['values'] as $value) {
-          $this_value = isset($this->options_get[$option['option_id']]) && in_array($value['value_id'], $this->options_get[$option['option_id']]);
+					$this_value = isset($this->options_get[$option['option_id']]) && in_array($value['value_id'], $this->options_get[$option['option_id']]);
           
-          $params = $this->getValueParams($option['option_id'], $value['value_id'], 'text');
-
           $count = 0;
-  
-          if (isset($this->counters[$option['option_id'] . 'all'])) {
-            $count = $this->counters[$option['option_id'] . 'all'];
-          } else {
-            $count = 1;
-          }
+
+					if (isset($this->counters[$option['option_id'] . $value['value_id']])) {
+						if ($this_option && $option['type'] == 'text') {
+							$count = '+' . $this->counters[$option['option_id'] . $value['value_id']];
+						} else {
+							$count = $this->counters[$option['option_id'] . $value['value_id']];
+						}
+					}
           
-          $values[] = array(
-            'value_id' => $value['value_id'],
-            'id'       => $option['option_id'] . $value['value_id'],
-            'name'     => $value['text'],
-            'params'   => $params,
-            'count'    => $count,
-            'selected' => !$this_option
-          );          
+          $params = $this->getValueParams($option['option_id'], $value['value_id'], $option['type']);
+          
+          if ($count) {
+            $values[] = array(
+              'value_id' => $value['value_id'],
+              'id'       => $option['option_id'] . $value['value_id'],
+              'name'     => html_entity_decode($value['text'] . (isset($option['postfix']) ? $option['postfix'] : ''), ENT_QUOTES, 'UTF-8'),
+              'params'   => $params,
+              'count'    => $count,
+              'selected' => $this_value
+            );
+          }
         }
+
+        if (!$values) {
+        	continue;
+        }
+        
       }else{
         $range = $this->model_catalog_ocfilter->getSliderRange($option['option_id'], array(
     			'filter_category_id' => $this->category_id,
@@ -507,7 +515,7 @@ class ControllerExtensionModuleOCFilter extends Controller {
 			  $params = '';
 
         if (count($this->options_get) > 1 || count($this->options_get[$option_id]) > 1) {
-          if ($option['type'] == 'radio' || $option['type'] == 'select' || $option['type'] == 'slide' || $option['type'] == 'slide_dual') {
+          if ($option['type'] == 'radio' || $option['type'] == 'select' || $option['type'] == 'slide' || $option['type'] == 'slide_dual' || $option['type'] == 'text') {
             $params .= $this->cancelOptionParams($option_id);
           } else {
             $params .= $value['params'];

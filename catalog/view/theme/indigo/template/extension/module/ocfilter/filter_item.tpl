@@ -12,68 +12,11 @@
   </div>
 
   <div class="ocf-option-values">
-    
     <?php if($option['type'] == 'text'){ ?>
     <label class="" data-option-id="<?php echo $option['option_id']; ?>">
-      <input type="text" name="ocf[<?php echo $option['option_id']; ?>]" value="" class="ocf-target" />
+      <input type="text" name="ocf[<?php echo $option['option_id']; ?>]" class="ocf-target" data-value-id="<?php echo $option['option_id']; ?>" />
+      <input type="hidden" name="ocf[<?php echo $option['option_id']; ?>]" value="" />
     </label>  
-      <script>
-        
-        $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').autocomplete({
-          'source': function(request, response) {
-            $.ajax({
-              url: 'index.php?route=extension/module/ocfilter/autocomplete&option_id=' + <?php echo $option['option_id']; ?> + '&filter_name=' +  encodeURIComponent(request.term),
-              dataType: 'json',
-              success: function(json) {
-                response($.map(json, function(item) {
-                  return {
-                    label: item['name'],
-                    params: item['params'],
-                    id: item['id'],
-                  }
-                }));
-              }
-            });
-          },
-          'select': function( event, ui ) {
-            
-            $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').attr('value', ui['item']['params']);
-            
-            $('label[data-option-id=\'<?php echo $option['option_id']; ?>\']').attr('id', 'v-' + ui['item']['id']);
-          },
-          'focus': function(event, ui) {
-            event.preventDefault();
-            
-            $('input[name=\'ocf[<?php echo $option['option_id']; ?>]\']').attr('value', ui['item']['params']);
-          
-          }
-        });
-
-      </script>
-
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-
-    
-    
-    
     <?php }elseif ($option['type'] == 'slide' || $option['type'] == 'slide_dual') { ?>
 
     <?php include 'filter_slider_item.tpl'; ?>
