@@ -50,14 +50,12 @@ class ModelCatalogOCFilter extends Model {
       }
       
       if ($option['type'] == 'text') {
-        $values_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value oov
+        $values_query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "ocfilter_option_value oov
                                          LEFT JOIN " . DB_PREFIX . "ocfilter_option_value_description oovd ON (oov.value_id = oovd.value_id)
                                          LEFT JOIN " . DB_PREFIX . "ocfilter_option_value_to_product oovtp ON (oov.value_id = oovtp.value_id)
                                          WHERE oov.option_id = '" . (int)$option['option_id'] . "'
-                                         AND oovd.language_id = '" . (int)$this->config->get('config_language_id') . "'
+                                         AND oovd.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY oovtp.text
                                          ORDER BY oov.sort_order, (oovd.name = '-') DESC, (oovd.name = '0') DESC, (oovd.name + 0 > 0) DESC, (oovd.name + 0), oovd.name");
-        
-        //$values_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product AS oovtp WHERE oovtp.option_id = '" . (int)$option['option_id'] . "'");
         
         $option_data['values'] = $values_query->rows;
       }
