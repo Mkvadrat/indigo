@@ -201,6 +201,26 @@ class ControllerExtensionModuleOCFilter extends Controller {
     } else {
       $data['selecteds'] = array();
     }
+    
+    
+    ////////////////////////////////////////////////////////////
+    /*$opt = $this->getOCFilterOptions();
+    
+    $array_opt_val = array();
+    foreach($opt as $option){
+      if($option['type'] == 'text' && $this->options_get) {
+        foreach($option['values'] as $value){
+          if($value['selected'] == true){
+           
+            
+           
+           
+          }
+        }
+        
+      }
+    }*/
+    ///////////////////////////////////////////////////////////
 
 		if ($this->config->get('ocfilter_show_options_limit') && $this->config->get('ocfilter_show_options_limit') < count($data['options'])) {
     	$data['show_options_limit'] = $this->config->get('ocfilter_show_options_limit');
@@ -1049,7 +1069,7 @@ class ControllerExtensionModuleOCFilter extends Controller {
 					's' => false
         );
 			}
-
+      
       foreach ($option['values'] as $value) {
         $json['values'][$value['id']] = array(
           't' => $value['count'],

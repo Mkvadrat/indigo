@@ -14,7 +14,7 @@ Math.easeIn = function (val, min, max, strength) {
 
     for (i = 0; i < sURLVariables.length; i++) {
         sParameterName = sURLVariables[i].split('=');
-
+				
         if (sParameterName[0] === sParam) {
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
@@ -165,8 +165,6 @@ Math.easeIn = function (val, min, max, strength) {
       });
     }
   };
-	
-
 
   var ocfilter = {
     timers: {},
@@ -180,6 +178,7 @@ Math.easeIn = function (val, min, max, strength) {
       this.$fields = $('.option-values input', this.$element);
 
       this.$target = $('.ocf-target', this.$element);
+			
       this.$values = $('label', this.$element);
 
       var that = this;
@@ -187,70 +186,34 @@ Math.easeIn = function (val, min, max, strength) {
       this.$values.each(function() {
         that.values[$(this).attr('id')] = this;
       });
-		
-			$('[data-value-id]').bind({
-				/*change: function(){
-					that.options.php.params = false;
-					that.update($(this).closest('label'));
-				},*/
-				keydown: function(event){
-					if (event.keyCode == 13) {
-						var option_id = $(this).attr('data-value-id');
-						that.options.php.params = $('input[name=\'ocf[' + option_id + ']\']:hidden').val();
-					}else{
-						that.options.php.params = false;
+			
+			this.$target.bind('keydown', function(e){
+        var
+          $element = $(this),
+          $buttonTarget = $element.closest('label');
+					
+					if ($element.is(':text')) {
+						$element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
 					}
 					
-					that.update($(this).closest('label'));
-				},
-			});
-			
-			$(this.$target).autocomplete({
-				'source': function(request, response) {
-					$.ajax({
-						url: 'index.php?route=extension/module/ocfilter/autocomplete&option_id=' + $(this.bindings).attr('data-value-id') + '&filter_name=' +  encodeURIComponent(request.term),
-						dataType: 'json',
-						success: function(json) {
-							response($.map(json, function(item) {
-								return {
-									option_id: item['option_id'],
-									label: item['name'],
-									value: item['params'],
-									id: item['id'],
-								}
-							}));
-						}
-					});
-				},
-				'select': function( event, ui ) {
-					$('input[name=\'ocf[' + ui['item']['option_id'] + ']\']').val(ui['item']['label']);
-					
-					$('input[name=\'ocf[' + ui['item']['option_id'] + ']\']:hidden').val(ui['item']['value']);
-					
-					$('label[data-option-id=\'' + ui['item']['option_id'] + '\']').attr('id', 'v-' + ui['item']['id']);
-					
-					that.options.php.params = $('input[name=\'ocf[' + ui['item']['option_id'] + ']\']:hidden').val();
-					
-					$(this).closest('label').toggleClass('ocf-selected', $('input[name=\'ocf[' + ui['item']['option_id'] + ']\']:hidden').val());
+					if ($element.val().length >= 0) {
+						that.atocom($element, $buttonTarget);
+					}else if (filter_ocfilter) {
+						that.options.php.params = filter_ocfilter;
+					}else{
+						that.options.php.params = $element.val();
+					}
 
-					that.update($(this).closest('label'));
-					
-					return false;
-					//$(this).removeAttr("value");
-				},
-				/*'focus':function( event, ui ) {
-					$('input[name=\'ocf[' + ui['item']['option_id'] + ']\']').attr('value', ui['item']['params']);
-					
-					$('label[data-option-id=\'' + ui['item']['option_id'] + '\']').attr('id', 'v-' + ui['item']['id']);
-					
-					that.options.php.params = $(this).attr("value");
-					
-					$(this).closest('label').toggleClass('ocf-selected', $(this).attr("value"));
-
-					that.update($(this).closest('label'));
-					
-					$(this).removeAttr("value");
-				},*/
+					if (event.keyCode == 13 && $element.val().length > 0) {
+						var option_id = $element.attr('data-value-id');
+						that.options.php.params = $('input[name=\'ocf[' + option_id + ']\']:hidden').val();
+					}else if (filter_ocfilter) {
+						that.options.php.params = filter_ocfilter;
+					}else{
+						that.options.php.params = $element.val();
+					}
+				
+					that.update($buttonTarget);
 			});
 
       this.$target.on('change', function(e) {
@@ -261,37 +224,39 @@ Math.easeIn = function (val, min, max, strength) {
           $buttonTarget = $element.closest('label'),
           $dropdown = $element.closest('.dropdown');
 
-				if ($element.is(':text')) {
-					//that.options.php.params = $element.val();
-				}else{
+				if (!$element.is(':text')) {
 					that.options.php.params = $element.val();
 				}
-       
+				
         if ($element.is(':radio')) {
           $element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
         }
-			
-				if ($element.is(':text')) {
-					/*$buttonTarget.toggleClass('ocf-selected', $element.val());
-			
-					that.update($buttonTarget);
-					
-					$element.removeAttr("value");*/
-
-				}else{
+				
+				if (!$element.is(':text')) {
 					$buttonTarget.toggleClass('ocf-selected', $element.prop('checked'));
-
+	
 					that.update($buttonTarget);
 				}
       });
-
+			
       this.$element.on('click.ocf', '.dropdown-menu', function(e) {
         $(this).closest('.dropdown').one('hide.bs.dropdown', function(e) {
           return false;
         });
       });
-
+						
       this.$element.on('click.ocf', '.disabled, [disabled]', function(e) {
+				//рпрп
+				/*$('.input-target').each(function() {
+					var element = $(this);
+			
+					if (element.closest('label').hasClass('ocf-selected')) {
+						element.removeAttr('disabled', 'disabled');
+					}else{
+						element.attr('disabled', 'disabled');
+					}
+				});*/
+		
         e.stopPropagation();
         e.preventDefault();
       });
@@ -347,6 +312,54 @@ Math.easeIn = function (val, min, max, strength) {
       // Set sliders
       $('#ocfilter .scale').each($.proxy(setSlider, this));
     },
+		
+		atocom: function($target, $buttonTarget){
+			var that = this;
+
+			$($target).autocomplete({
+				'source': function(request, response) {
+					$.ajax({
+						url: 'index.php?route=extension/module/ocfilter/autocomplete&option_id=' + $target.attr('data-value-id') + '&filter_name=' +  encodeURIComponent(request.term),
+						dataType: 'json',
+						success: function(json) {
+							response($.map(json, function(item) {
+								return {
+									option_id: item['option_id'],
+									label: item['name'],
+									value: item['params'],
+									id: item['id'],
+								}
+							}));
+						}
+					});
+				},
+				'search': function( event, ui ) {
+					$buttonTarget.toggleClass('ocf-selected', $target.next(':hidden').val());
+				},
+				'select': function( event, ui ) {
+					$($target).val(ui['item']['label']);
+					
+					$buttonTarget.attr('id', 'v-' + ui['item']['id']);
+					
+					if(filter_ocfilter){
+						$target.next(':hidden').val(filter_ocfilter + ';' + ui['item']['value']);
+						that.options.php.params = $target.next(':hidden').val();
+					//}else if ($target.closest('label').hasClass('ocf-selected')) {
+						
+						//$target.next(':hidden').val( + ';' + ui['item']['value']);
+					}else{
+						$target.next(':hidden').val(ui['item']['value']);
+						that.options.php.params = $target.next(':hidden').val();
+					}
+					
+					//
+
+					that.update($buttonTarget);
+
+					return false;
+				},
+			});
+		},
 		
 		currencys_update: function(){
 			var data = {
@@ -424,12 +437,13 @@ Math.easeIn = function (val, min, max, strength) {
       var
         that = this,
         isSlider = scrollTarget.hasClass('scale'),
+				
         data = {
           path: this.options.php.path,
 					currencys: $( "[name=currencys]" ).val(),
           option_id: scrollTarget.data().optionId
         };
-
+			
       if (this.options.php.params) {
         data[this.options.php.index] = this.options.php.params;
       }
@@ -617,7 +631,10 @@ Math.easeIn = function (val, min, max, strength) {
       if ($('.ocfilter-option-popover').length) {
         $('.ocfilter-option-popover button').button('loading');
       }
-						
+			
+
+			
+				
       this.$element.find('.scale').attr('disabled', 'disabled');
       setTimeout(function(that) {
         that.$values.addClass('disabled').find('small').text('0');

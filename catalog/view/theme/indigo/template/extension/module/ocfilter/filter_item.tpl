@@ -13,10 +13,18 @@
 
   <div class="ocf-option-values">
     <?php if($option['type'] == 'text'){ ?>
-    <label class="" data-option-id="<?php echo $option['option_id']; ?>">
-      <input type="text" name="ocf[<?php echo $option['option_id']; ?>]" class="ocf-target" data-value-id="<?php echo $option['option_id']; ?>" />
+    <?php if($option['selected']){ ?>
+    <label class="hidden" data-option-id="<?php echo $option['option_id']; ?>">
+      <input type="text" name="ocf[<?php echo $option['option_id']; ?>]" value="" class="ocf-target" data-value-id="<?php echo $option['option_id']; ?>" />
       <input type="hidden" name="ocf[<?php echo $option['option_id']; ?>]" value="" />
-    </label>  
+    </label>
+    <?php }else{ ?>
+    <label data-option-id="<?php echo $option['option_id']; ?>">
+      <input type="text" name="ocf[<?php echo $option['option_id']; ?>]" value="" class="ocf-target" data-value-id="<?php echo $option['option_id']; ?>" />
+      <input type="hidden" name="ocf[<?php echo $option['option_id']; ?>]" value="" />
+    </label>
+    <?php } ?>
+    
     <?php }elseif ($option['type'] == 'slide' || $option['type'] == 'slide_dual') { ?>
 
     <?php include 'filter_slider_item.tpl'; ?>
