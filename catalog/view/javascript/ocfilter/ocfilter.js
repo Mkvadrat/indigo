@@ -191,26 +191,31 @@ Math.easeIn = function (val, min, max, strength) {
         var
           $element = $(this),
           $buttonTarget = $element.closest('label');
-					
-					if ($element.is(':text')) {
-						$element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
-					}
+					//$option_id = $element.attr('data-value-id');
 					
 					if ($element.val().length >= 0) {
 						that.atocom($element, $buttonTarget);
 					}else if (filter_ocfilter) {
 						that.options.php.params = filter_ocfilter;
 					}else{
+						$element.next(':hidden').val("");
 						that.options.php.params = $element.val();
+						$element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
 					}
 
 					if (event.keyCode == 13 && $element.val().length > 0) {
-						var option_id = $element.attr('data-value-id');
-						that.options.php.params = $('input[name=\'ocf[' + option_id + ']\']:hidden').val();
+						var valopt = [];
+						$('.value-target').each(function() {
+							valopt.push($(this).val());
+						});
+		
+						that.options.php.params = valopt.join(';');
 					}else if (filter_ocfilter) {
 						that.options.php.params = filter_ocfilter;
 					}else{
+						$element.next(':hidden').val("");
 						that.options.php.params = $element.val();
+						$element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
 					}
 				
 					that.update($buttonTarget);
@@ -245,18 +250,7 @@ Math.easeIn = function (val, min, max, strength) {
         });
       });
 						
-      this.$element.on('click.ocf', '.disabled, [disabled]', function(e) {
-				//рпрп
-				/*$('.input-target').each(function() {
-					var element = $(this);
-			
-					if (element.closest('label').hasClass('ocf-selected')) {
-						element.removeAttr('disabled', 'disabled');
-					}else{
-						element.attr('disabled', 'disabled');
-					}
-				});*/
-		
+      this.$element.on('click.ocf', '.disabled, [disabled]', function(e) {		
         e.stopPropagation();
         e.preventDefault();
       });
@@ -319,40 +313,45 @@ Math.easeIn = function (val, min, max, strength) {
 			$($target).autocomplete({
 				'source': function(request, response) {
 					$.ajax({
-						url: 'index.php?route=extension/module/ocfilter/autocomplete&option_id=' + $target.attr('data-value-id') + '&filter_name=' +  encodeURIComponent(request.term),
+						url: 'index.php?route=extension/module/ocfilter/autocomplete&option_id=' + $target.attr('data-value-id') + '&filter_name=' +  encodeURIComponent(request.term) + '&filter_ocfilter=' + encodeURIComponent(filter_ocfilter),
 						dataType: 'json',
 						success: function(json) {
 							response($.map(json, function(item) {
 								return {
-									option_id: item['option_id'],
-									label: item['name'],
-									value: item['params'],
-									id: item['id'],
-								}
+									option_id: item.option_id,
+									label: item.name,
+									value: item.params,
+									id: item.id
+								};
 							}));
 						}
 					});
 				},
-				'search': function( event, ui ) {
-					$buttonTarget.toggleClass('ocf-selected', $target.next(':hidden').val());
+				'focus': function( event, ui ) {
+					$($target).val(ui.item.label);
+					return false;
 				},
 				'select': function( event, ui ) {
-					$($target).val(ui['item']['label']);
+					$($target).val(ui.item.label);
 					
-					$buttonTarget.attr('id', 'v-' + ui['item']['id']);
+					$buttonTarget.attr('id', 'v-' + ui.item.id);
+					
+					$buttonTarget.toggleClass('ocf-selected', $target.next(':hidden').val());
 					
 					if(filter_ocfilter){
-						$target.next(':hidden').val(filter_ocfilter + ';' + ui['item']['value']);
-						that.options.php.params = $target.next(':hidden').val();
-					//}else if ($target.closest('label').hasClass('ocf-selected')) {
+						$target.next(':hidden').val(filter_ocfilter + ';' + ui.item.value);
 						
-						//$target.next(':hidden').val( + ';' + ui['item']['value']);
-					}else{
-						$target.next(':hidden').val(ui['item']['value']);
 						that.options.php.params = $target.next(':hidden').val();
+					}else{
+						$target.next(':hidden').val(ui.item.value);
+						
+						var valopt = [];
+						$('.value-target').each(function() {
+							valopt.push($(this).val());
+						});
+		
+						that.options.php.params = valopt.join(';');
 					}
-					
-					//
 
 					that.update($buttonTarget);
 
@@ -631,10 +630,7 @@ Math.easeIn = function (val, min, max, strength) {
       if ($('.ocfilter-option-popover').length) {
         $('.ocfilter-option-popover button').button('loading');
       }
-			
-
-			
-				
+		
       this.$element.find('.scale').attr('disabled', 'disabled');
       setTimeout(function(that) {
         that.$values.addClass('disabled').find('small').text('0');

@@ -1159,18 +1159,20 @@ class ControllerExtensionModuleOCFilter extends Controller {
 				'filter_name' => $this->request->get['filter_name'],
         'option_id'   => $this->request->get['option_id'],
 				'start'       => 0,
-				'limit'       => 5
+				'limit'       => 5,
+        'filter_ocfilter' => $this->request->get['filter_ocfilter'],
 			);
-      
+
 			$results = $this->model_catalog_ocfilter->getAutocomplete($filter_data);
 
 			foreach ($results as $result) {
-				$json[] = array(
-					'option_id' => $result['option_id'],
-					'name'      => strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')),
-          'params'    => $this->getValueParams($result['option_id'], $result['value_id'], 'text'),
-          'id'        => $result['option_id'] . $result['value_id']
-				);
+          $json[] = array(
+            'option_id' => $result['option_id'],
+            'name'      => strip_tags(html_entity_decode($result['text'], ENT_QUOTES, 'UTF-8')),
+            'params'    => $this->getValueParams($result['option_id'], $result['value_id'], 'text'),
+            'id'        => $result['option_id'] . $result['value_id']
+          );
+
 			}
 		}
 

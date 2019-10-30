@@ -844,6 +844,10 @@ class ModelCatalogOCFilter extends Model {
 	}
   
   public function getAutocomplete($data = array()) {
+    $ex = explode(':', $data['filter_ocfilter']);
+    
+    //$not = $ex[]
+    
     $sql = "SELECT DISTINCT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE option_id = '" . $this->db->escape($data['option_id']) . "'";
 
 		if (!empty($data['filter_name'])) {
