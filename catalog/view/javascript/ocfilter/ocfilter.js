@@ -191,30 +191,33 @@ Math.easeIn = function (val, min, max, strength) {
         var
           $element = $(this),
           $buttonTarget = $element.closest('label');
-					//$option_id = $element.attr('data-value-id');
 					
+					var valopt = [];
+					$('.value-target').each(function() {
+						valopt.push($(this).val());
+					});
+	
 					if ($element.val().length >= 0) {
 						that.atocom($element, $buttonTarget);
+					}else if ($element.val().length > 0) {
+						that.options.php.params = $('.value-target:first').val();
 					}else if (filter_ocfilter) {
 						that.options.php.params = filter_ocfilter;
 					}else{
 						$element.next(':hidden').val("");
-						that.options.php.params = $element.val();
+						that.options.php.params = $element.next(':hidden').val();
 						$element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
 					}
 
 					if (event.keyCode == 13 && $element.val().length > 0) {
-						var valopt = [];
-						$('.value-target').each(function() {
-							valopt.push($(this).val());
-						});
-		
 						that.options.php.params = valopt.join(';');
+					}else if ($element.val().length > 0) {
+						that.options.php.params = $('.value-target:first').val();
 					}else if (filter_ocfilter) {
 						that.options.php.params = filter_ocfilter;
-					}else{
+					}else {
 						$element.next(':hidden').val("");
-						that.options.php.params = $element.val();
+						that.options.php.params = $element.next(':hidden').val();
 						$element.closest('.ocf-option-values').find('label.ocf-selected').removeClass('ocf-selected');
 					}
 				
@@ -312,20 +315,22 @@ Math.easeIn = function (val, min, max, strength) {
 
 			$($target).autocomplete({
 				'source': function(request, response) {
-					$.ajax({
-						url: 'index.php?route=extension/module/ocfilter/autocomplete&option_id=' + $target.attr('data-value-id') + '&filter_name=' +  encodeURIComponent(request.term) + '&filter_ocfilter=' + encodeURIComponent(filter_ocfilter),
-						dataType: 'json',
-						success: function(json) {
-							response($.map(json, function(item) {
-								return {
-									option_id: item.option_id,
-									label: item.name,
-									value: item.params,
-									id: item.id
-								};
-							}));
-						}
-					});
+					if (encodeURIComponent(request.term) != 0) {
+						$.ajax({
+							url: 'index.php?route=extension/module/ocfilter/autocomplete&option_id=' + $target.attr('data-value-id') + '&filter_name=' +  encodeURIComponent(request.term) + '&filter_ocfilter=' + encodeURIComponent(filter_ocfilter),
+							dataType: 'json',
+							success: function(json) {
+								response($.map(json, function(item) {
+									return {
+										option_id: item.option_id,
+										label: item.name,
+										value: item.params,
+										id: item.id
+									};
+								}));
+							}
+						});
+					}
 				},
 				'focus': function( event, ui ) {
 					$($target).val(ui.item.label);
