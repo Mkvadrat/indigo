@@ -23,7 +23,18 @@
       .ocfilter-option .image{background-repeat: no-repeat; background-position: 0 0; float: left; height: 19px; margin: 1px -16px 0 -3px; position: relative; width: 19px; z-index: 10;}
 
       .ocfilter-option label{cursor: pointer; display: block; font-size: 12px; font-weight: normal; line-height: 1.2; padding: 4px 0;}
-      .ocfilter-option label input{display: inline-block; margin: 0 5px 0 0; vertical-align: top;}
+      .ocfilter-option label input{display: inline-block; margin: 0 5px 0 0; vertical-align: top; }
+      .ocfilter-option label input:not([type="checkbox"]){height: 34px;
+    border-radius: 4px;
+    border: 1px solid #CCCBC9;
+    width: 100%;
+    font-size: 14px;
+    line-height: 30px;
+    color: #313131;
+    padding: 5px 12px;}
+	.ocf-option-values > .dropdown {
+		    padding-top: 4px;
+	}
       .ocfilter-option label small{background-color: #DBEAF9; color: #0E6A93; font-weight: 200; font-size: 10px; margin-left: 5px;}
 
 			.ocfilter-option label.disabled{color: #999999;}
@@ -102,3 +113,32 @@
   .ocfilter-content-top .ocfilter-option + .ocfilter-option,
 
 	.ocfilter-content-bottom .ocfilter-option + .ocfilter-option{border-top: none;}
+	
+	/**/
+	.panel>.list-group .list-group-item.selected-options {
+		display: flex;
+    width: auto;
+    align-items: center;
+    flex-wrap: nowrap;
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 150px;
+    border: none;
+    padding: 4px 0;
+    justify-content: center;
+	}
+	.selected-options .ocfilter-option {
+    background-color: transparent;
+    font-size: 10px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-right: 15px;
+}
+	.selected-options .ocfilter-option span {
+    color: #333;
+    margin-right: 5px;
+    font-size: 12px;
+}
