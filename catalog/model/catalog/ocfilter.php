@@ -843,11 +843,11 @@ class ModelCatalogOCFilter extends Model {
 		return $query->rows;
 	}
   
-  public function getAutocomplete($data = array()) {
+  public function getAutocomplete($data = array()) {    
     $sql = "SELECT DISTINCT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE option_id = '" . $this->db->escape($data['option_id']) . "'";
 
-		if (!empty($data['filter_name'])) {
-			$sql .= " AND text LIKE '" . $this->db->escape($data['filter_name']) . "%' GROUP BY text";
+		if (!empty($data['filter_name']) && !empty($data['filter_name'])) {
+			$sql .= " AND text LIKE '%" . strval($this->db->escape($data['filter_name'])) . "%' AND TRIM(COALESCE(text, '')) <>'' GROUP BY text";
 		}
     
     $sql .= " ORDER BY product_id ASC ";

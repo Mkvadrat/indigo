@@ -514,6 +514,8 @@ class ControllerCatalogOCFilter extends Controller {
           if($option['type'] == 'text'){
             $product_id = isset($this->request->get['product_id']) ? $this->request->get['product_id'] : 0;
             $text = $this->model_catalog_ocfilter->getText($product_id, $option['option_id']);
+          }else{
+            $text = '';
           }
 
           $json['options'][$key] = array(
