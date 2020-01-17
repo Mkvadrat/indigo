@@ -1,281 +1,198 @@
-<style>
-    * {
-        all: initial;
-        padding: 0;
-        margin: 0;
-    }
-
-    body {
-        font-family: "GothamPro";
-        font-size: 20px;
-        color: #000;
-        padding: 40px;
-    }
-
-    .title {
-        font-size: 26px;
-        font-weight: normal;
-    }
-
-    p {
-        font-size: 14px;
-        margin: 0;
-    }
-
-    p span {
-        font-family: "GothamPro_Med";
-    }
-
-    table {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-    table, tbody, tr, td {
-        padding: 0;
-        margin: 0;
-    }
-    td {
-        vertical-align: top;
-        text-align:left;
-    }
-    table, tbody, tr {
-        width: 100%;
-    }
-
-    table td {
-        padding: 0;
-    }
-
-    .red {
-        color: red;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    .grey {
-        color: #7d7d7d;
-    }
-
-    .price {
-        font-size: 18px;
-    }
-
-    img {
-        max-width: 100%;
-    }
-
-    .object_description p {
-        margin: 0;
-    }
-
-    .name {
-        text-align: center;
-    }
-
-    .name a {
-        display: block;
-        text-align: center;
-    }
-</style>
-<table cellpadding="8" cellspacing="0">
-    <tbody>
-    <tr>
-        <td>
-            <table cellpadding="6" cellspacing="8">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="STYLESHEET" href="catalog/view/theme/indigo/stylesheet/pdf/styles.css" type="text/css"/>
+    <title>PDF-1</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif:700&display=swap&subset=cyrillic" rel="stylesheet">
+</head>
+<body>
+<div id="body">
+    <div id="content">
+        <div class="page">
+            <table class="main-table">
                 <tbody>
                 <tr>
-                    <td align="left" rowspan="3" class="title" colspan="2"><?php echo $heading_title; ?></td>
-                </tr>
-                </tbody>
-            </table>
-            <table cellpadding="6" cellspacing="6">
-                <tbody>
-                <tr>
-                    <td width="400" align="top">
-                        <img src="<?php echo $thumb; ?>" class="pop__img"
-                             style="width: 440px; padding: 0; margin: 0; display: block;">
+                    <td>
+                        <div class="man-info">
+                            <img src="<?php echo $image_agent; ?>">
+                            <div class="name"><?php echo $agent_name; ?></div>
+                            <?php if($specialization){ ?>
+                            <div class="spec"><?php echo $specialization; ?></div>
+                            <?php } ?>
+                            <?php if($phone){ ?>
+                            <div class="phone"><?php echo $phone; ?></div>
+                            <?php } ?>
+                            <div class="mail"><?php echo $email; ?></div>
+                        </div>
+                        <div class="hotel-info">
+                            <img src="catalog/view/theme/indigo/image/pdf/logo.png"/>
+                            <div class="address">ул. Московская, д.43, Крым, г.Ялта<br>indigo-yalta @mail.ru<br>+7 (978) 704-78-88 (Viber, WhatsApp)<br>www.indigo-yalta.com<br>indigo-yalta@mail.ru</div>
+                        </div>
                     </td>
-                    <td width="400" align="top">
-                        <table cellpadding="0" cellspacing="0">
-                            <tbody>
-                            <tr>
-                                <td width="150" align="top">ID:</td>
-                                <td width="150" align="top"><?php echo $model; ?></td>
-                            </tr>
-                            <?php if ($price || $rub) { ?>
-                            <?php if (!$special) { ?>
-                            <tr>
-                                <td width="300" align="top" colspan="2"><p class="price">Цена:</p></td>
-                            </tr>
-                            <tr>
-                                <td class="red" width="250" align="top" colspan="2"><?php echo $rub; ?>
-                                    <br/><?php echo $price; ?></td>
-                            </tr>
-                            <?php } else { ?>
-                            <tr>
-                                <td width="150" align="top"><p class="price">Цена:</p></td>
-                                <td width="150" align="top" class="red"><?php echo $special; ?>
-                                    <sup><strike><?php echo $price; ?></strike></sup></td>
-                            </tr>
-                            <?php } ?>
-                            <?php } ?>
-                            </tbody>
-                        </table>
-                        <table cellpadding="0" cellspacing="0">
-                            <tbody>
-
-                            <?php if($uniq_options){ ?>
-
-                            <?php if($product_options){ ?>
-
-                            <?php foreach($product_options as $option){ ?>
-
-                            <tr>
-
-                                <?php if($option['product_option_value']){ ?>
-                                <?php foreach ($option['product_option_value'] as $option_value) { ?>
-                                <td width="150" align="top" class="grey">
-                                    <?php echo $option['name']; ?>:
-                                </td>
-                                <td width="150" align="top">
-                                    <?php echo $option_value['name']; ?>
-                                </td>
-
-                                <?php } ?>
-                                <?php }else{ ?>
-                                <td width="150" align="top" class="grey">
-                                    <?php echo $option['name']; ?>:
-                                </td>
-                                <td width="150" align="top">
-                                    <?php echo $option['value']; ?>
-                                </td>
-                                <?php } ?>
-
-                            </tr>
-
-                            <?php } ?>
-
-                            <?php } ?>
-
-                            <?php }else{ ?>
-
-                            <?php if($slider_filter_options){ ?>
-
-                            <?php foreach($slider_filter_options as $slider_option){ ?>
-
-                            <tr>
-                                <td width="150" align="top" class="grey"><?php echo $slider_option['name']; ?>:</td>
-                                <td width="150"
-                                    align="top"><?php echo $slider_option['value']; ?> <?php echo $slider_option['postfix']; ?></td>
-                            </tr>
-
-
-                            <?php } ?>
-
-                            <?php } ?>
-
-                            <?php } ?>
-
-                            <?php if($filter_options){ ?>
-
-                            <?php foreach($filter_options as $option){ ?>
-
-                            <tr>
-                                <td width="150" align="top" class="grey"><?php echo $option['name']; ?>:</td>
-                                <td width="150" align="top"><?php echo $option['value']; ?></td>
-                            </tr>
-
-                            <?php } ?>
-
-                            <?php } ?>
-
-                            </tbody>
-                        </table>
+                    <td>
+                        <div class="top-info">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="code">№ <?php echo $model; ?></div>
+                                        <div class="title"><?php echo $heading_title; ?></div>
+                                        <?php if ($price || $rub) { ?>
+                                        <?php if (!$special) { ?>
+                                        <div class="price-rub"><?php echo $rub; ?></div>
+                                        <div class="price-doll"><?php echo $price; ?></div>
+                                        <?php } else { ?>
+                                        <div class="price-rub"><?php echo $rub; ?></div>
+                                        <div class="price-doll"><sup><strike><?php echo $price; ?></strike></sup></div>
+                                        <?php } ?>
+                                        <?php } ?> 
+                                    </td>
+                                    <td>
+                                        <table class="table-info">
+                                            <tbody>
+                                                <?php if($uniq_options){ ?>
+                                                    <?php if($product_options){ ?>
+                                                        <?php foreach($product_options as $option){ ?>
+                                                            <tr>
+                                                                <?php if($option['product_option_value']){ ?>
+                                                                <?php foreach ($option['product_option_value'] as $option_value) { ?>
+                                                                <td>
+                                                                    <?php echo $option['name']; ?>:
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $option_value['name']; ?>
+                                                                </td>
+                                                                <?php } ?>
+                                                                <?php }else{ ?>
+                                                                <td>
+                                                                    <?php echo $option['name']; ?>:
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $option['value']; ?>
+                                                                </td>
+                                                                <?php } ?>
+                                                            </tr>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                <?php }else{ ?>
+                                                    <?php if($slider_filter_options){ ?>
+                                                        <?php foreach($slider_filter_options as $slider_option){ ?>
+                                                            <tr>
+                                                                <td><?php echo $slider_option['name']; ?>:</td>
+                                                                <td><?php echo $slider_option['value']; ?> <?php echo $slider_option['postfix']; ?></td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                                <?php if($filter_options){ ?>
+                                                    <?php foreach($filter_options as $option){ ?>
+                                                        <tr>
+                                                            <td><?php echo $option['name']; ?>:</td>
+                                                            <td><?php echo $option['value']; ?></td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="image-info">
+                            <img src="<?php echo $thumb; ?>"/>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <table cellpadding="0" cellspacing="0">
+            
+            <table class="main-table">
                 <tbody>
                 <tr>
-                    <td width="300" align="top">
-                        <table cellpadding="4" cellspacing="0">
-                            <tbody>
-                            <tr>
-                                <td align="top">
+                    <td>
+                        <div class="man-info">
+                            <img src="<?php echo $image_agent; ?>">
+                            <div class="name"><?php echo $agent_name; ?></div>
+                            <?php if($specialization){ ?>
+                            <div class="spec"><?php echo $specialization; ?></div>
+                            <?php } ?>
+                            <?php if($phone){ ?>
+                            <div class="phone"><?php echo $phone; ?></div>
+                            <?php } ?>
+                            <div class="mail"><?php echo $email; ?></div>
+                        </div>
+                        <div class="hotel-info">
+                            <img src="catalog/view/theme/indigo/image/pdf/logo.png"/>
+                            <div class="address">ул. Московская, д.43, Крым, г.Ялта<br>indigo-yalta @mail.ru<br>+7 (978) 704-78-88 (Viber, WhatsApp)<br>www.indigo-yalta.com<br>indigo-yalta@mail.ru
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="top-info top-info-2">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="code">№ <?php echo $model; ?></div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table style="width: 100%">
+                                <tbody>
+                                <tr>
+                                    <td style="width: 50%">
+                                        <div class="title"><?php echo $heading_title; ?></div>
+                                    </td>
+                                    <td style="width: 50%">
+                                        <?php if ($price || $rub) { ?>
+                                        <?php if (!$special) { ?>
+                                        <div class="price-rub"><?php echo $rub; ?></div>
+                                        <div class="price-doll"><?php echo $price; ?></div>
+                                        <?php } else { ?>
+                                        <div class="price-rub"><?php echo $rub; ?></div>
+                                        <div class="price-doll"><sup><strike><?php echo $price; ?></strike></sup></div>
+                                        <?php } ?>
+                                        <?php } ?> 
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="link">
+                                            <?php echo $href; ?>
+                                        </div>
+                                        <div class="tags"><?php echo $features; ?></div>
+                                        <div class="description"><?php echo $description; ?></div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="image-gallery">
                             <?php if($images){ ?>
                             <?php $i = 0; ?>
                             <?php if(count($images) > 2){ ?>
                             <?php $slices = array_slice($images, 2); ?>
                             <?php foreach($slices as $image){ ?>
                             <?php $i++; ?>
-                            <?php if($i > 2) break; ?>
-
-                            <img src="<?php echo $image['popup']; ?>" class="add__img" align="top" style="margin: 0; padding: 0; display: block">
-
+                            <?php if($i > 6) break; ?>
+                                <img src="<?php echo $image['popup']; ?>">
                             <?php } ?>
                             <?php } ?>
                             <?php } ?>
-                            </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td width="400" align="top">
-                        <table cellpadding="0" cellspacing="0">
-                            <tbody>
-                            <tr>
-                                <td align="top">
-                                    <div class="object_description">
-                                        <?php echo $description; ?>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <table cellpadding="0" cellspacing="0">
-                <tbody>
-
-                <tr>
-                    <td align="bottom"></td>
-                    <td align="top">
-                        <table cellpadding="0" cellspacing="0">
-                            <tbody>
-                            <tr>
-                                <td width="100"><a href="http://indigo.streetmoda-opt.com/"><img
-                                                src="http://indigo.streetmoda-opt.com/image/catalog/indigo/mob-logo.png"
-                                                title="<?php echo $name; ?>" alt="<?php echo $name; ?>"/></a></td>
-                                <td class="name">
-                                    <div><?php echo $agent_name; ?></div>
-                                    <?php if($specialization){ ?>
-                                    <?php echo $specialization; ?>
-                                    <?php } ?>
-                                    <?php if($phone){ ?>
-                                    <a href="tel:<?php echo $phone; ?>"><?php echo $phone; ?></a>
-                                    <?php } ?>
-                                    <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <table cellpadding="4" cellspacing="0">
-                <tbody>
-                <tr>
-                    <td><?php echo $current_date; ?></td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

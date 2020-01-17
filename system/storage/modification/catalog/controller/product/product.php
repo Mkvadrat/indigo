@@ -1,4 +1,9 @@
 <?php
+require_once(DIR_SYSTEM . '/library/dompdf/vendor/autoload.php');
+			
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 class ControllerProductProduct extends Controller {
 	private $error = array();
 
@@ -1006,7 +1011,6 @@ class ControllerProductProduct extends Controller {
             $product_id = 0;
         }
 		
-		
 		$product_info = $this->model_catalog_product->getProduct($product_id);
 		
 		if($product_info){
@@ -1161,7 +1165,7 @@ class ControllerProductProduct extends Controller {
 			$html = $this->load->view('product/pdf', $data);
 			
 			// Write to PDF
-			require_once(DIR_SYSTEM . '/library/tcpdf/config/tcpdf_config.php');
+			/*require_once(DIR_SYSTEM . '/library/tcpdf/config/tcpdf_config.php');
 			require_once(DIR_SYSTEM . '/library/tcpdf/tcpdf.php');
 	
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -1197,9 +1201,28 @@ class ControllerProductProduct extends Controller {
 			
 			$pdf->writeHTML($html, true, false, true, false, '');
 			
+			ob_end_clean();*/
+			
+			//$pdf->Output('object-' ./*$this->generate_value(7).*/ (int)$this->request->get['product_id'] . '.pdf', 'D');
+			
+			//domPDF
+			
+			$options = new Options();
+			
+			$options->setIsRemoteEnabled(true);
+			$dompdf = new Dompdf($options);
+			$dompdf->set_paper("A4", 'landscape');
+			
+			// load the html content
+			ob_start();
+			
+			$dompdf->load_html($html);
+			
 			ob_end_clean();
 			
-			$pdf->Output('object-' ./*$this->generate_value(7).*/ (int)$this->request->get['product_id'] . '.pdf', 'D');
+			$dompdf->render();
+			
+			$dompdf->stream('object-' . (int)$this->request->get['product_id'] . '.pdf', array("Attachment" => 0));			
 		}
 	}
 	

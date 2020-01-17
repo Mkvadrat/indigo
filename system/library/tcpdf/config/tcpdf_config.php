@@ -74,7 +74,7 @@ define ('PDF_HEADER_LOGO', '');
 /**
  * Header logo image width in user units.
  */
-define ('PDF_HEADER_LOGO_WIDTH', 30);
+define ('PDF_HEADER_LOGO_WIDTH', 0);
 
 /**
  * Cache directory for temporary files (full path).
@@ -94,7 +94,7 @@ define ('PDF_PAGE_FORMAT', 'A4');
 /**
  * Page orientation (P=portrait, L=landscape).
  */
-define ('PDF_PAGE_ORIENTATION', 'P');
+define ('PDF_PAGE_ORIENTATION', 'L');
 
 /**
  * Document creator.

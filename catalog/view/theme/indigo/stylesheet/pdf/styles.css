@@ -1,0 +1,257 @@
+@font-face {
+    font-family: 'Myriad Pro Regular';
+    src: url('fonts/MyriadPro-Regular.eot');
+    src: url('fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+    url('fonts/MyriadPro-Regular.woff') format('woff'),
+    url('fonts/MyriadPro-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Myriad Pro Italic';
+    src: url('fonts/MyriadPro-It.eot');
+    src: url('fonts/MyriadPro-It.eot?#iefix') format('embedded-opentype'),
+    url('fonts/MyriadPro-It.woff') format('woff'),
+    url('fonts/MyriadPro-It.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Myriad Pro Bold';
+    src: url('fonts/MyriadPro-Bold.eot');
+    src: url('fonts/MyriadPro-Bold.eot?#iefix') format('embedded-opentype'),
+    url('fonts/MyriadPro-Bold.woff') format('woff'),
+    url('fonts/MyriadPro-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Myriad Pro Regular", sans-serif;
+    font-weight: normal;
+    margin: 0;
+}
+
+.name {
+    font-family: "PT Serif", serif;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 42px;
+    text-align: center;
+    color: #656667;
+    margin: 4px 0 3px;
+}
+
+.spec {
+    font-family: 'Myriad Pro Italic', sans-serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #656667;
+}
+
+.phone {
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+    color: #656667;
+    margin: 16px 0 8px;
+}
+
+.mail {
+    font-size: 21px;
+    line-height: 24px;
+    text-align: center;
+    color: #0093bc;
+}
+
+.man-info {
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #aaa;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px 0;
+    width: 281px;
+    margin-bottom: 10px;
+    margin-top: 8px;
+}
+
+.man-info img {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.address {
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+    color: #656667;
+    margin-top: 17px;
+}
+
+td {
+    vertical-align: top;
+}
+
+.code {
+    font-family: 'Myriad Pro Bold', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+    color: #0093bc;
+    margin-top: 2px;
+    letter-spacing: 1.5px;
+}
+
+.title {
+    font-family: 'Myriad Pro Bold', sans-serif;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: left;
+    color: #656667;
+    max-width: 370px;
+    margin: 10px 0 5px;
+    letter-spacing: 1px;
+}
+
+.price-rub {
+    font-family: 'Myriad Pro Bold', sans-serif;
+    font-weight: bold;
+    font-size: 34px;
+    line-height: 22px;
+    text-align: left;
+    color: #0093bc;
+    letter-spacing: 1px;
+}
+
+.price-doll {
+    font-size: 24px;
+    line-height: 22px;
+    text-align: left;
+    color: #656667;
+    margin: 14px 0 5px;
+    letter-spacing: 1px;
+}
+
+.table-info {
+    padding: 0 0 0 20px;
+}
+
+.table-info td {
+    font-size: 18px;
+    line-height: 18px;
+    text-align: left;
+    color: #656667;
+    letter-spacing: 0.5px;
+}
+
+.table-info td:first-child {
+    width: 295px;
+}
+
+.main-table {
+    margin: 0 auto;
+}
+
+.top-info {
+    padding-left: 9px;
+    height: 300px;
+}
+
+.image-info {
+    padding-left: 12px;
+    height: 460px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.top-info-2 .price-rub {
+    margin-top: 10px;
+}
+
+.top-info-2 {
+    height: auto;
+}
+
+.top-info-2 .price-rub,
+.top-info-2 .price-doll {
+    margin-left: 55px;
+}
+
+.link {
+    font-family: "Myriad Pro Italic", sans-serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+    color: #656667;
+    max-width: 875px;
+    margin: 29px 0 11px;
+}
+
+.tags {
+    font-family: "Myriad Pro Bold", sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+    color: #656667;
+    max-width: 875px;
+    margin: 0 0 14px;
+}
+
+.description {
+    font-family: "Myriad Pro Regular", sans-serif;
+    font-size: 18px;
+    line-height: 30px;
+    text-align: left;
+    color: #656667;
+    max-width: 875px;
+    height: 185px;
+}
+
+.image-gallery {
+    display: inline-block;
+    #flex-wrap: wrap;
+    #align-items: flex-start;
+    max-width: 875px;
+}
+
+.image-gallery img {
+    width: 25%;
+    padding: 7px;
+}
+
+/*Изменения для корректного отображения*/
+@page { margin-top: 0px; margin-bottom: 0px; }
+
+.man-info img{
+    max-width: 180px;
+    max-height: 180px;
+}
+.hotel-info img{
+    max-width: 250px;
+    max-height: 195px;
+    margin-left: 20px;
+}
+.image-info img{
+    max-width: 250px;
+    max-height: 150px;
+}
+.image-gallery img{
+    max-width: 18px;
+    max-height: 15px;
+}
