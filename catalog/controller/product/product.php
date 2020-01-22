@@ -1,8 +1,7 @@
 <?php
-require_once(DIR_SYSTEM . '/library/dompdf/dompdf_config.inc.php');
-
-//use Dompdf\Dompdf;
-//use Dompdf\Options;
+require_once(DIR_SYSTEM . '/library/dompdf/vendor/autoload.php');
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 class ControllerProductProduct extends Controller {
 	private $error = array();
@@ -1207,7 +1206,7 @@ class ControllerProductProduct extends Controller {
 			
 			//domPDF
 			
-			/*$options = new Options();
+			$options = new Options();
 			
 			$options->setIsRemoteEnabled(true);
 			$dompdf = new Dompdf($options);
@@ -1216,30 +1215,33 @@ class ControllerProductProduct extends Controller {
 			// load the html content
 			ob_start();
 			
-			$dompdf->load_html($html);
+			$out = iconv( mb_detect_encoding($html), 'UTF-8', $html);
+			
+			$dompdf->load_html($out);
 			
 			ob_end_clean();
 			
 			$dompdf->render();
 			
-			$dompdf->stream('object-' . (int)$this->request->get['product_id'] . '.pdf', array("Attachment" => 0));	*/
+			$dompdf->stream('object-' . (int)$this->request->get['product_id'] . '.pdf', array("Attachment" => 0));	
 			
 			
-			
+			//require_once(DIR_SYSTEM . '/library/dompdf/dompdf_config.inc.php');
 
-			$dompdf = new DOMPDF();
-			$dompdf->set_paper("A4", 'landscape');
+			/*$dompdf = new DOMPDF();
+			//$dompdf->set_paper("A4", 'landscape');
 			
 			// load the html content
 			//ob_start();
+			$out=iconv( mb_detect_encoding($html), 'UTF-8', $html);
 			
-			$dompdf->load_html($html);
+			$dompdf->load_html($out);
 			
 			//ob_end_clean();
 			
 			$dompdf->render();
 			
-			$dompdf->stream('object-' . (int)$this->request->get['product_id'] . '.pdf', array("Attachment" => 0));
+			$dompdf->stream('object-' . (int)$this->request->get['product_id'] . '.pdf', array("Attachment" => 0));*/
 			
 		}
 	}
