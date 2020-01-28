@@ -1,35 +1,6 @@
-/*@font-face {
-    font-family: 'Myriad Pro Regular';
-    src: url('MyriadPro-Regular.eot');
-    src: url('MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
-    url('MyriadPro-Regular.woff') format('woff'),
-    url('MyriadPro-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Myriad Pro Italic';
-    src: url('MyriadPro-It.eot');
-    src: url('fMyriadPro-It.eot?#iefix') format('embedded-opentype'),
-    url('MyriadPro-It.woff') format('woff'),
-    url('MyriadPro-It.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Myriad Pro Bold';
-    src: url('MyriadPro-Bold.eot');
-    src: url('MyriadPro-Bold.eot?#iefix') format('embedded-opentype'),
-    url('MyriadPro-Bold.woff') format('woff'),
-    url('MyriadPro-Bold.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}*/
-
 * {
     box-sizing: border-box;
+	line-height: normal;
 }
 
 body {
@@ -37,12 +8,12 @@ body {
     font-weight: normal;
     margin: 0;
 }
-
 .name {
     font-family: "dejavu sans";
     font-weight: bold;
-    font-size: 24px;
+    font-size: 16px;
     line-height: 42px;
+    line-height: 2;
     text-align: center;
     color: #656667;
     margin: 4px 0 3px;
@@ -51,23 +22,26 @@ body {
 .spec {
     font-family: 'dejavu sans';
     font-style: italic;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 24px;
+    line-height: 1.1;
     text-align: center;
     color: #656667;
 }
 
 .phone {
-    font-size: 24px;
+    font-size: 16px;
     line-height: 24px;
+    line-height: 1.1;
     text-align: center;
     color: #656667;
     margin: 16px 0 8px;
 }
 
 .mail {
-    font-size: 21px;
+    font-size: 15px;
     line-height: 24px;
+    line-height: 1.1;
     text-align: center;
     color: #0093bc;
 }
@@ -80,8 +54,8 @@ body {
     text-align: center;
     padding: 10px 0;
     width: 281px;
-    margin-bottom: 10px;
-    margin-top: 8px;
+    margin-bottom: 50px;
+	margin-top: 50px;
 }
 
 .man-info img {
@@ -90,8 +64,9 @@ body {
 }
 
 .address {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 22px;
+    line-height: 1;
     text-align: left;
     color: #656667;
     margin-top: 17px;
@@ -104,43 +79,43 @@ td {
 .code {
     font-family: 'dejavu sans';
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 22px;
+    line-height: 1;
     text-align: left;
     color: #0093bc;
     margin-top: 2px;
-    letter-spacing: 1.5px;
 }
 
 .title {
     font-family: 'dejavu sans';
     font-weight: bold;
-    font-size: 28px;
+    font-size: 16px;
     line-height: 34px;
+    line-height: 1.2;
     text-align: left;
     color: #656667;
     max-width: 370px;
     margin: 10px 0 5px;
-    letter-spacing: 1px;
 }
 
 .price-rub {
     font-family: 'dejavu sans';
     font-weight: bold;
-    font-size: 34px;
+    font-size: 20px;
     line-height: 22px;
+    line-height: 1;
     text-align: left;
     color: #0093bc;
-    letter-spacing: 1px;
 }
 
 .price-doll {
-    font-size: 24px;
+    font-size: 16px;
     line-height: 22px;
+    line-height: 1;
     text-align: left;
     color: #656667;
     margin: 14px 0 5px;
-    letter-spacing: 1px;
 }
 
 .table-info {
@@ -148,14 +123,17 @@ td {
 }
 
 .table-info td {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 18px;
+    line-height: 0.8;
     text-align: left;
     color: #656667;
-    letter-spacing: 0.5px;
 }
 
 .table-info td:first-child {
+    width: 205px;
+}
+.table-info td:last-child {
     width: 295px;
 }
 
@@ -166,11 +144,25 @@ td {
 .top-info {
     padding-left: 9px;
     height: 300px;
+	height: auto;
+	width: 700px;
+	margin-top: 50px;
+	margin-bottom: 20px;
 }
 
 .image-info {
     padding-left: 12px;
-    height: 460px;
+    /*height: 597px;
+	width: 700px;*/
+	margin-bottom: -60px;
+}
+
+.image-info img{
+	max-width: 100%;
+	min-height: 450px;
+	height: auto;
+	width: 700px;
+	min-width: 700px;
 }
 
 img {
@@ -194,47 +186,54 @@ img {
 .link {
     font-family: "times-roman";
     font-style: italic;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 30px;
+    line-height: 1.1;
     text-align: left;
     color: #656667;
-    max-width: 875px;
+    max-width: 700px;
     margin: 29px 0 11px;
 }
 
 .tags {
     font-family: "dejavu sans";
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 30px;
+    line-height: 1.1;
     text-align: left;
     color: #656667;
-    max-width: 875px;
+    max-width: 700px;
     margin: 0 0 14px;
 }
 
 .description {
     font-family: "dejavu sans";
-    font-size: 18px;
+    font-size: 14px;
     line-height: 30px;
+    line-height: 1.1;
     text-align: left;
     color: #656667;
-    max-width: 875px;
-    height: 185px;
+    max-width: 700px;
+    min-height: 130px;
+	margin-bottom: 10px;
 }
 
 .image-gallery {
-    display: inline-block;
-    #flex-wrap: wrap;
-    #align-items: flex-start;
-    max-width: 875px;
+    display: block;
+    flex-wrap: wrap;
+    align-items: flex-start;
+	justify-content: flex-start;
+    width: 700px;
+	margin-top: 60px;
 }
 
 .image-gallery img {
-    width: 25%;
+    width: 165px;
     padding: 7px;
+	display: block;
+	margin-bottom: -30px;
 }
-
 /*Изменения для корректного отображения*/
 @page { margin-top: 0px; margin-bottom: 0px; }
 
@@ -248,10 +247,10 @@ img {
     margin-left: 20px;
 }
 .image-info img{
-    max-width: 250px;
-    max-height: 150px;
+    /*max-width: 900px;
+    max-height: 600px;*/
 }
 .image-gallery img{
-    max-width: 18px;
-    max-height: 15px;
+    /*max-width: 250px;
+    max-height: 250px;*/
 }
