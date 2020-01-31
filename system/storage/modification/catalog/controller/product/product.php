@@ -1017,8 +1017,9 @@ class ControllerProductProduct extends Controller {
 			$data['model'] = $product_info['model'];
 			$data['stickers'] = $this->getStickers($product_info['product_id']);
 			
-			$data['description'] = $this->cutStr(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8'), 600);
+			$data['description'] = $this->cutStr(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8'), 400) . '...';
 			
+			//$data['features'] = $this->cutStr(html_entity_decode($product_info['features'], ENT_QUOTES, 'UTF-8'), 100) . '...';
 			$data['features'] = html_entity_decode($product_info['features'], ENT_QUOTES, 'UTF-8');
 			$data['product_options'] = $this->model_catalog_product->getProductOptions((int)$this->request->get['product_id']);
 			$data['options'] = $this->model_catalog_product->getProductOptions($product_info['product_id']);
@@ -1029,6 +1030,20 @@ class ControllerProductProduct extends Controller {
 			$data['current_date'] = date("d.m.y");
 			
 			$data['thead'] = 'thead';
+			
+			/*if ($product_info['meta_h1']) {
+				if(strlen($product_info['meta_h1']) > 100){
+					$data['heading_title'] = utf8_substr(strip_tags($product_info['meta_h1']), 0, 60) . '...';
+				}else{
+					$data['heading_title'] = $product_info['meta_h1'];
+				}
+			} else {
+				if(strlen($product_info['name']) > 100){
+					$data['heading_title'] = utf8_substr(strip_tags($product_info['name']), 0, 60) . '...';
+				}else{
+					$data['heading_title'] = $product_info['name'];
+				}
+			}*/
 			
 			if ($product_info['meta_h1']) {
 				$data['heading_title'] = $product_info['meta_h1'];
@@ -1053,7 +1068,7 @@ class ControllerProductProduct extends Controller {
 			}
 
 			if ($product_info['image']) {
-				$data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_thumb_width'), $this->config->get($this->config->get('config_theme') . '_image_thumb_height'));
+				$data['thumb'] = $this->model_tool_image->resize($product_info['image'], 900, 600);
 				$this->document->setOgImage($data['thumb']);
 			} else {
 				$data['thumb'] = '';
@@ -1091,12 +1106,20 @@ class ControllerProductProduct extends Controller {
 			}
 			
 			$this->load->model('user/user');
-			
-			$agent_information = $this->model_user_user->getUser($product_info['agent']);
 						
-			$data['agent_name'] = $agent_information['lastname'] . ' ' . $agent_information['firstname'];
+			$agent_information = $this->model_user_user->getUser($product_info['agent']);
+
+			if(strlen($agent_information['lastname'] . ' ' . $agent_information['firstname']) > 25){
+				$data['agent_name'] = utf8_substr(strip_tags($agent_information['lastname'] . ' ' . $agent_information['firstname']), 0, 15) . '...';
+			}else{
+				$data['agent_name'] = $agent_information['lastname'] . ' ' . $agent_information['firstname'];
+			}
 			
-			$data['specialization'] = $agent_information['specialization'];
+			if(strlen($agent_information['specialization']) > 65){
+				$data['specialization'] = utf8_substr(strip_tags($agent_information['specialization']), 0, 35) . '...';
+			}else{
+				$data['specialization'] = $agent_information['specialization'];
+			}
 			
 			if ($agent_information['image']) {
 				$data['image_agent'] = $this->model_tool_image->resize($agent_information['image'], 456, 342);
@@ -1205,7 +1228,6 @@ class ControllerProductProduct extends Controller {
 			//$pdf->Output('object-' ./*$this->generate_value(7).*/ (int)$this->request->get['product_id'] . '.pdf', 'D');
 			
 			//domPDF
-			
 			$options = new Options();
 			
 			$options->setIsRemoteEnabled(true);
@@ -1224,25 +1246,6 @@ class ControllerProductProduct extends Controller {
 			$dompdf->render();
 			
 			$dompdf->stream('object-' . (int)$this->request->get['product_id'] . '.pdf', array("Attachment" => 0));	
-			
-			
-			//require_once(DIR_SYSTEM . '/library/dompdf/dompdf_config.inc.php');
-
-			/*$dompdf = new DOMPDF();
-			//$dompdf->set_paper("A4", 'landscape');
-			
-			// load the html content
-			//ob_start();
-			$out=iconv( mb_detect_encoding($html), 'UTF-8', $html);
-			
-			$dompdf->load_html($out);
-			
-			//ob_end_clean();
-			
-			$dompdf->render();
-			
-			$dompdf->stream('object-' . (int)$this->request->get['product_id'] . '.pdf', array("Attachment" => 0));*/
-			
 		}
 	}
 	

@@ -180,6 +180,8 @@ Math.easeIn = function (val, min, max, strength) {
       this.$target = $('.ocf-target', this.$element);
 			
       this.$values = $('label', this.$element);
+			
+			this.$summ = $('.input-sm', this.$element); 
 
       var that = this;
 
@@ -284,7 +286,7 @@ Math.easeIn = function (val, min, max, strength) {
       });
 
       if (this.options.php.manualPrice) {
-        $('[data-toggle="popover-price"]').popover({
+        /*$('[data-toggle="popover-price"]').popover({
           content: function() {
             return '' +
               '<div class="form-inline">' +
@@ -303,7 +305,20 @@ Math.easeIn = function (val, min, max, strength) {
           container: '#ocfilter',
           title: 'Указать цену',
           trigger: 'hover'
-        });
+        });*/
+				
+				this.$summ.bind('keydown', function(e){
+					var
+						$element = $(this),
+						$buttonTarget = $element.closest('.summ');
+
+					if (event.keyCode == 13 && $('input[name=\'price[min]\']').val().length >= 0 && $('input[name=\'price[min]\']').val().length > 0) {
+						that.options.php.params = 'p:' + $('input[name=\'price[min]\']').val() + '-' + $('input[name=\'price[max]\']').val();
+						that.update($buttonTarget);
+						
+						$('#ocfilter .scale').removeAttr('disabled');
+					}
+				});
       }
 
       // Set sliders
@@ -365,7 +380,7 @@ Math.easeIn = function (val, min, max, strength) {
 			});
 		},
 		
-		currencys_update: function(){
+		currencys_update: function(){		
 			var data = {
 				'change_currencys' : $("select[name='currencys']").val(),
 				'path' : $("input[name='path']").val(),
@@ -376,10 +391,14 @@ Math.easeIn = function (val, min, max, strength) {
 				url: 'index.php?route=extension/module/ocfilter/setCurrencys',
 				data: data, 
 				success: function(json) {
-					$('#price-from').replaceWith('<span id="price-from">'+json.sliders.min+'</span>');
-					$('#price-to').replaceWith('<span id="price-to">'+json.sliders.max+'</span>');
+					var get_min = json.sliders.min_price_get ? json.sliders.min_price_get : json.sliders.min;
+					var get_max = json.sliders.max_price_get ? json.sliders.max_price_get : json.sliders.max;
+					$('#price-from').replaceWith('<span id="price-from">' + json.sliders.min + '</span>');
+					$('#price-to').replaceWith('<span id="price-to">' + json.sliders.max + '</span>');
+					$('input[name=\'price[min]\']').val(get_min);
+					$('input[name=\'price[max]\']').val(get_max);
 					$('.symbol_right').replaceWith('<span class="symbol_right">'+json.currencys+'</span>');
-					
+				
 					//var updateSlider = document.getElementById('scale-price');
 					function updateSliderRange(min, max) {
 							var
@@ -431,7 +450,7 @@ Math.easeIn = function (val, min, max, strength) {
 	
 							$element.noUiSlider.updateOptions(_options);
 					}
-					
+
 					updateSliderRange(json.sliders.min, json.sliders.max);
 				}
 			});
@@ -447,7 +466,7 @@ Math.easeIn = function (val, min, max, strength) {
 					currencys: $( "[name=currencys]" ).val(),
           option_id: scrollTarget.data().optionId
         };
-			
+			//console.log(data);
       if (this.options.php.params) {
         data[this.options.php.index] = this.options.php.params;
       }
@@ -462,7 +481,7 @@ Math.easeIn = function (val, min, max, strength) {
             total = value.t,
             selected = value.s,
             params = value.p;
-
+					//
           if (target.length > 0) {
             if (target.is('label')) {
               if (total === 0 && !selected) {
@@ -505,7 +524,7 @@ Math.easeIn = function (val, min, max, strength) {
         if (typeof scrollTarget != 'undefined') {
           that.scroll(scrollTarget);
         }
-
+				
         if (isSlider) {
           scrollTarget.removeAttr('disabled');
         }

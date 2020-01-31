@@ -1112,6 +1112,21 @@ class ControllerExtensionModuleOCFilter extends Controller {
     }else{
       $category_id = 0;
     }
+    
+    if ($this->params) {
+      $options_get = decodeParamsFromString($this->params, $this->config);
+  
+      $this->options_get = $options_get;
+  
+      if (!empty($options_get['p'])) {
+        $range = getRangeParts(end($options_get['p']));
+ 
+        if (isset($range['from']) && isset($range['to'])) {
+          $this->min_price_get = $range['from'];
+          $this->max_price_get = $range['to'];
+        }
+      }
+    }
         
     if (isset($this->request->get['filter_ocfilter'])) {
       $this->params = cleanParamsString($this->request->get['filter_ocfilter'], $this->config);
@@ -1132,15 +1147,16 @@ class ControllerExtensionModuleOCFilter extends Controller {
     $product_prices = $this->model_catalog_ocfilter->getProductPrices($filter_data);
 
     $symbol_right = $this->model_localisation_currency->getCurrencyByCode($url);
-  
+      
     if ($product_prices) {
       $product_prices_min = 0;
 
       $json['sliders'] = array(
         'min' => $this->currency->format($product_prices_min, $this->session->data['currency'], '', false),
         'max' => $this->currency->format(ceil($product_prices['max']), $this->session->data['currency'], '', false),
+        'min_price_get' => $this->min_price_get,
+        'max_price_get' => $this->max_price_get,
       );
-      
     }
 
     $json['currencys'] = $symbol_right['symbol_right'];
