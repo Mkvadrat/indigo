@@ -20,6 +20,7 @@
     ></div>
   </div>
 </div>
+<?php if($manual_price){ ?>
 <div class="form-inline">
 	<div class="form-group summ" data-option-id="p">
 		<input name="price[min]" value="<?php echo $min_price_get; ?>" type="text" class="form-control input-sm" id="min-price-value" />
@@ -29,6 +30,7 @@
 		<input name="price[max]" value="<?php echo $max_price_get; ?>" type="text" class="form-control input-sm" id="max-price-value" />
 	</div>
 </div>
+<?php } ?>
 <?php if($currencys){ ?>
   <div class="list-group-item ocfilter-option currency-wraper">
     <select class="currencys btn btn-block" id="currencys" name="currencys">	
