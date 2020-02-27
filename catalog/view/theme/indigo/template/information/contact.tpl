@@ -82,7 +82,7 @@
 					</div>
 				</div>
 				<div class="man__item">
-					<div class="img"><img src="/catalog/view/theme/indigo/image/thumb-man.jpg" alt="Желепа Юрий"></div>
+					<div class="img"><img src="http://indigo-yalta.com/image/catalog/indigo/fotojura.jpg" alt="Желепа Юрий"></div>
 					<div class="man__body">
 						<div class="man__name">Желепа Юрий</div>
 						<div class="man__phone"><a href="tel:+79788540288">+7(978)854-02-88</a></div>
