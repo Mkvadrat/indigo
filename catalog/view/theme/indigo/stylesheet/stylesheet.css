@@ -9,3 +9,103 @@
     color: #fff;
     margin: 0 0 20px;}
 	.fotorama, .fotorama__nav-wrap{    margin-bottom: 7px;}
+
+
+
+.contacts-row .contacts-text > div > div.man__item,
+.man__item {
+	    border: none;
+    padding: 0;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+	margin-bottom: 57px;
+}
+
+.contacts-row .contacts-text > div > div.man__item:last-child,
+.contacts-row .contacts-text > div > div.man__item:nth-last-child(2),
+.man__item:last-child,
+.man__item:nth-last-child(2) {
+	margin-bottom: 0;
+}
+
+.man__item .img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 180px;
+    height: 180px;
+    text-align: center;
+    flex: none;
+}
+.about__mans .man__item .img {
+    width: 100px;
+    height: 100px;
+}
+.man__item .img img{
+        height: 100%;
+}
+
+.grid__man {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.man__name {
+	font-size: 24px;
+	line-height: 30px;
+	color: #F1EAA2;
+}
+.man__phone a {
+	font-size: 24px;
+	line-height: 38px;
+	color: #ffffff;
+}
+
+.man__body {
+	padding-left: 21px;
+}
+
+.mans__block {
+	margin-bottom: 8px;
+}
+
+.about__mans .man__item {
+	width: 50%;
+}
+.about__mans .man__item:nth-last-child(2) {
+    margin-bottom: 57px;
+}
+.about__mans {
+	padding-top: 12px;
+}
+	@media all and (-ms-high-contrast:none)
+     {
+     .fotorama__html div span{opacity: 0.3;}
+     }
+
+.category-list .item .img{
+    /*background-position: center;*/
+    overflow: hidden;
+}
+span.ui-selectmenu-icon.ui-icon.ui-icon-triangle-1-s{
+    background: none;
+}
+.sort-view .ui-selectmenu-icon.ui-icon::before, .sort-view .ui-selectmenu-icon.ui-icon::after{
+    left: 11px;
+}
+.ui-selectmenu-text{
+    color: #ffffff;
+}
+ul#sort-items-menu{
+    width: 350px;
+}
+.sort-view .ui-selectmenu-menu .ui-menu{
+    margin-top: -8px;
+}
+.info{font-size: 21px;
+    line-height: 24px;
+    color: #fff;
+    margin: 0 0 20px;}
+.fotorama, .fotorama__nav-wrap{    margin-bottom: 7px;}

@@ -229,6 +229,11 @@
     .request-l .article.form label .radio label {
         width: 32%;
     }
+
+	.contacts-row .contacts-text > div > div.man__item,
+	.man__item {
+		width: 100%;
+	}
 }
 
 @media (max-width: 991px) {
@@ -239,15 +244,18 @@
     }
 
     .logo-line .logo {
-        width: 300px;
+        width: 35%;
         -webkit-box-ordinal-group: 1;
         -ms-flex-order: 0;
         -webkit-order: 0;
         -moz-box-ordinal-group: 1;
         order: 0;
         margin-right: auto;
+        margin-top: 0;
     }
-
+    .catalog-text-row .text-row {
+        padding: 10px 15px 30px;
+    }
     .logo-line .round-button {
         font-size: 24px;
         padding: 10px 30px;
@@ -279,6 +287,7 @@
         order: 1;
         margin-right: auto;
         margin-top: 10px;
+		display: none;
     }
 
     .logo-line .query {
@@ -291,6 +300,7 @@
         margin-left: auto;
         margin-top: 10px;
         width: 100%;
+		display: none;
     }
 
     .logo-line .query a {
@@ -522,7 +532,7 @@
     }
 
     .logo-line .logo {
-        width: 255px;
+        /*width: 35%;*/
     }
 
     .info-row .texted-img {
@@ -663,7 +673,7 @@
     }
 
     .logo-line {
-        -webkit-box-orient: vertical;
+        /*-webkit-box-orient: vertical;
         -webkit-box-direction: normal;
         -ms-flex-direction: column;
         -webkit-flex-direction: column;
@@ -674,7 +684,7 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         -moz-box-align: center;
-        align-items: center;
+        align-items: center;*/
     }
 
     .logo-line .logo a {
@@ -686,8 +696,8 @@
     }
 
     .logo-line .logo {
-        margin: 0 auto 25px;
-        width: 60%;
+        /*margin: 0 auto 25px;
+        width: 60%;*/
     }
 
     .logo-line .addres {
@@ -701,11 +711,16 @@
     }
 
     .logo-line .cont-phones div {
-        text-align: center;
+        /*text-align: center;*/
     }
-
+.logo-line .cont-phones > div {
+/*text-align: center;
+    display: inline-block;
+    width: 49%;
+    white-space: nowrap;*/
+}
     .logo-line .cont-phones {
-        margin: 0 auto 0;
+        /*margin: 0 auto 0;*/
     }
 
     .logo-line .query {
@@ -725,12 +740,22 @@
     }
 
     .logo-line .cont-phones .viber, .logo-line .cont-phones .whatsapp {
-        float: none;
+        /*float: none;*/
     }
 
     .ocfilter-option[id^="option-"], .category-list .item .square {
         width: 50%;
     }
+		.man__item,
+		.contacts-row .contacts-text > div > div.man__item {
+		flex-wrap: wrap;
+		text-align: center;
+    justify-content: center;
+	}
+	.man__body {
+    padding-left: 0;
+    width: 100%;
+}
 }
 
 @media (max-width: 540px) {
@@ -1068,6 +1093,8 @@
 
     .sort-view {
         flex-direction: row;
+    padding: 0;
+    margin-top: 10px;
     }
 
     header .mob-menu {
@@ -1099,7 +1126,7 @@
 
     .sort-view .custom-flex .sort {
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 5px;
     }
     .change_view {
         display: none;
@@ -1112,6 +1139,17 @@
     }
     .ymaps-2-1-73-zoom {
         height: 50px!important;
+    }
+	.sort-view .sort, .sort-view .view, .change_view span {
+        font-size: 15px;
+    }
+    .sort-view .ui-selectmenu-button.ui-button {
+        padding: 6px 15px;
+    }
+    .sort-view .ui-selectmenu-menu .ui-menu {
+        border-radius: 0 0 15px 15px;
+        padding: 20px 0 0;
+        margin-top: -15px;
     }
 }
 
@@ -1138,7 +1176,7 @@
 @media (max-width: 640px) {
 
     .logo-line {
-        flex-direction: column;
+        /*flex-direction: column;*/
     }
 
     .logo {
@@ -1174,9 +1212,9 @@
     }
 
     .logo-line .logo {
-        width: 80%;
+        /*width: 40%;
         margin-bottom: 8px;
-        order: 1;
+        order: 1;*/
     }
 
     .logo-line {
@@ -1203,8 +1241,9 @@
     }
 
     .logo-line .cont-phones {
-        order: 3;
+        /*order: 3;
         margin-bottom: 11px;
+        width: 80%;*/
     }
 
     .logo-line .addres a, .logo-line .addres p {
@@ -1213,7 +1252,7 @@
     }
 
     .logo-line .cont-phones a {
-        font-size: 24px;
+        font-size: 15px;
         line-height: 1.4;
     }
 
