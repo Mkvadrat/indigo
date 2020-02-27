@@ -36,6 +36,7 @@
 			</div>
 			<div class="col-md-6 col-sm-12 col-xs-12 contacts-l">
 				<div class="cont form">
+					<h3>ОСТАВИТЬ ОТЗЫВ</h3>
 					<p>* - поля обязательные для заполнения</p>
 					<form>
 						<label>Имя*:<input id="name" type="text"></label>
