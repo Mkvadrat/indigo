@@ -20,6 +20,7 @@
 <script src="view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <link href="view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" media="screen" />
 <link type="text/css" href="view/stylesheet/stylesheet.css" rel="stylesheet" media="screen" />
+<script src="https://api-maps.yandex.ru/2.0/?apikey=8f4df789-3209-4438-891c-b71fdceaee63&load=package.full&lang=ru-RU" type="text/javascript"></script>
 <?php foreach ($styles as $style) { ?>
 <link type="text/css" href="<?php echo $style['href']; ?>" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
