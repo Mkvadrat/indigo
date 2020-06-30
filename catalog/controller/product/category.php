@@ -324,13 +324,13 @@ class ControllerProductCategory extends Controller {
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_price_asc'),
-				'value' => 'p.price-ASC',
+				'value' => 'p.price_usd-ASC',
 				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.price_usd&order=ASC' . $url)
 			);
 
 			$data['sorts'][] = array(
 				'text'  => $this->language->get('text_price_desc'),
-				'value' => 'p.price-DESC',
+				'value' => 'p.price_usd-DESC',
 				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.price_usd&order=DESC' . $url)
 			);
 

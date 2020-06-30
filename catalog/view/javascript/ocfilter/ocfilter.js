@@ -357,7 +357,7 @@ Math.easeIn = function (val, min, max, strength) {
 					$buttonTarget.attr('id', 'v-' + ui.item.id);
 					
 					$buttonTarget.toggleClass('ocf-selected', $target.next(':hidden').val());
-					
+
 					if(filter_ocfilter){
 						$target.next(':hidden').val(filter_ocfilter + ';' + ui.item.value);
 						
