@@ -1,5 +1,28 @@
 <?php
 class ModelCatalogProduct extends Model {
+
+        public function translitValue($string) {
+          $replace = array(
+            'а' => 'a', 'б' => 'b',
+            'в' => 'v', 'г' => 'g', 'ґ' => 'g', 'д' => 'd', 'е' => 'e',
+            'є' => 'je', 'ё' => 'e', 'ж' => 'zh', 'з' => 'z', 'и' => 'i',
+            'і' => 'i', 'ї' => 'ji', 'й' => 'j', 'к' => 'k', 'л' => 'l',
+            'м' => 'm', 'н' => 'n', 'о' => 'o', 'п' => 'p', 'р' => 'r',
+            'с' => 's', 'т' => 't', 'у' => 'u', 'ф' => 'f', 'х' => 'h',
+            'ц' => 'ts', 'ч' => 'ch', 'ш' => 'sh', 'щ' => 'sch', 'ъ' => '',
+            'ы' => 'y', 'ь' => '', 'э' => 'e', 'ю' => 'ju', 'я' => 'ja',
+      
+            ' ' => '-', '+' => 'plus'
+          );
+      
+          $string = mb_strtolower($string, 'UTF-8');
+          $string = strtr($string, $replace);
+          $string = preg_replace('![^a-zа-яёйъ0-9]+!isu', '-', $string);
+          $string = preg_replace('!\-{2,}!si', '-', $string);
+      
+          return $string;
+        }
+      
 	public function addProduct($data) {
 		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . /*$this->db->escape($data['model'])*/ $this->generateModel() . "', agent = '" . $this->db->escape($data['agent']) . "', uniq_options = '" . (int)$data['uniq_options'] . "', location = '" . $this->db->escape($data['location']) . "', address = '" . $this->db->escape($data['address']) . "', date_available = '" . $this->db->escape($data['date_available']) . "', price = '" . (float)$data['price'] . "', currency_id = '".(int)$data['currency']."', status = '" . (int)$data['status'] . "', tax_class_id = '" . (int)$data['tax_class_id'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
@@ -37,7 +60,69 @@ class ModelCatalogProduct extends Model {
 			}
 		}
 
-		if (isset($data['product_image'])) {
+		
+					/* ++ easyphoto */
+					if(!isset($data['copy_flag'])){
+						if (isset($data['image'])) {
+							$easyphoto_data = array('image' => $data['image'], 'product_id' => $product_id);
+							$data['image'] = $this->load->controller('extension/module/easyphoto/resize_rename', $easyphoto_data);
+							$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
+						}
+
+    // OCFilter start
+		if (isset($data['ocfilter_product_option'])) {
+			foreach ($data['ocfilter_product_option'] as $option_id => $values) {
+				foreach ($values['values'] as $value_id => $value) {
+					if (isset($value['selected'])) {
+            if(isset($value['type']) && $value['type'] == 'text'){
+              if(isset($value['text'])){
+                $text_val = trim($value['text']);
+              }else{
+                $text_val = '';
+              }
+
+              $name_options = array();
+              
+              $query_name = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE option_id = '" . $option_id . "' AND name <> ''");
+
+              foreach($query_name->rows as $current_opt){
+                $name_options[] = $current_opt['name'];
+              }
+
+              if (in_array($text_val, $name_options)) {
+                $query_value = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE name ='" . $text_val . "' AND option_id = '" . $option_id . "' AND name <> ''");
+                
+                foreach($query_value->rows as $current_val){
+                  $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (string)$current_val['value_id'] . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = '" . $text_val . "'");
+                }
+              }elseif(!empty($text_val)){
+                $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value SET option_id = '" . (int)$option_id . "', sort_order = '0', `keyword` = '" . $this->db->escape($this->translitValue($text_val)) . "', color = '', image = ''");
+
+                $last_id = $this->db->getLastId();
+                
+                $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_description SET value_id = '" . (string)$last_id . "', option_id = '" . (int)$option_id . "', language_id = '" . (int)$this->config->get('config_language_id') . "', name = '" . $text_val . "'");
+                
+                $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . $last_id . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = '" . $text_val . "'");
+              }
+            }else{
+              $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (string)$value_id . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = ''");
+            }
+					}
+				}
+			}
+		}
+		// OCFilter end
+      
+						if (isset($data['product_image'])) {
+							foreach ($data['product_image'] as $product_image) {
+								$easyphoto_data = array('image' => $product_image['image'], 'product_id' => $product_id);
+								$product_image['image'] = $this->load->controller('extension/module/easyphoto/resize_rename', $easyphoto_data);
+								$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($product_image['image']) . "', sort_order = '" . (int)$product_image['sort_order'] . "'");
+							}
+						}
+					}else{
+					/* -- easyphoto */
+	       
 			foreach ($data['product_image'] as $key => $product_image) {
 				/*if($product_image['sort_order']){
 					$sort_order = (int)$product_image['sort_order'];
@@ -113,6 +198,54 @@ class ModelCatalogProduct extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
 
+
+      // OCFilter start
+      $this->db->query("DELETE FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE product_id = '" . (int)$product_id . "'");
+      
+      if (isset($data['ocfilter_product_option'])) {
+        foreach ($data['ocfilter_product_option'] as $option_id => $values) {
+          foreach ($values['values'] as $value_id => $value) {
+            if (isset($value['selected'])) {
+              if(isset($value['type']) && $value['type'] == 'text'){
+                if(isset($value['text'])){
+                  $text_val = trim($value['text']);
+                }else{
+                  $text_val = '';
+                }
+                
+                $name_options = array();
+                
+                $query_name = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE option_id = '" . $option_id . "' AND name <> ''");
+  
+                foreach($query_name->rows as $current_opt){
+                  $name_options[] = $current_opt['name'];
+                }
+  
+                if (in_array($text_val, $name_options)) {
+                  
+                  $query_value = $this->db->query("SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_description WHERE name ='" . $text_val . "' AND option_id = '" . $option_id . "' AND name <> ''");
+
+                  foreach($query_value->rows as $current_val){
+                    $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (string)$current_val['value_id'] . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = '" . (string)$text_val . "'");
+                  }
+                }elseif(!empty($text_val)){                
+                  $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value SET option_id = '" . (int)$option_id . "', sort_order = '0', `keyword` = '" . $this->db->escape($this->translitValue($text_val)) . "', color = '', image = ''");
+  
+                  $last_id = $this->db->getLastId();
+                  
+                  $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_description SET value_id = '" . (string)$last_id . "', option_id = '" . (int)$option_id . "', language_id = '" . (int)$this->config->get('config_language_id') . "', name = '" . $text_val . "'");
+                  
+                  $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . $last_id . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = '" . $text_val . "'");
+                }
+              }else{
+                $this->db->query("INSERT INTO " . DB_PREFIX . "ocfilter_option_value_to_product SET product_id = '" . (int)$product_id . "', option_id = '" . (int)$option_id . "', value_id = '" . (string)$value_id . "', slide_value_min = '" . (isset($value['slide_value_min']) ? (float)$value['slide_value_min'] : 0) . "', slide_value_max = '" . (isset($value['slide_value_max']) ? (float)$value['slide_value_max'] : 0) . "', text = ''");
+              }
+            }
+          }
+        }
+      }
+      // OCFilter end
+      
 		if (isset($data['product_store'])) {
 			foreach ($data['product_store'] as $store_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_store SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "'");
@@ -222,10 +355,22 @@ class ModelCatalogProduct extends Model {
 			$data['status'] = '0';
 
 			$data['product_attribute'] = $this->getProductAttributes($product_id);
+
+ 		// OCFilter start
+		$this->load->model('catalog/ocfilter');
+
+		$data['ocfilter_product_option'] = $this->model_catalog_ocfilter->getProductOCFilterValues($product_id);
+		// OCFilter end
+      
 			$data['product_description'] = $this->getProductDescriptions($product_id);
 			$data['product_discount'] = $this->getProductDiscounts($product_id);
 			$data['product_filter'] = $this->getProductFilters($product_id);
-			$data['product_image'] = $this->getProductImages($product_id);
+			
+					/* ++ easyphoto */
+					//$data['product_image'] = $this->getProductImages($product_id);
+					$data['product_image'] = array();
+					/* -- easyphoto */
+	       
 			$data['product_option'] = $this->getProductOptions($product_id);
 			$data['product_related'] = $this->getProductRelated($product_id);
 			$data['product_reward'] = $this->getProductRewards($product_id);
@@ -236,6 +381,11 @@ class ModelCatalogProduct extends Model {
 
 			$data['main_category_id'] = $this->getProductMainCategoryId($product_id);
 
+
+					/* ++ easyphoto */
+					$data['copy_flag'] = true;
+					/* -- easyphoto */
+	       
 			$this->addProduct($data);
 		}
 	}
@@ -283,6 +433,11 @@ class ModelCatalogProduct extends Model {
 		}
 		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+
+		// OCFilter start
+		$this->db->query("DELETE FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE product_id = '" . (int)$product_id . "'");
+		// OCFilter end
+      
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_description WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "'");
