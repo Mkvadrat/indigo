@@ -843,14 +843,17 @@ class ModelCatalogOCFilter extends Model {
 		return $query->rows;
 	}
   
-  public function getAutocomplete($data = array()) {    
-    $sql = "SELECT DISTINCT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE option_id = '" . $this->db->escape($data['option_id']) . "'";
-
-		if (!empty($data['filter_name']) && !empty($data['filter_name'])) {
-			$sql .= " AND text LIKE '%" . strval($this->db->escape($data['filter_name'])) . "%' AND TRIM(COALESCE(text, '')) <>'' GROUP BY text";
+  public function getAutocomplete($data = array()) {
+    //$sql = "SELECT DISTINCT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product WHERE option_id = '" . $this->db->escape($data['option_id']) . "'";
+    $sql = "SELECT * FROM " . DB_PREFIX . "ocfilter_option_value_to_product oov2p LEFT JOIN " . DB_PREFIX . "product p ON (oov2p.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id)";
+		
+    $sql .= " WHERE p.status = '1' AND p2c.category_id = '" . (int)$data['filter_category_id'] . "' AND oov2p.option_id = '" . (int)$data['option_id'] . "'";
+    
+    if (!empty($data['filter_name'])) {
+			$sql .= " AND oov2p.text LIKE '%" . strval($this->db->escape($data['filter_name'])) . "%' AND TRIM(COALESCE(oov2p.text, '')) <>'' GROUP BY oov2p.text";
 		}
     
-    $sql .= " ORDER BY product_id ASC ";
+    $sql .= " ORDER BY oov2p.product_id ASC ";
 
 		if (isset($data['start']) || isset($data['limit'])) {
 			if ($data['start'] < 0) {

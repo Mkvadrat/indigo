@@ -1170,27 +1170,8 @@ class ControllerExtensionModuleOCFilter extends Controller {
 
 		if (isset($this->request->get['filter_name'])) {
 			$this->load->model('catalog/ocfilter');
-      
-      if (isset($this->request->get['path'])) {
-        $path = '';
-  
-        $parts = explode('_', (string)$this->request->get['path']);
-  
-        $category_id = (int)array_pop($parts);
-  
-        foreach ($parts as $path_id) {
-          if (!$path) {
-            $path = (int)$path_id;
-          } else {
-            $path .= '_' . (int)$path_id;
-          }
-        }
-      }else{
-        $category_id = 0;
-      }
-      
+
 			$filter_data = array(
-        'filter_category_id' => $category_id,
 				'filter_name' => $this->request->get['filter_name'],
         'option_id'   => $this->request->get['option_id'],
 				'start'       => 0,

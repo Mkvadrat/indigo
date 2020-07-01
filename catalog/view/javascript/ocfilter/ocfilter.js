@@ -310,14 +310,16 @@ Math.easeIn = function (val, min, max, strength) {
 				this.$summ.bind('keydown', function(e){
 					var
 						$element = $(this),
-						$buttonTarget = $element.closest('.summ');
+						$buttonTarget = $element.closest('.summ'),
+						$min_price = $('input[name=\'price[min]\']').val() ? $('input[name=\'price[min]\']').val() : 0,
+						$max_price = $('input[name=\'price[max]\']').val() ? $('input[name=\'price[max]\']').val() : 0;
 
-					if (event.keyCode == 13 && $('input[name=\'price[min]\']').val().length >= 0 && $('input[name=\'price[min]\']').val().length > 0) {
-						that.options.php.params = 'p:' + $('input[name=\'price[min]\']').val() + '-' + $('input[name=\'price[max]\']').val();
+					//if (event.keyCode == 13 && $('input[name=\'price[min]\']').val().length >= 0 && $('input[name=\'price[min]\']').val().length > 0) {
+						that.options.php.params = 'p:' + $min_price + '-' + $max_price;
 						that.update($buttonTarget);
 						
 						$('#ocfilter .scale').removeAttr('disabled');
-					}
+					//}
 				});
       }
 
@@ -332,7 +334,7 @@ Math.easeIn = function (val, min, max, strength) {
 				'source': function(request, response) {
 					if (encodeURIComponent(request.term) != 0) {
 						$.ajax({
-							url: 'index.php?route=extension/module/ocfilter/autocomplete&option_id=' + $target.attr('data-value-id') + '&filter_name=' +  encodeURIComponent(request.term) + '&filter_ocfilter=' + encodeURIComponent(filter_ocfilter),
+							url: 'index.php?route=extension/module/ocfilter/autocomplete&option_id=' + $target.attr('data-value-id') + '&filter_name=' +  encodeURIComponent(request.term) + '&filter_ocfilter=' + encodeURIComponent(filter_ocfilter) + '&path=' + $("input[name='path']").val(),
 							dataType: 'json',
 							success: function(json) {
 								response($.map(json, function(item) {
@@ -357,7 +359,7 @@ Math.easeIn = function (val, min, max, strength) {
 					$buttonTarget.attr('id', 'v-' + ui.item.id);
 					
 					$buttonTarget.toggleClass('ocf-selected', $target.next(':hidden').val());
-
+					
 					if(filter_ocfilter){
 						$target.next(':hidden').val(filter_ocfilter + ';' + ui.item.value);
 						
@@ -447,8 +449,11 @@ Math.easeIn = function (val, min, max, strength) {
 									return parseFloat(value).toFixed(decimals);
 								}
 							};
-	
-							$element.noUiSlider.updateOptions(_options);
+							
+							if (_options.length > 0) {
+                $element.noUiSlider.updateOptions();
+              }
+							
 					}
 
 					updateSliderRange(json.sliders.min, json.sliders.max);
